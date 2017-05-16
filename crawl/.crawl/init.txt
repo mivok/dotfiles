@@ -1,0 +1,58 @@
+##### Crawl Init file ###############################################
+# vim: ft=dosini
+# For descriptions of all options, as well as some more in-depth information
+# on setting them, consult the file
+#    options_guide.txt
+# in your /docs directory. If you can't find it, the file is also available
+# online at:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
+#
+# Crawl uses the first file of the following list as its option file:
+#  * init.txt in the -rcdir directory (if specified)
+#  * .crawlrc in the -rcdir directory (if specified)
+#  * init.txt (in the Crawl directory)
+#  * ~/.crawl/init.txt (Unix only)
+#  * ~/.crawlrc (Unix only)
+#  * ~/init.txt (Unix only)
+#  * settings/init.txt (in the Crawl directory)
+
+# Don't allow Tab if less than 70% HP
+autofight_stop = 70
+# Be a bit more cautious than normal with hp warnings
+hp_color = 70:yellow, 50:red
+hp_warning = 25
+
+# Don't keep on asking which corpses to butcher
+confirm_butcher = never
+
+# Auto-eat
+auto_eat_chunks = true
+easy_eat_chunks = true
+auto_butcher = true
+
+# Insta-travel like in online
+#travel_delay = -1
+show_travel_trail = true
+
+## Auto-inscribe
+# @r1 means you can type 'r1' to recite it. Same for q1.
+ai := autoinscribe
+ai += of identify:@r1
+ai += remove curse:@r2
+ai += curing:@q1
+
+# Turn off more prompt
+show_more = false
+
+# Don't explore over deep water when flying
+travel_avoid_terrain = deep water
+
+# Don't pickup forbidden items
+autopickup_exceptions += forbidden
+
+# Combine functions of W/T and P/R
+equip_unequip = true
+
+# Additional important messages as a conjurer
+runrest_stop_message += Your battlesphere wavers and loses cohesion.
+runrest_stop_message += You feel your bond with your battlesphere wane.

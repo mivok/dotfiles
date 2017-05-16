@@ -1,0 +1,6 @@
+-- Show expanded display when appropriate
+\x auto
+-- Show NULLs visibly
+\pset null [NULL]
+-- Autocomplete sel_ to SELECT
+\set COMP_KEYWORD_CASE upper

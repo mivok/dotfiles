@@ -1,0 +1,4 @@
+*.swp
+.envrc
+.direnv
+.delivery/cli.toml
