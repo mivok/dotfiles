@@ -331,7 +331,11 @@ __set_git_email_vars() {
         export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
     fi
 }
-alias git="__set_git_email_vars; git"
+if which hub >/dev/null 2>&1; then
+    alias git="__set_git_email_vars; hub"
+else
+    alias git="__set_git_email_vars; git"
+fi
 # }}}
 # Direnv setup {{{
 if which direnv >/dev/null 2>&1; then
