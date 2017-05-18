@@ -368,7 +368,11 @@ export AUTOJUMP_KEEP_SYMLINKS=1
 [[ -s "/Users/mark/.gvm/scripts/gvm" ]] && . "/Users/mark/.gvm/scripts/gvm"
 
 # Fzf - fuzzy finder
-[[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
+FZF_PATH="/usr/local/opt/fzf" # Homebrew install location for fzf
+if [[ -d "$FZF_PATH" ]]; then
+    source "$FZF_PATH/shell/completion.bash"
+    source "$FZF_PATH/shell/key-bindings.bash"
+fi
 # }}}
 # Default editor {{{
 # Lower down in the list is preferred editor
