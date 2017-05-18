@@ -25,6 +25,7 @@ brew 'sqlite'
 brew 'mtr'
 brew 'vim'
 brew 'the_silver_searcher'
+brew 'stow'
 
 # Shell helpers
 brew 'bash-completion'
