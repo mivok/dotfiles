@@ -99,7 +99,6 @@ cask 'arduino'
 cask 'bartender'
 cask 'chicken' # VNC - needed for some vnc servers
 cask 'chefdk'
-cask 'dash'
 cask 'docker'
 cask 'dropbox'
 cask 'dungeon-crawl-stone-soup-tiles'
@@ -139,7 +138,6 @@ mas 'Pages', id: 409201541
 mas 'Xcode', id: 497799835
 
 # Paid stuff
-#mas 'Dash', id: 449589707
 mas 'GIF Brewery 3', id: 1081413713
 mas 'Marked', id: 448925439
 mas 'Shush', id: 496437906
