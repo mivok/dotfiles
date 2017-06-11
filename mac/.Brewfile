@@ -35,10 +35,10 @@ brew 'fzf'
 
 # Nice to haves
 brew 'a2ps'
-#brew 'apg' # Apg is no more :(
 brew 'cfssl'
 brew 'cli53'
 brew 'colordiff'
+brew 'cookiecutter'
 brew 'dfu-programmer' # For programming the mechanical keyboard
 brew 'feh'
 brew 'graphicsmagick'
@@ -50,6 +50,7 @@ brew 'kubernetes-cli'
 brew 'ldapvi'
 brew 'ledger'
 brew 'leiningen'
+brew 'mackup'
 brew 'mpv'
 brew 'ngrep'
 brew 'nmap'
