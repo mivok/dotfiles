@@ -2,10 +2,9 @@
 
 ---- Load modules ----
 
--- Audio device watchers
-local audio = require("audio")
-local layouts = require("layouts")
-local zoom_detect = require("zoom_detect")
+audio = require("audio")
+layouts = require("layouts")
+zoom_detect = require("zoom_detect")
 
 ---- Hotkeys ----
 
@@ -34,8 +33,13 @@ hs.hotkey.bind({}, "F14", function()
 end)
 
 ---- Automatically reload the config ----
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()
+pw1 = hs.pathwatcher.new(os.getenv("HOME") ..
+    "/.hammerspoon/", hs.reload):start()
 -- I manage my dotfiles in a different dir and symlink to ~/.hammerspoon
-hs.pathwatcher.new(os.getenv("HOME") ..
+pw2 = hs.pathwatcher.new(os.getenv("HOME") ..
     ".dotfiles/dotfiles-laptop/home/.hammerspoon/", hs.reload):start()
 hs.notify.show("Hammerspoon",  "", "config loaded", "")
+
+-- Force garbage collection early to quickly detect any issues caused by use
+-- of local variables and garbage collection.
+hs.timer.doAfter(5, collectgarbage)
