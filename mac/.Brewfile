@@ -103,7 +103,6 @@ cask 'chefdk'
 cask 'docker'
 cask 'dropbox'
 cask 'dungeon-crawl-stone-soup-tiles'
-cask 'evernote'
 cask 'gimp'
 cask 'gmvault' # Gmail backup
 cask 'google-chrome'
