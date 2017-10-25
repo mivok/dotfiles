@@ -211,7 +211,8 @@ let g:todo_files=["~/todo.txt"]
 " Go settings
 
 " For vim-go and syntastic to play nice together
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
+let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " Use goimports instead of gofmt on save
