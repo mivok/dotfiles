@@ -214,6 +214,7 @@ alias sshfs='sshfs -o idmap=user,workaround=rename'
 
 # List running vms
 alias runningvms="VBoxManage list runningvms | awk -F'\"' '{print \$2}'"
+alias runningcontainers="docker ps --format '{{.Image}}\t{{.Names}}'"
 
 # knife search - wtf search term gives machines that match
 alias wtf="knife search node -a fqdn -a run_list -a tags"
