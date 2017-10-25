@@ -2,10 +2,11 @@
 --
 -- To use:
 --
--- * Install and set up the slack_status.sh script
+-- * Install and set up the slack_status.sh script (make sure it's in your
+--   path)
 -- * Ensure there is a 'zoom' preset (one is created by default during setup)
--- * Update the configuration of the script below
--- * Install hammerspoon (brew cask install hammerspoon)
+-- * Install hammerspoon (brew cask install hammerspoon) if you don't have it
+--   already.
 -- * Copy this file to ~/.hammerspoon
 -- * Add the following line to ~/.hammerspoon/init.lua
 --      local zoom_detect = require("zoom_detect")
@@ -19,8 +20,8 @@ end
 
 function zoom_window_exists()
     local a = hs.application.find("zoom.us")
-    return a:findWindow("Zoom Meeting ID") ~= nil or
-        a:findWindow("Sharing Frame Window") ~= nil
+    return a ~= nil and (a:findWindow("Zoom Meeting ID") ~= nil or
+        a:findWindow("Sharing Frame Window") ~= nil)
 end
 
 inzoom = false
