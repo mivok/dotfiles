@@ -55,6 +55,9 @@ Plug '~/git/personal/vim-quicknote'
 " jq syntax
 Plug 'vito-c/jq.vim'
 
+" Updated json syntax
+Plug 'elzr/vim-json'
+
 call plug#end()
 
 " Turn filetype detection off, then on again to make sure we load ftdetect
@@ -239,6 +242,9 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 
+" Json conceal settings
+let g:vim_json_syntax_conceal = 0
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocompletion settings
 
@@ -261,7 +267,6 @@ au FileType markdown Tab2
 au FileType ruby Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
-au FileType json set conceallevel=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set filetypes for specific extensions
