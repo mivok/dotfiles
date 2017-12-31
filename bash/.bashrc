@@ -174,9 +174,14 @@ prompt_command() {
         EXTRA_PROMPT+=" go:$GOPROMPT"
     fi
 
-    # Chef org
-    if [[ -n $ORGANIZATION ]]; then
-        EXTRA_PROMPT+=" org:${ORGTYPE::2}:${ORGANIZATION}"
+    # Chef profile
+    if [[ -n $CHEF_PROFILE ]]; then
+        EXTRA_PROMPT+=" chef:${CHEF_PROFILE}"
+    fi
+
+    # AWS profile
+    if [[ -n $AWS_PROFILE ]]; then
+        EXTRA_PROMPT+=" aws:${AWS_PROFILE}"
     fi
 
     # Prompt prefix
@@ -222,34 +227,31 @@ alias wtf="knife search node -a fqdn -a run_list -a tags"
 # Make homebrew not use the full path (e.g. chefdk)
 alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" brew'
 
-# Chef server aliases - sets ORGTYPE and ORGANIZATION for use in knife.rb
-alias oco='cheforg opsmaster none'
-alias org='cheforg hosted mivok'
-alias mco='cheforg masterchef hosted'
-alias dco='cheforg delivery chefops'
-alias dcc='cheforg dcc chef'
-alias acc='cheforg acc chef'
+# For when you recreate a machine and try to ssh to it
+alias fussh='ssh-keygen -R $(history -p !!:$)'
 
-function cheforg() {
-    # Usage: cheforg ORGTYPE DEFAULT_ORG [ORGANIZATION]
-    # Used an an alias: alias org='cheforg hosted mivok'
-    if [[ -n $1 ]]; then
-        export ORGTYPE="$1"
-        if [[ -n $3 ]]; then
-            export ORGANIZATION="$3"
-        else
-            export ORGANIZATION="$2"
-        fi
-    fi
-    echo "ORGTYPE: $ORGTYPE"
-    echo "ORGANIZATION: $ORGANIZATION"
+function chefprofile() {
+    # Usage: chefprofile PROFILENAME
+    export CHEF_PROFILE="$1"
+    echo "CHEF_PROFILE=$CHEF_PROFILE"
 }
+complete -W "$(awk '/^\[/ { print substr($0, 2, length($0) - 2) }' \
+    ~/.chef/credentials)" chefprofile
+
+function awsprofile() {
+    # Usage: awsprofile PROFILENAME
+    export AWS_PROFILE="$1"
+    echo "AWS_PROFILE=$AWS_PROFILE"
+}
+complete -W "$(awk '/^\[/ { print substr($0, 2, length($0) - 2) }' \
+    ~/.aws/credentials)" awsprofile
 
 # Fixes filenames downloaded with curl/wget that still have query strings on
 # the end
 function stripquerystring() {
     mv "$1" "${1/\?*/}"
 }
+#}}}
 
 # Todo.txt {{{
 TODOTXT_PATH="$HOME/git/external/todo.txt-cli"
