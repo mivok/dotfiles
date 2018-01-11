@@ -41,6 +41,7 @@ brew 'colordiff'
 brew 'cookiecutter'
 brew 'dfu-programmer' # For programming the mechanical keyboard
 brew 'feh'
+brew 'go-jira'
 brew 'graphicsmagick'
 brew 'graphviz'
 brew 'heroku'
