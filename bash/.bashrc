@@ -419,6 +419,10 @@ if [[ -e $HOME/.hab-token ]]; then
     export HAB_AUTH_TOKEN="$(cat "$HOME"/.hab-token)"
 fi
 # }}}
+# Github {{{
+if [[ -f ~/.githubtoken ]]; then
+    export GITHUB_TOKEN=$(cat ~/.githubtoken)
+fi
 # }}}
 # Commands to run at the end {{{
 print_hosttag
