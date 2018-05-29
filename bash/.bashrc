@@ -253,6 +253,10 @@ function stripquerystring() {
 }
 #}}}
 
+# Change prompt to '$ ' for use when copy/pasting or in demos
+alias demoprompt='OLDPS1="$PS1"; PS1="\$ "'
+alias restoreprompt='PS1="$OLDPS1"'
+
 # Todo.txt {{{
 TODOTXT_PATH="$HOME/git/external/todo.txt-cli"
 [[ -d $TODOTXT_PATH ]] && {
