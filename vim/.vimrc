@@ -173,6 +173,9 @@ iab xdate <c-r>=strftime("%Y-%m-%d")<cr>
 inoremap <Nul> <C-x><C-o>
 " Toggle paste on/off
 set pastetoggle=<F2>
+" Shift-Tab to unindent
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
 " Quickly reload vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -229,6 +232,11 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python settings
+" pylint is slow
+let g:syntastic_python_checkers = ['python', 'flake8']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GPG Plugin settings
