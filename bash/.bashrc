@@ -184,6 +184,18 @@ prompt_command() {
         EXTRA_PROMPT+=" aws:${AWS_PROFILE}"
     fi
 
+    # Kubernetes context
+    if command -v kubectl > /dev/null; then
+        local KUBEPROMPT_CACHEFILE="$HOME/.kube/.kubeprompt_cache"
+        local KUBEPROMPT_CONFIGFILE="$HOME/.kube/config"
+        if [[ -z "$KUBE_CONTEXT" || \
+            "$KUBEPROMPT_CACHEFILE" -ot "$KUBEPROMPT_CONFIGFILE" ]]; then
+            KUBE_CONTEXT=$(kubectl config current-context)
+            touch "$KUBEPROMPT_CACHEFILE"
+        fi
+        EXTRA_PROMPT+=" kube:${KUBE_CONTEXT}"
+    fi
+
     # Prompt prefix
     if [[ -n $STY || -n $TMUX ]]; then
         # Screen/tmux
