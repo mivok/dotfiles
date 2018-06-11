@@ -168,9 +168,9 @@ prompt_command() {
     if [[ $GOPATH != "$DEFAULT_GOPATH" ]]; then
         GOPROMPT=$GOPATH
         # Shorten GOPATH where sensible
-        GOPROMPT=${GOPROMPT/$HOME/}
-        GOPROMPT=${GOPROMPT/\/git\/personal\//}
         GOPROMPT=${GOPROMPT/:*/}
+        GOPROMPT=${GOPROMPT/$HOME/}
+        GOPROMPT=${GOPROMPT/\/git\/*\//}
         EXTRA_PROMPT+=" go:$GOPROMPT"
     fi
 
