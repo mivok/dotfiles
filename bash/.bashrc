@@ -1,6 +1,9 @@
 # ~/.bashrc
 # vim:fdm=marker
 
+# Ignore following sourced files
+# shellcheck disable=SC1090 disable=SC1091
+
 # Non interactive entries
 # Path {{{
 export PATH="$HOME/bin:\
@@ -17,7 +20,7 @@ $HOME/go/bin"
 # Interactive stuff here
 # OS specific stuff {{{
 
-UNAME=`uname`
+UNAME=$(uname)
 [[ $UNAME == 'FreeBSD' ]] && {
     # Use a custom tput that actually works (requires ncurses package)
     [[ -x /usr/local/bin/tput ]] && TPUT=/usr/local/bin/tput
@@ -47,25 +50,26 @@ shopt -s histappend
 # Color stuff {{{
 # Color variables {{{
 
-[[ -z $TPUT ]] && TPUT=tput
-export RESET="$(     $TPUT sgr0)"    # Reset all attributes
-export BRIGHT="$(    $TPUT bold)"    # Set “bright” attribute
-export BLACK="$(     $TPUT setaf 0)" # foreground to color #0 - black
-export RED="$(       $TPUT setaf 1)" # foreground to color #1 - red
-export GREEN="$(     $TPUT setaf 2)" # foreground to color #2 - green
-export YELLOW="$(    $TPUT setaf 3)" # foreground to color #3 - yellow
-export BLUE="$(      $TPUT setaf 4)" # foreground to color #4 - blue
-export MAGENTA="$(   $TPUT setaf 5)" # foreground to color #5 - magenta
-export CYAN="$(      $TPUT setaf 6)" # foreground to color #6 - cyan
-export WHITE="$(     $TPUT setaf 7)" # foreground to color #7 - white
-export FGDEFAULT="$( $TPUT setaf 9)" # default foreground color
+[[ -z $TPUT ]] && TPUT="tput"
+RESET="$(     $TPUT sgr0)"    # Reset all attributes
+BRIGHT="$(    $TPUT bold)"    # Set “bright” attribute
+BLACK="$(     $TPUT setaf 0)" # foreground to color #0 - black
+RED="$(       $TPUT setaf 1)" # foreground to color #1 - red
+GREEN="$(     $TPUT setaf 2)" # foreground to color #2 - green
+YELLOW="$(    $TPUT setaf 3)" # foreground to color #3 - yellow
+BLUE="$(      $TPUT setaf 4)" # foreground to color #4 - blue
+MAGENTA="$(   $TPUT setaf 5)" # foreground to color #5 - magenta
+CYAN="$(      $TPUT setaf 6)" # foreground to color #6 - cyan
+WHITE="$(     $TPUT setaf 7)" # foreground to color #7 - white
+FGDEFAULT="$( $TPUT setaf 9)" # default foreground color
+export RESET BRIGHT BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE FGDEFAULT
 
 # }}}
 # Enable color ls {{{
 
 if [[ "$TERM" != "dumb" ]]; then
-    if [[ -x `which dircolors` ]]; then
-        eval "`dircolors -b`"
+    if [[ -x $(which dircolors) ]]; then
+        eval "$(dircolors -b)"
     fi
     # If we are running gnu ls, turn on color. Otherwise, use -F for file type
     if ls --color=auto /dev/null >/dev/null 2>&1; then
@@ -130,8 +134,8 @@ function setprompt {
         fi
     fi
 
-    PS1="\$PROMPT_PREFIX\[$UCOLOR\]\u@\h$RESET \[$PCOLOR\]\t$RESET"
-    PS1="$PS1 \$EXTRA_PROMPT$SSHPROMPT\n\W ➤ "
+    PS1="\$PROMPT_PREFIX\\[$UCOLOR\\]\\u@\\h$RESET \\[$PCOLOR\\]\\t$RESET"
+    PS1="$PS1 \$EXTRA_PROMPT$SSHPROMPT\\n\\W ➤ "
 }
 
 prompt_command() {
@@ -145,23 +149,21 @@ prompt_command() {
     # Set xterm title if in an xterm
     case "$TERM" in
     xterm*|rxvt*)
-        echo -ne "\033]0;${HOSTNAME/.*/} (${USER}): ${PWD##*/}\007"
+        echo -ne "\\033]0;${HOSTNAME/.*/} (${USER}): ${PWD##*/}\\007"
         ;;
     esac
 
     # Git prompt
     GITPROMPT=
     if declare -f __git_ps1 >/dev/null; then
-        GITPROMPT=`__git_ps1 "%s"`
+        GITPROMPT=$(__git_ps1 "%s")
     fi
     [[ $GITPROMPT == "(unknown)" ]] && GITPROMPT=
     if [[ -n $GITPROMPT ]]; then
         EXTRA_PROMPT+=" git:$GITPROMPT"
     fi
 
-    # Vitualenvwrapper
-    # Note: add 'PS1=$_OLD_VIRTUAL_PS1' to ~/.virtualenvs/postactivate to stop
-    # virtualenvwrappers normal prompt behavior
+    # Python virtualenv
     [[ -n $VIRTUAL_ENV ]] && EXTRA_PROMPT+=" venv:${VIRTUAL_ENV##*/}"
 
     # GOPATH prompt
@@ -214,9 +216,6 @@ setprompt
 # }}}
 # Aliases {{{
 
-# Truss alias
-alias truss='truss -rall -tall -vall -wall -xall -f'
-
 # Short dig alias
 alias sdig='dig +short'
 
@@ -224,17 +223,13 @@ alias sdig='dig +short'
 alias mdig='dig @224.0.0.251 -p 5353 +time=1 +tries=1'
 
 # Perl timestamp alias
+# shellcheck disable=SC2142
 alias perlts='perl -p -e "s/^(\d+)/localtime(\$1)/e"'
 
-# Useful options to sshfs
-alias sshfs='sshfs -o idmap=user,workaround=rename'
-
 # List running vms
+# shellcheck disable=SC2142
 alias runningvms="VBoxManage list runningvms | awk -F'\"' '{print \$2}'"
-alias runningcontainers="docker ps --format '{{.Image}}\t{{.Names}}'"
-
-# knife search - wtf search term gives machines that match
-alias wtf="knife search node -a fqdn -a run_list -a tags"
+alias runningcontainers="docker ps --format '{{.Image}}\\t{{.Names}}'"
 
 # Make homebrew not use the full path (e.g. chefdk)
 alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" brew'
@@ -269,67 +264,6 @@ function stripquerystring() {
 alias demoprompt='OLDPS1="$PS1"; PS1="\$ "'
 alias restoreprompt='PS1="$OLDPS1"'
 
-# Todo.txt {{{
-TODOTXT_PATH="$HOME/git/external/todo.txt-cli"
-[[ -d $TODOTXT_PATH ]] && {
-    _todoElsewhere()
-    {
-        local _todo_sh="$TODOTXT_PATH/todo.sh"
-        _todo "$@"
-    }
-    alias t="$TODOTXT_PATH/todo.sh"
-    alias tm="$TODOTXT_PATH/todo.sh -d $HOME/tmsa/config/config"
-    export TODOTXT_DEFAULT_ACTION=ls
-    . $TODOTXT_PATH/todo_completion
-    complete -F _todoElsewhere t
-    complete -F _todoElsewhere tm
-}
-# }}}
-# Hosttag Functions {{{
-# Set hosttag {{{
-hosttag() {
-    if [[ ! -f /etc/hosttag ]]; then
-        echo -e "NAME=$HOSTNAME\nCLIENT=\nLOCATION=" | sudo tee /etc/hosttag
-    fi
-    sudo $EDITOR /etc/hosttag
-}
-# }}}
-# Convert old-style to new-style hosttags {{{
-convert_hosttag() {
-    if [[ ! -f /etc/.hosttag ]]; then
-        echo "No old-style hosttag found"
-        return 1
-    else
-        local HOSTTAG=$(cat /etc/.hosttag)
-        echo "Old hosttag: $HOSTTAG"
-        if [[ $HOSTTAG =~ ([0-9a-zA-Z_-]+)\ +\[([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+) ]]; then
-            echo
-            echo "New hosttag:"
-            echo -e "NAME=${BASH_REMATCH[1]}\nCLIENT=${BASH_REMATCH[2]}\nLOCATION=${BASH_REMATCH[3]}" | \
-            sudo tee /etc/hosttag && sudo rm /etc/.hosttag
-        fi
-    fi
-}
-# }}}
-# Print Hosttag {{{
-print_hosttag() {
-    HOSTTAG=
-    if [[ -f /etc/hosttag ]]; then
-        while read LINE; do
-            if [[ "$LINE" =~ ([A-Z_a-z0-9]+)=(.*) ]]; then
-                eval HOSTTAG_${BASH_REMATCH[1]}=\'${BASH_REMATCH[2]}\'
-            fi
-        done < /etc/hosttag
-        echo "Host Tag: $HOSTTAG_NAME [$HOSTTAG_CLIENT/$HOSTTAG_LOCATION]"
-    elif [[ -f /etc/.hosttag ]]; then
-        # Old style hosttag
-        echo "Old style host tag: $(cat /etc/.hosttag)"
-    fi
-    if [[ -f /etc/globalzone ]]; then
-        echo "Global zone: $(cat /etc/globalzone)"
-    fi
-}
-# }}}
 # }}}
 # Per directory git emails {{{
 # To set up:
@@ -346,8 +280,9 @@ __set_git_email_vars() {
         p=$(dirname "$p")
     done
     if [[ -e "$gitemail_file" ]]; then
-        export GIT_AUTHOR_EMAIL=$(cat "$gitemail_file")
-        export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+        GIT_AUTHOR_EMAIL=$(cat "$gitemail_file")
+        GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+        export GIT_AUTHOR_EMAIL GIT_COMMITTER_EMAIL
     fi
 }
 if which hub >/dev/null 2>&1; then
@@ -372,13 +307,13 @@ fi
 # Helper scripts (lesspipe, autojump) {{{
 
 # Make less work with non-text files better
-[[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
-
-# Virtualenvwrapper
-WORKON_HOME=$HOME/.virtualenvs
-VIRTUAL_ENV_DISABLE_PROMPT=1
-[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && \
-    . /usr/local/bin/virtualenvwrapper.sh
+# brew install lesspipe
+if type -P lesspipe.sh > /dev/null; then
+    eval "$(lesspipe.sh)"
+fi
+if type -P lesspipe > /dev/null; then
+    eval "$(lesspipe)"
+fi
 
 # Autojump (brew install autojump)
 # Note: this should appear after PROMPT_COMMAND= because it modifies
@@ -386,9 +321,6 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 export AUTOJUMP_KEEP_SYMLINKS=1
 [[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
 [[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
-
-# Gvm (go version manager)
-[[ -s "/Users/mark/.gvm/scripts/gvm" ]] && . "/Users/mark/.gvm/scripts/gvm"
 
 # Fzf - fuzzy finder
 FZF_PATH="/usr/local/opt/fzf" # Homebrew install location for fzf
@@ -403,39 +335,19 @@ fi
 [[ -x "/usr/bin/vim" ]] && export EDITOR=/usr/bin/vim
 [[ -x "/usr/local/bin/vim" ]] && export EDITOR=/usr/local/bin/vim
 # }}}
-# Variables {{{
-# opw script variables {{{
-#export OPW_CREDS_DIR="$HOME/svn/work/credentials"
-export OPW_GPG_OPTS="--batch"
-export OPW_CLIP_CMD="pbcopy"
-# }}}
-# Vagrant {{{
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
-#which vmrun &>/dev/null && export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
-# }}}
-# Prefix for personal git branches (used in other scripts) {{{
-export GIT_BRANCH_PREFIX=mh
-# }}}
-# Node npm path for brew installed npm {{{
-export NODE_PATH=/usr/local/lib/node_modules
-# }}}
-# Make ack use less as the pager by default {{{
-export ACK_PAGER="less -R"
-# }}}
 # Go {{{
 export GOPATH=$HOME/go
 export DEFAULT_GOPATH="$GOPATH" # Used in bash prompt
 # }}}
 # Habitat {{{
 if [[ -e $HOME/.hab-token ]]; then
-    export HAB_AUTH_TOKEN="$(cat "$HOME"/.hab-token)"
+    HAB_AUTH_TOKEN="$(cat "$HOME"/.hab-token)"
+    export HAB_AUTH_TOKEN
 fi
 # }}}
 # Github {{{
 if [[ -f ~/.githubtoken ]]; then
-    export GITHUB_TOKEN=$(cat ~/.githubtoken)
+    GITHUB_TOKEN=$(cat ~/.githubtoken)
+    export GITHUB_TOKEN
 fi
-# }}}
-# Commands to run at the end {{{
-print_hosttag
 # }}}
