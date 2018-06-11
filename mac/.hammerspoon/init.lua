@@ -32,6 +32,10 @@ hs.hotkey.bind({}, "F14", function()
     end
 end)
 
+-- Blank keys - workaround for crappy discord hotkey binding
+hs.hotkey.bind({}, "F19", function() end)
+hs.hotkey.bind({}, "F20", function() end)
+
 ---- Automatically reload the config ----
 pw1 = hs.pathwatcher.new(os.getenv("HOME") ..
     "/.hammerspoon/", hs.reload):start()
