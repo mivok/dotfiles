@@ -193,6 +193,11 @@ prompt_command() {
         EXTRA_PROMPT+=" kube:${KUBE_CONTEXT}"
     fi
 
+    # Jira project
+    if [[ -n $JIRA_PROJECT ]]; then
+        EXTRA_PROMPT+=" jira:${JIRA_PROJECT}"
+    fi
+
     # Prompt prefix
     if [[ -n $STY || -n $TMUX ]]; then
         # Screen/tmux
@@ -265,13 +270,25 @@ complete -W "$(awk '/^\[/ { print substr($0, 2, length($0) - 2) }' \
 function stripquerystring() {
     mv "$1" "${1/\?*/}"
 }
-#}}}
 
 # Change prompt to '$ ' for use when copy/pasting or in demos
 alias demoprompt='OLDPS1="$PS1"; PS1="\$ "'
 alias restoreprompt='PS1="$OLDPS1"'
 
-# }}}
+# Jira project settings
+JIRA_PROJECT=OPS
+export JIRA_PROJECT
+function jirap() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: jirap PROJECT"
+        echo "Sets the current jira project"
+        return 1
+    fi
+    JIRA_PROJECT="$1"
+    export JIRA_PROJECT
+}
+
+#}}}
 # Per directory git emails {{{
 # To set up:
 # echo "email@address.com" > .gitemail
