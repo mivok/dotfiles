@@ -8,10 +8,29 @@ zoom_detect = require("zoom_detect")
 
 ---- Hotkeys ----
 
--- Pause key for spotify
+-- Pause key for spotify/itunes
+last_paused = hs.spotify -- Default music player
 hs.hotkey.bind({}, "F15", function()
-    hs.alert.show("Spotify play/pause")
-    hs.spotify.playpause()
+    if hs.spotify.isPlaying() then
+        hs.alert.show("Pausing spotify")
+        hs.spotify.pause()
+        last_paused = hs.spotify
+    elseif hs.itunes.isPlaying() then
+        hs.alert.show("Pausing itunes")
+        hs.itunes.pause()
+        last_paused = hs.itunes
+    else
+        hs.alert.show("Playing music")
+        last_paused.play()
+    end
+end)
+
+-- Pause key for browser
+hs.hotkey.bind({}, "F16", function()
+    hs.alert.show("Browser play/pause")
+    -- There's a different hotkey in chrome Streamkeys for pausing, so send it
+    -- TODO - fix this so it works
+    hs.eventtap.keyStroke({"ctrl", "cmd"}, "P")
 end)
 
 -- Lock screen
@@ -30,6 +49,16 @@ hs.hotkey.bind({}, "F14", function()
     else
         hs.alert.show("No input device found")
     end
+end)
+
+-- Away/back
+hs.hotkey.bind({}, "F17", function()
+    hs.alert.show("Away")
+    hs.task.new(os.getenv("HOME") .. "/bin/awayback.sh", nil, {"away"}):start()
+end)
+hs.hotkey.bind({}, "F18", function()
+    hs.alert.show("Back")
+    hs.task.new(os.getenv("HOME") .. "/bin/awayback.sh", nil, {"back"}):start()
 end)
 
 -- Blank keys - workaround for crappy discord hotkey binding
