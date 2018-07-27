@@ -135,23 +135,17 @@ function setprompt {
     fi
 
     PS1="\$PROMPT_PREFIX\\[$UCOLOR\\]\\u@\\h$RESET \\[$PCOLOR\\]\\t$RESET"
-    PS1="$PS1 \$EXTRA_PROMPT$SSHPROMPT\\n\\W ➤ "
+    PS1="$PS1 \$RETVAL_PROMPT\$EXTRA_PROMPT$SSHPROMPT\\n\\W ➤ "
 }
 
 prompt_command() {
     # Command status
-    RETVAL=$?
-    if [[ $RETVAL != 0 ]]; then
-        RETVAL=$BRIGHT$RED$RETVAL$RESET
+    RETVAL_PROMPT=$?
+    if [[ $RETVAL_PROMPT != 0 ]]; then
+        RETVAL_PROMPT=$BRIGHT$RED$RETVAL$RESET
     fi
-    EXTRA_PROMPT="$RETVAL"
 
-    # Set xterm title if in an xterm
-    case "$TERM" in
-    xterm*|rxvt*)
-        echo -ne "\\033]0;${HOSTNAME/.*/} (${USER}): ${PWD##*/}\\007"
-        ;;
-    esac
+    EXTRA_PROMPT=""
 
     # Git prompt
     GITPROMPT=
@@ -209,8 +203,20 @@ prompt_command() {
         # Normal
         PROMPT_PREFIX="⌂ "
     fi
+
+    # Set xterm title if in an xterm
+    case "$TERM" in
+    xterm*|rxvt*)
+        echo -ne "\\033]0;${HOSTNAME/.*/} [$EXTRA_PROMPT ]\\007"
+        ;;
+    esac
+
+    if [[ -n $PROMPT_TITLE_ONLY ]]; then
+        EXTRA_PROMPT=""
+    fi
 }
 PROMPT_COMMAND=prompt_command
+PROMPT_TITLE_ONLY=1
 setprompt
 
 # }}}
