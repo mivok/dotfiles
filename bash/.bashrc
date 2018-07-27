@@ -93,6 +93,7 @@ export LESS_TERMCAP_us=$UNDERLINE$CYAN    # begin underline
 # }}}
 # Color less {{{
 export LESS="-R"
+export LESSQUIET=1
 # }}}
 # }}}
 # Bash completion {{{
