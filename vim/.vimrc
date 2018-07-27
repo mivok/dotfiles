@@ -271,6 +271,7 @@ endif
 au FileType markdown nnoremap <leader>pp :silent call system("open -a Marked.app '" . expand("%:p") . "'")<cr>
 au FileType make RealTab8
 au FileType yaml Tab2
+au FileType yaml setl indentkeys-=<:>
 au FileType markdown Tab2
 au FileType ruby Tab2
 au FileType go RealTab4
