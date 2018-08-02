@@ -48,15 +48,14 @@ Plug 'tpope/vim-surround'
 Plug 'ledger/vim-ledger'
 " Markdown highlighting
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-
 " Vim quicknote (dev repo)
 Plug '~/git/personal/vim-quicknote'
-
 " jq syntax
 Plug 'vito-c/jq.vim'
-
 " Updated json syntax
 Plug 'elzr/vim-json'
+" View registers on CTRL-R, " and @
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
@@ -100,6 +99,8 @@ set timeoutlen=500                 " timeout value in ms
 set display+=lastline              " Don't display @ for partial lines
 set conceallevel=2                 " Enable concealed text
 set concealcursor=cv               " Modes to conceal when cursor in on a line
+set mouse=a                        " Enable the mouse
+set clipboard=autoselect,unnamed   " Auto copy to clipboard
 
 " Delete comment chars when joining lines
 if v:version > 703 || v:version == 703 && has("patch541")
@@ -146,7 +147,6 @@ if has("gui_running")
     set guifont=Bitstream\ Vera\ Sans\ Mono\ 10 " Set font
     "set guifont=Lucida_Console:h10:cANSI    " Set font
     set lines=50                        " Increase window height
-    set mouse=a                         " Enable the mouse
 endif
 
 " Make matching brackets look like something other than the cursor
