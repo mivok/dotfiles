@@ -65,6 +65,14 @@ end)
 hs.hotkey.bind({}, "F19", function() end)
 hs.hotkey.bind({}, "F20", function() end)
 
+-- Alternate shush key
+hs.hotkey.bind({"ctrl"}, "space", function()
+    hs.eventtap.event.newKeyEvent({}, "F13", true):post()
+end,
+function()
+    hs.eventtap.event.newKeyEvent({}, "F13", false):post()
+end)
+
 ---- Automatically reload the config ----
 pw1 = hs.pathwatcher.new(os.getenv("HOME") ..
     "/.hammerspoon/", hs.reload):start()
