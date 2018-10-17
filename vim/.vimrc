@@ -184,10 +184,6 @@ command! Tab2 setlocal sw=2 sts=2 ts=8 et
 command! Tab4 setlocal sw=4 sts=4 ts=8 et
 command! RealTab4 setlocal sw=4 sts=4 ts=4 noet listchars=tab:\ \ ,trail:-
 command! RealTab8 setlocal sw=8 sts=8 ts=8 noet listchars=tab:\ \ ,trail:-
-cabbrev tab2 Tab2
-cabbrev tab4 Tab4
-cabbrev realtab4 RealTab4
-cabbrev realtab8 RealTab8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LaTeX paragraph formatting
