@@ -281,3 +281,5 @@ au FileType terraform Tab2
 " Set filetypes for specific extensions
 au BufEnter *.md set ft=markdown
 au BufEnter *.tfstate set ft=json
+" Crontab -e fix
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes
