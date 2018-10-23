@@ -100,7 +100,6 @@ set display+=lastline              " Don't display @ for partial lines
 set conceallevel=2                 " Enable concealed text
 set concealcursor=cv               " Modes to conceal when cursor in on a line
 set mouse=a                        " Enable the mouse
-set clipboard=autoselect,unnamed   " Auto copy to clipboard
 
 " Delete comment chars when joining lines
 if v:version > 703 || v:version == 703 && has("patch541")
