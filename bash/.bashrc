@@ -181,16 +181,9 @@ prompt_command() {
         EXTRA_PROMPT+=" aws:${AWS_PROFILE}"
     fi
 
-    # Kubernetes context
-    if command -v kubectl > /dev/null; then
-        local KUBEPROMPT_CACHEFILE="$HOME/.kube/.kubeprompt_cache"
-        local KUBEPROMPT_CONFIGFILE="$HOME/.kube/config"
-        if [[ -z "$KUBE_CONTEXT" || \
-            "$KUBEPROMPT_CACHEFILE" -ot "$KUBEPROMPT_CONFIGFILE" ]]; then
-            KUBE_CONTEXT=$(kubectl config current-context)
-            touch "$KUBEPROMPT_CACHEFILE"
-        fi
-        EXTRA_PROMPT+=" kube:${KUBE_CONTEXT}"
+    # Kubernetes config file
+    if [[ -n $KUBECONFIG ]]; then
+        EXTRA_PROMPT+=" kube:${KUBECONFIG##*/}"
     fi
 
     # Jira project
@@ -265,6 +258,18 @@ function awsprofile() {
 complete -W "$(awk '/^\[/ { print substr($0, 2, length($0) - 2) }' \
     ~/.aws/credentials)" awsprofile
 
+function kcfg() {
+    # Usage: kcfg CONFIGFILENAME
+    export KUBECONFIG="$HOME/.kube/$1"
+    echo "KUBECONFIG=$KUBECONFIG"
+}
+complete -W "$(cd "$HOME/.kube" && ls -- *.config)" kcfg
+
+function kns() {
+    export KUBECTL_NAMESPACE="$1"
+    echo "KUBECTL_NAMESPACE=$KUBECTL_NAMESPACE"
+}
+
 # Fixes filenames downloaded with curl/wget that still have query strings on
 # the end
 function stripquerystring() {
@@ -284,6 +289,18 @@ function jirap() {
     fi
     JIRA_PROJECT="$1"
     export JIRA_PROJECT
+}
+
+# Set kubernetes namespace with environment variable
+kubectl() {
+    local ARGS=()
+    if [[ -n $KUBECTL_NAMESPACE ]]; then
+        ARGS+=(--namespace "$KUBECTL_NAMESPACE")
+    fi
+    if [[ -n $KUBECTL_CONTEXT ]]; then
+        ARGS+=(--context "$KUBECTL_CONTEXT")
+    fi
+    command kubectl "${ARGS[@]}" "$@"
 }
 
 #}}}
