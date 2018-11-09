@@ -276,8 +276,6 @@ alias demoprompt='OLDPS1="$PS1"; PS1="\$ "'
 alias restoreprompt='PS1="$OLDPS1"'
 
 # Jira project settings
-JIRA_PROJECT=OPS
-export JIRA_PROJECT
 function jirap() {
     if [[ -z "$1" ]]; then
         echo "Usage: jirap PROJECT"
