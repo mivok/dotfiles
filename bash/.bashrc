@@ -390,3 +390,8 @@ if [[ -f ~/.githubtoken ]]; then
     export GITHUB_TOKEN
 fi
 # }}}
+# Homebrew {{{
+HOMEBREW_AUTO_UPDATE_SECS=86400
+# HOMEBREW_NO_GITHUB_API=1
+# HOMEBREW_NO_AUTO_UPDATE=1
+# }}}
