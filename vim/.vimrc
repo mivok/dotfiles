@@ -54,8 +54,6 @@ Plug '~/git/personal/vim-quicknote'
 Plug 'vito-c/jq.vim'
 " Updated json syntax
 Plug 'elzr/vim-json'
-" View registers on CTRL-R, " and @
-Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
