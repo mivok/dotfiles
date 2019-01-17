@@ -143,7 +143,7 @@ prompt_command() {
     # Command status
     RETVAL_PROMPT=$?
     if [[ $RETVAL_PROMPT != 0 ]]; then
-        RETVAL_PROMPT=$BRIGHT$RED$RETVAL$RESET
+        RETVAL_PROMPT=$BRIGHT$RED$RETVAL_PROMPT$RESET
     fi
 
     EXTRA_PROMPT=""
