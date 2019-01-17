@@ -12,6 +12,7 @@
 	me = log --author="mark" --after=yesterday --no-merges --format=%s --reverse
 	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 	track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
+	up = pull --rebase --autostash
 [push]
 	default = current
 [core]
