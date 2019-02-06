@@ -239,6 +239,11 @@ alias runningcontainers="docker ps --format '{{.Image}}\\t{{.Names}}'"
 # Make homebrew not use the full path (e.g. chefdk)
 alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" brew'
 
+# Use nvim if available
+if command -v nvim > /dev/null; then
+    alias vim=nvim
+fi
+
 # For when you recreate a machine and try to ssh to it
 alias fussh='ssh-keygen -R $(history -p '\''!!:$'\'' | sed "s/.*@//")'
 
