@@ -14,6 +14,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" All the colorschemes
+Plug 'flazz/vim-colorschemes'
 " GPG integration
 Plug 'jamessan/vim-gnupg'
 " Fugitive
