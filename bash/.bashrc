@@ -240,7 +240,7 @@ alias runningcontainers="docker ps --format '{{.Image}}\\t{{.Names}}'"
 alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" brew'
 
 # For when you recreate a machine and try to ssh to it
-alias fussh='ssh-keygen -R $(history -p !!:$)'
+alias fussh='ssh-keygen -R $(history -p '\''!!:$'\'' | sed "s/.*@//")'
 
 function chefprofile() {
     # Usage: chefprofile PROFILENAME
