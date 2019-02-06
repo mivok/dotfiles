@@ -1,6 +1,2 @@
 # Ignore private stow dir
 private
-# Ignore vim spam
-vim/.vim/autoload/
-vim/.vim/plugged/
-vim/.vim/.netrwhist
