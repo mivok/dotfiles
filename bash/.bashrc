@@ -378,6 +378,7 @@ fi
 [[ -x "/usr/bin/vi" ]] && export EDITOR=/usr/bin/vi
 [[ -x "/usr/bin/vim" ]] && export EDITOR=/usr/bin/vim
 [[ -x "/usr/local/bin/vim" ]] && export EDITOR=/usr/local/bin/vim
+[[ -x "/usr/local/bin/nvim" ]] && export EDITOR=/usr/local/bin/nvim
 # }}}
 # Go {{{
 export GOPATH=$HOME/go
