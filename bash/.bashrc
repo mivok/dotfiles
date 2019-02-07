@@ -6,9 +6,12 @@
 
 # Non interactive entries
 # Path {{{
+CHEFDK_RUBY_BINS=$(printf "%s:" $HOME/.chefdk/gem/ruby/*/bin)
+
 export PATH="$HOME/bin:\
 /usr/local/bin:/usr/local/sbin:\
-/opt/chefdk/bin:/opt/chefdk/embedded/bin:${HOME}/.chefdk/gem/ruby/2.1.0/bin:\
+/opt/chef-workstation/bin:/opt/chef-workstation/embedded/bin:\
+$CHEFDK_RUBY_BINS\
 /bin:/usr/bin:/sbin:/usr/sbin:/usr/texbin:\
 /usr/local/CrossPack-AVR/bin:\
 $HOME/go/bin"
