@@ -41,6 +41,10 @@ Plug 'ncm2/ncm2-tern',  {'do': 'npm install'} " Javascript
 Plug 'ncm2/ncm2-html-subscope' " HTML
 Plug 'ncm2/ncm2-markdown-subscope' " Markdown embedded languages
 Plug 'ncm2/ncm2-ultisnips' " Autocomplete ultisnips
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 " Easy alignment - gaip=
 Plug 'junegunn/vim-easy-align'
 
@@ -210,6 +214,10 @@ call ncm2#register_source({'name' : 'css',
     \ 'on_complete': ['ncm2#on_complete#omni',
     \               'csscomplete#CompleteCSS'],
     \ })
+" Language Servers - https://langserver.org
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['solargraph', 'stdio']
+    \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exceptions for Specific Filetypes
