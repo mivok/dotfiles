@@ -31,8 +31,16 @@ Plug 'scrooloose/syntastic'
 " Snippets
 Plug 'SirVer/ultisnips'
 " Autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+" Autocompletion sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2-jedi'    " Python - pip3 install jedi (and pip2)
+Plug 'ncm2/ncm2-go'      " Golang - uses gocode (installed with vim-go)
+Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim' " Vim
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'} " Javascript
+Plug 'ncm2/ncm2-html-subscope' " HTML
+Plug 'ncm2/ncm2-markdown-subscope' " Markdown embedded languages
+Plug 'ncm2/ncm2-ultisnips' " Autocomplete ultisnips
 " Easy alignment - gaip=
 Plug 'junegunn/vim-easy-align'
 
@@ -186,6 +194,22 @@ let g:vim_markdown_new_list_item_indent = 2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Json conceal settings
 let g:vim_json_syntax_conceal = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NCM2 autocompletion settings
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+" CSS
+call ncm2#register_source({'name' : 'css',
+    \ 'priority': 9, 
+    \ 'subscope_enable': 1,
+    \ 'scope': ['css', 'scss', 'less'],
+    \ 'mark': 'css',
+    \ 'word_pattern': '[\w\-]+',
+    \ 'complete_pattern': ':\s*',
+    \ 'on_complete': ['ncm2#on_complete#omni',
+    \               'csscomplete#CompleteCSS'],
+    \ })
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exceptions for Specific Filetypes
