@@ -6,11 +6,8 @@
 ## Taps
 tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
-tap 'homebrew/binary'
 tap 'homebrew/core'
 tap 'homebrew/services'
-tap 'homebrew/versions'
-tap 'homebrew/x11'
 tap 'homebrew/dev-tools' # For brew pry
 
 tap 'chef/chefops-tools'
@@ -164,7 +161,7 @@ mas 'MindNode', id: 1289197285
 mas 'Bear', id: 1091189122
 
 # Other app store apps
-mas 'Microsoft Remote Desktop', id: 715768417
+mas 'Microsoft Remote Desktop 10', id: 1295203466
 mas 'Slack', id: 803453959
 mas 'Monosnap', id: 540348655
 mas 'LastPass', id: 926036361
