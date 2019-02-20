@@ -51,6 +51,7 @@ Plug 'junegunn/vim-easy-align'
 " My Plugins
 Plug 'mivok/vimtodo'
 Plug 'mivok/vim-minotl'
+Plug 'git@github.com:mivok/ultisnips-snippets.git'
 
 call plug#end()
 
