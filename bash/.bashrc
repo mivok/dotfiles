@@ -6,7 +6,7 @@
 
 # Non interactive entries
 # Path {{{
-CHEFDK_RUBY_BINS=$(printf "%s:" $HOME/.chefdk/gem/ruby/*/bin)
+CHEFDK_RUBY_BINS=$(printf "%s:" "$HOME"/.chefdk/gem/ruby/*/bin)
 
 export PATH="$HOME/bin:\
 /usr/local/bin:/usr/local/sbin:\
