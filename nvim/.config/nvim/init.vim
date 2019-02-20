@@ -203,7 +203,10 @@ let g:vim_json_syntax_conceal = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NCM2 autocompletion settings
 autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
+" Note: ncm2 docs suggest also including noselect here to not automatically
+" select the first item in the list, but I like the behavior better without
+" that option.
+set completeopt=noinsert,menuone
 " CSS
 call ncm2#register_source({'name' : 'css',
     \ 'priority': 9, 
