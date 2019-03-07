@@ -151,6 +151,11 @@ prompt_command() {
 
     EXTRA_PROMPT=""
 
+    # Show lines/columns if present
+    if [[ -n $LINES && -n $COLUMNS ]]; then
+        EXTRA_PROMPT+="${COLUMNS}x${LINES}"
+    fi
+
     # Git prompt
     GITPROMPT=
     if declare -f __git_ps1 >/dev/null; then
