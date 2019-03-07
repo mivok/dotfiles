@@ -21,6 +21,8 @@ Plug 'ledger/vim-ledger'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'vito-c/jq.vim'
 Plug 'elzr/vim-json'
+Plug 'LokiChaos/vim-tintin'
+Plug 'davidoc/taskpaper.vim'
 
 " GPG integration
 Plug 'jamessan/vim-gnupg'
@@ -136,12 +138,6 @@ hi User3 ctermfg=117 ctermbg=236 guifg=#87d7ff guibg=#303030
 set statusline=%#User1#\ %t%m%r%h%w\ %#User2#\ %{&ff}\ %#User3#\ 0x\%02.2B%=\ %Y\ %#User2#\ \ %3p%%\ :%4l:%3v\ %#User1#\ L:%L\ B:%n\ 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python Code completion
-if has("python")
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Abbreviations/Command remapping
 iab xdate <c-r>=strftime("%Y-%m-%d")<cr>
 " Toggle paste on/off
@@ -150,8 +146,8 @@ set pastetoggle=<F2>
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
 " Quickly reload vimrc
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <leader>ev :e $MYVIMRC<CR>
+nmap <leader>sv :so $MYVIMRC<CR>
 " Easyalign mappings
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -187,6 +183,12 @@ let g:go_highlight_build_constraints = 1
 " Python settings
 " pylint is slow
 let g:syntastic_python_checkers = ['python', 'flake8']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use specific virtualenvs for neovim python
+let venv_path = $HOME . '/.local/share/nvim/virtualenvs'
+let g:python_host_prog = venv_path . '/python2/bin/python2'
+let g:python3_host_prog = venv_path . '/python3/bin/python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markdown settings
@@ -233,6 +235,12 @@ au FileType markdown Tab2
 au FileType ruby Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
+au FileType taskpaper RealTab4
+au FileType taskpaper setl autoread
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autosave taskpaper files
+au FileType taskpaper au CursorHold <buffer> update
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set filetypes for specific extensions
