@@ -205,10 +205,19 @@ let g:vim_json_syntax_conceal = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NCM2 autocompletion settings
 autocmd BufEnter * call ncm2#enable_for_buffer()
-" Note: ncm2 docs suggest also including noselect here to not automatically
-" select the first item in the list, but I like the behavior better without
-" that option.
-set completeopt=noinsert,menuone
+set completeopt=noinsert,menuone,noselect
+
+" Make the enter key work properly when the menu is open
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" And allow Tab to select the items on the popup menu
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" This makes ultisnips not conflict with ncm2 - you use Tab to autocomplete
+" the snippet trigger, then CR to expand it once it's selected in the menu
+let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
 " CSS
 call ncm2#register_source({'name' : 'css',
     \ 'priority': 9, 
