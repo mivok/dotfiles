@@ -236,11 +236,15 @@ au FileType ruby Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
 au FileType taskpaper RealTab4
-au FileType taskpaper setl autoread
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Autosave taskpaper files
-au FileType taskpaper au CursorHold <buffer> update
+" Autosave/reload taskpaper files
+" Note: autoread doesn't automatically check for updates, so we need to run
+" the checktime on regular intervals to see if the file was modified outside
+" of vim. FocusGained seems to be good enough.
+au FileType taskpaper au CursorHold,FocusLost,WinLeave <buffer> update
+au FileType taskpaper setl autoread
+au Filetype taskpaper au FocusGained,BufEnter <buffer> checktime
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set filetypes for specific extensions
