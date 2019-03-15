@@ -26,7 +26,7 @@ brew 'mtr'
 brew 'sqlite'
 brew 'stow'
 brew 'the_silver_searcher'
-brew 'vim'
+brew 'nvim'
 
 # Shell helpers
 brew 'bash'
@@ -84,7 +84,7 @@ brew 'xz', args: ['universal']
 brew 'go'
 brew 'go-bindata'
 brew 'node'
-brew 'python'
+brew 'python2'
 brew 'python3'
 brew 'rust'
 
