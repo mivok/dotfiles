@@ -250,6 +250,7 @@ au FileType ruby Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
 au FileType taskpaper RealTab4
+au FileType taskpaper setl tw=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autosave/reload taskpaper files
