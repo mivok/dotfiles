@@ -13,7 +13,7 @@ Plug 'jonathanfilip/vim-lucius'
 
 " Syntax/filetype specific
 Plug 'hynek/vim-python-pep8-indent'
-Plug 'markcornick/vim-terraform'
+Plug 'hashivim/vim-terraform'
 Plug 'sirtaj/vim-openscad'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -201,6 +201,11 @@ let g:vim_markdown_new_list_item_indent = 2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Json conceal settings
 let g:vim_json_syntax_conceal = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Terraform plugin settings
+let g:terraform_align = 1
+let g:terraform_fmt_on_save = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NCM2 autocompletion settings
