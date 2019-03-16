@@ -213,8 +213,8 @@ prompt_command() {
 
     # Set xterm title if in an xterm
     case "$TERM" in
-    xterm*|rxvt*)
-        echo -ne "\\033]0;${HOSTNAME/.*/} [$EXTRA_PROMPT ]\\007"
+    xterm*|rxvt*|screen*)
+        echo -ne "\\033]0;${HOSTNAME/.*/} [$EXTRA_PROMPT]\\007"
         ;;
     esac
 
