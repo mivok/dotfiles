@@ -1,0 +1,7 @@
+# vim: ft=tmux
+new-window -c "~"
+split-window
+split-window
+split-window
+select-layout tiled
+command-prompt -p "Window name:" "rename-window '%%'"

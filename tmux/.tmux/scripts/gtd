@@ -1,0 +1,5 @@
+# vim: ft=tmux
+new-window -n "gtd" -c "~" "nvim ~/iCloudDrive/taskpaper/main.taskpaper"
+split-window -c ~/git/personal/tp
+split-window -c ~/git/personal/tp
+select-layout main-vertical
