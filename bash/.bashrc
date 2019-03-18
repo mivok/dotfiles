@@ -12,9 +12,16 @@ export PATH="$HOME/bin:\
 /usr/local/bin:/usr/local/sbin:\
 /opt/chef-workstation/bin:/opt/chef-workstation/embedded/bin:\
 $CHEFDK_RUBY_BINS\
-/bin:/usr/bin:/sbin:/usr/sbin:/usr/texbin:\
-/usr/local/CrossPack-AVR/bin:\
+/bin:/usr/bin:/sbin:/usr/sbin:\
 $HOME/go/bin"
+
+# Do Manpath too, so path_helper will set manpath
+export MANPATH=
+
+# Path helper adds paths in /etc/paths.d and /etc/manpaths.d to the path
+if [[ -x /usr/libexec/path_helper ]]; then
+    eval "$(/usr/libexec/path_helper -s)"
+fi
 # }}}
 
 # If not running interactively, don't do anything
