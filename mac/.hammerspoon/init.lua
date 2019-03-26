@@ -4,7 +4,9 @@
 
 audio = require("audio")
 layouts = require("layouts")
-zoom_detect = require("zoom_detect")
+-- Disable zoom detection for now until slack gets its act together with
+-- others seeing status updates
+--zoom_detect = require("zoom_detect")
 
 ---- Hotkeys ----
 
