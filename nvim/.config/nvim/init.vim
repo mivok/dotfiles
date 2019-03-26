@@ -205,7 +205,7 @@ let g:vim_json_syntax_conceal = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Terraform plugin settings
 let g:terraform_align = 1
-let g:terraform_fmt_on_save = 1
+"let g:terraform_fmt_on_save = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NCM2 autocompletion settings
@@ -269,3 +269,8 @@ au BufEnter *.tfstate set ft=json
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Crontab -e fix
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Call terraform fmt on save of *.tf commands (done manually here because the
+" built in setting to do so also formats tfvars files, which we don't want)
+au BufWritePre *.tf call terraform#fmt()
