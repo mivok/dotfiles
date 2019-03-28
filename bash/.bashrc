@@ -327,32 +327,6 @@ kubectl() {
 }
 
 #}}}
-# Per directory git emails {{{
-# To set up:
-# echo "email@address.com" > .gitemail
-# This can be put in a parent directory (e.g. ~/git/work) to match all subdirs
-__set_git_email_vars() {
-    local gitemail_file=''
-    p=$(pwd)
-    while [[ $p != "$HOME" && $p != "/" ]]; do
-        if [[ -e $p/.gitemail ]]; then
-            gitemail_file="$p/.gitemail"
-            break
-        fi
-        p=$(dirname "$p")
-    done
-    if [[ -e "$gitemail_file" ]]; then
-        GIT_AUTHOR_EMAIL=$(cat "$gitemail_file")
-        GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-        export GIT_AUTHOR_EMAIL GIT_COMMITTER_EMAIL
-    fi
-}
-if which hub >/dev/null 2>&1; then
-    alias git="__set_git_email_vars; hub"
-else
-    alias git="__set_git_email_vars; git"
-fi
-# }}}
 # Direnv setup {{{
 if which direnv >/dev/null 2>&1; then
     # We need to manually do the direnv hook here because prompt_command
