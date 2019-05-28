@@ -30,7 +30,7 @@ brew 'nvim'
 
 # Shell helpers
 brew 'bash'
-brew 'bash-completion'
+brew 'bash-completion@2' # @2 is the newer version that requires newer bash
 brew 'direnv'
 brew 'autojump'
 brew 'fzf'
