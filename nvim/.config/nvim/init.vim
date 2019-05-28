@@ -43,6 +43,7 @@ Plug 'ncm2/ncm2-tern',  {'do': 'npm install'} " Javascript
 Plug 'ncm2/ncm2-html-subscope' " HTML
 Plug 'ncm2/ncm2-markdown-subscope' " Markdown embedded languages
 Plug 'ncm2/ncm2-ultisnips' " Autocomplete ultisnips
+" Language server support in ncm2 (for e.g. ruby support)
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -235,8 +236,12 @@ call ncm2#register_source({'name' : 'css',
     \               'csscomplete#CompleteCSS'],
     \ })
 " Language Servers - https://langserver.org
+" Installation instructions:
+"   solargraph - brew install solargraph
+"   bash - npm install -g bash-language-server
 let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['solargraph', 'stdio']
+    \ 'ruby': ['solargraph', 'stdio'],
+    \ 'sh': ['bash-language-server', 'start']
     \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,6 +256,7 @@ au FileType go RealTab4
 au FileType terraform Tab2
 au FileType taskpaper RealTab4
 au FileType taskpaper setl tw=0
+au FileType gitconfig RealTab4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autosave/reload taskpaper files
