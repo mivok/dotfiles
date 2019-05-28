@@ -269,6 +269,11 @@ if command -v nvim > /dev/null; then
     alias vim=nvim
 fi
 
+# Use hub command if available
+if command -v hub > /dev/null; then
+    alias git=hub
+fi
+
 # For when you recreate a machine and try to ssh to it
 alias fussh='ssh-keygen -R $(history -p '\''!!:$'\'' | sed "s/.*@//")'
 
