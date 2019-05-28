@@ -110,12 +110,19 @@ export LESSQUIET=1
 # }}}
 # }}}
 # Bash completion {{{
+# This makes bash-completion 2 work with existing homebrew v1 completions
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+
 if [[ -f /etc/bash_completion ]]; then
     . /etc/bash_completion
 fi
 if [[ -f /usr/local/etc/bash_completion ]]; then
     . /usr/local/etc/bash_completion
 fi
+if [[ -f /usr/local/etc/profile.d/bash_completion.sh ]]; then
+    . /usr/local/etc/profile.d/bash_completion.sh
+fi
+
 # }}}
 # Prompt {{{
 function setprompt {
