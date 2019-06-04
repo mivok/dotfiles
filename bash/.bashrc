@@ -298,7 +298,7 @@ function kcfg() {
     export KUBECONFIG="$HOME/.kube/$1"
     echo "KUBECONFIG=$KUBECONFIG"
 }
-complete -W "$(cd "$HOME/.kube" && ls -- *.config)" kcfg
+complete -W "$(cd "$HOME/.kube" && ls -- *.config 2>/dev/null)" kcfg
 
 function kns() {
     export KUBECTL_NAMESPACE="$1"
