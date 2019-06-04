@@ -9,9 +9,6 @@ tap 'homebrew/cask-drivers'
 tap 'homebrew/core'
 tap 'homebrew/services'
 
-tap 'chef/chefops-tools'
-tap 'chef/chef'
-tap 'habitat-sh/habitat'
 tap 'chef/okta_aws'
 
 # For X stuff
@@ -49,7 +46,6 @@ brew 'go-jira'
 brew 'gomplate'
 brew 'graphicsmagick'
 brew 'graphviz'
-brew 'heroku'
 brew 'hub'
 brew 'kops'
 brew 'kubernetes-cli'
@@ -81,7 +77,7 @@ brew 'watch'
 brew 'wdiff'
 brew 'wireguard-go'
 brew 'wireguard-tools'
-brew 'xz', args: ['universal']
+brew 'xz'
 
 # Programming languages
 brew 'go'
@@ -105,9 +101,7 @@ brew 'vault'
 brew 'tfenv'
 
 ## Chef Stuff
-cask 'chef/chef/chef-workstation'
 brew 'okta_aws'
-brew 'hab'
 
 ## Mac apps (casks)
 cask '1password'
@@ -135,7 +129,6 @@ cask 'minikube'
 cask 'openscad'
 cask 'skype'
 cask 'spotify'
-cask 'steam'
 cask 'sonic-pi'
 cask 'telegram'
 cask 'ubersicht'
