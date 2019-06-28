@@ -1,2 +1,4 @@
 # Ignore private stow dir
 private
+misc/.config/direnv/allow/
+tmux/.tmux/plugins/
