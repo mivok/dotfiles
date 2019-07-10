@@ -63,9 +63,22 @@ hs.hotkey.bind({}, "F18", function()
     hs.task.new(os.getenv("HOME") .. "/bin/awayback.sh", nil, {"back"}):start()
 end)
 
--- Blank keys - workaround for crappy discord hotkey binding
-hs.hotkey.bind({}, "F19", function() end)
-hs.hotkey.bind({}, "F20", function() end)
+-- White noise controls
+hs.hotkey.bind({}, "F16", function()
+    hs.alert.show("Noise play/pause")
+    hs.task.new("/usr/local/bin/mpc", nil,
+        {"-h", "officenoise.local", "toggle"}):start()
+end)
+hs.hotkey.bind({}, "F19", function()
+    hs.alert.show("Noise volume down")
+    hs.task.new("/usr/local/bin/mpc", nil,
+        {"-h", "officenoise.local", "volume", "-2"}):start()
+end)
+hs.hotkey.bind({}, "F20", function()
+    hs.alert.show("Noise volume up")
+    hs.task.new("/usr/local/bin/mpc", nil,
+        {"-h", "officenoise.local", "volume", "+2"}):start()
+end)
 
 -- Alternate shush key
 hs.hotkey.bind({"ctrl"}, "space", function()
