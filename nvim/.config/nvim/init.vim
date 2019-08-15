@@ -205,7 +205,7 @@ let g:vim_json_syntax_conceal = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Terraform plugin settings
-let g:terraform_align = 1
+let g:terraform_align = 0
 "let g:terraform_fmt_on_save = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
