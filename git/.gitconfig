@@ -16,7 +16,7 @@
 [push]
 	default = current
 [core]
-	excludesfile = /Users/mark/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [diff "gpg"]
 	binary = true
 	textconv = gpg2 -d --quiet --yes --compress-algo=none --batch --use-agent

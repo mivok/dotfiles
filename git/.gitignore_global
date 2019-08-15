@@ -2,3 +2,4 @@
 .envrc
 .direnv
 .delivery/cli.toml
+.DS_Store
