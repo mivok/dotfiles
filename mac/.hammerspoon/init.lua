@@ -46,8 +46,9 @@ hs.hotkey.bind({}, "F14", function()
     level = 80
     ad = hs.audiodevice.defaultInputDevice()
     if ad ~= nil then
+        oldvol = math.floor(ad:inputVolume())
         ad:setInputVolume(level)
-        hs.alert.show("Input volume reset to " .. level .. "%")
+        hs.alert.show("Input volume reset from " .. oldvol .. "% to " .. level .. "%")
     else
         hs.alert.show("No input device found")
     end
