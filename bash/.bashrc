@@ -376,6 +376,21 @@ if [[ -d "$FZF_PATH" ]]; then
     source "$FZF_PATH/shell/completion.bash"
     source "$FZF_PATH/shell/key-bindings.bash"
 fi
+
+# Fzf/autojump integration (j without args uses fzf)
+function j() {
+    if [[ "$#" -ne 0 ]]; then
+        # shellcheck disable=SC2164
+        cd "$(autojump "$@")"
+        return
+    fi
+    # shellcheck disable=SC2164
+    cd "$(autojump -s | sort -k1gr |
+        awk '$1 ~ /[0-9]:/ && $2 ~ /^\// {
+            for (i=2; i<=NF; i++) { print $(i) }
+        }' |
+        fzf --height 40% --reverse --inline-info)"
+}
 # }}}
 # Default editor {{{
 # Lower down in the list is preferred editor
