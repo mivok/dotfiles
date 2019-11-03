@@ -23,6 +23,7 @@ Plug 'vito-c/jq.vim'
 Plug 'elzr/vim-json'
 Plug 'LokiChaos/vim-tintin'
 Plug 'davidoc/taskpaper.vim'
+Plug 'pearofducks/ansible-vim'
 
 " GPG integration
 Plug 'jamessan/vim-gnupg'
@@ -50,6 +51,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 " Easy alignment - gaip=
 Plug 'junegunn/vim-easy-align'
+
+" FZF (:Ag, :Files)
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " My Plugins
 Plug 'mivok/vimtodo'
