@@ -22,3 +22,5 @@
 	textconv = gpg2 -d --quiet --yes --compress-algo=none --batch --use-agent
 [includeIf "gitdir:~/git/work/"]
 	path = .gitconfig_work
+[commit]
+	template = /Users/mark.harrison/.gitmessage
