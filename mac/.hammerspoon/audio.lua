@@ -47,6 +47,8 @@ function audio.updateMuteStatus(muted)
                 roundedRectRadii = { xRadius = 5, yRadius = 5 }
             })
         end
+        -- Note: for this to show up above full screen windows (e.g. zoom) we
+        -- need to hide the hammerspoon dock icon in hammerspoon preferences.
         audio.muteStatusCanvas:show()
     end
 end
