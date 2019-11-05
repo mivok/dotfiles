@@ -275,7 +275,8 @@ if command -v hub > /dev/null; then
 fi
 
 # For when you recreate a machine and try to ssh to it
-alias fussh='ssh-keygen -R $(history -p '\''!!:$'\'' | sed "s/.*@//")'
+# shellcheck disable=SC2142
+alias fussh='ssh-keygen -R $(ssh -G $(history -p '\''!!:$'\'' | sed "s/.*@//") | awk '\''$1 == "hostname" { print $2 }'\'')'
 
 function chefprofile() {
     # Usage: chefprofile PROFILENAME
@@ -338,6 +339,21 @@ kubectl() {
     command kubectl "${ARGS[@]}" "$@"
 }
 
+# Alias to switch between stage/prod directories
+cde() {
+    if [[ $PWD =~ /(stage|staging)/ ]]; then
+        # shellcheck disable=SC2086
+        cd ${PWD/\/stag*\//\/prod*\/} || return
+        pwd
+    elif [[ $PWD =~ /(prod)/ ]]; then
+        # shellcheck disable=SC2086
+        cd ${PWD/\/prod*\//\/stag*\/} || return
+        pwd
+    else
+        echo "Skipping cd: Outside of a stage/prod directory"
+    fi
+}
+
 #}}}
 # Direnv setup {{{
 if which direnv >/dev/null 2>&1; then
@@ -382,6 +398,7 @@ function j() {
     if [[ "$#" -ne 0 ]]; then
         # shellcheck disable=SC2164
         cd "$(autojump "$@")"
+        pwd
         return
     fi
     # shellcheck disable=SC2164
@@ -390,6 +407,7 @@ function j() {
             for (i=2; i<=NF; i++) { print $(i) }
         }' |
         fzf --height 40% --reverse --inline-info)"
+    pwd
 }
 # }}}
 # Default editor {{{
