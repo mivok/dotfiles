@@ -409,7 +409,23 @@ function j() {
         fzf --height 40% --reverse --inline-info)"
     pwd
 }
+
+# Fzf cd command relative to the current git root
+cdg() {
+    local GIT_ROOT
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    cd "$GIT_ROOT" || return
+    DIR="$(fd --type d --hidden --follow --exclude .git | fzf)"
+    if [[ -n "$DIR" ]]; then
+        echo "$DIR"
+        cd "$DIR" || cd "$OLDPWD" || return
+    else
+        cd "$OLDPWD" || return
+    fi
+}
+
 # }}}
+
 # Default editor {{{
 # Lower down in the list is preferred editor
 [[ -x "/usr/bin/vi" ]] && export EDITOR=/usr/bin/vi
