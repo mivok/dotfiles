@@ -81,7 +81,7 @@ export RESET BRIGHT BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE FGDEFAULT
 # Enable color ls {{{
 
 if [[ "$TERM" != "dumb" ]]; then
-    if [[ -x $(which dircolors) ]]; then
+    if [[ -x $(command -v dircolors) ]]; then
         eval "$(dircolors -b)"
     fi
     # If we are running gnu ls, turn on color. Otherwise, use -F for file type
@@ -356,7 +356,7 @@ cde() {
 
 #}}}
 # Direnv setup {{{
-if which direnv >/dev/null 2>&1; then
+if command -v direnv >/dev/null 2>&1; then
     # We need to manually do the direnv hook here because prompt_command
     # (which reads $? for the return value of the previous command) needs to
     # come first in order to get a reliable return value.
