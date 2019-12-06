@@ -251,11 +251,13 @@ let g:LanguageClient_serverCommands = {
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exceptions for Specific Filetypes
-au FileType markdown nnoremap <leader>pp :silent call system("open -a Marked.app '" . expand("%:p") . "'")<cr>
 au FileType make RealTab8
 au FileType yaml Tab2
 au FileType yaml setl indentkeys-=<:>
 au FileType markdown Tab2
+" Fix for gq on lists with plasticboy plugin - platicboy/vim-markdown#232
+au FileType markdown set fo-=q |
+    \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
 au FileType ruby Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
@@ -274,7 +276,6 @@ au Filetype taskpaper au FocusGained,BufEnter <buffer> checktime
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set filetypes for specific extensions
-au BufEnter *.md set ft=markdown
 au BufEnter *.tfstate set ft=json
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
