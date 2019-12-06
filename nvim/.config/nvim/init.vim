@@ -56,6 +56,9 @@ Plug 'junegunn/vim-easy-align'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+" Personal wiki
+Plug '~/git/personal/vim-myzettel'
+
 " My Plugins
 Plug 'mivok/vimtodo'
 Plug 'mivok/vim-minotl'
