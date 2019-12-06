@@ -192,6 +192,7 @@ let g:go_highlight_build_constraints = 1
 " Python settings
 " pylint is slow
 let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use specific virtualenvs for neovim python
