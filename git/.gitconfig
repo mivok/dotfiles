@@ -24,3 +24,5 @@
 	path = .gitconfig_work
 [commit]
 	template = /Users/mark.harrison/.gitmessage
+[diff]
+	wsErrorHighlight = all
