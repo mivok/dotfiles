@@ -11,6 +11,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Lucius color scheme
 Plug 'jonathanfilip/vim-lucius'
 
+" Editorconfig support
+Plug 'editorconfig/editorconfig-vim'
+
 " Syntax/filetype specific
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'hashivim/vim-terraform'
@@ -56,6 +59,9 @@ Plug 'junegunn/vim-easy-align'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+" Buffer list sidebar
+Plug 'jeetsukumaran/vim-buffergator'
+
 " Personal wiki
 Plug '~/git/personal/vim-myzettel'
 
@@ -78,6 +84,7 @@ set showmatch                      " Show matching parentheses
 set matchtime=5                    " 5/10 seconds to show paren matches
 set list listchars=tab:>-,trail:-  " Show trailing spaces and hard tabs
 set incsearch                      " Incremental search
+set inccommand=nosplit             " Incremental replace (preview replacements)
 set so=2                           " Always show lines above/below cursor
 set wildmode=longest,list          " Tab expansion like bash
 set ignorecase                     " Ignore case in searches
