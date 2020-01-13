@@ -216,6 +216,10 @@ let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shellcheck settings
+let g:syntastic_sh_shellcheck_args="-x"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Json conceal settings
 let g:vim_json_syntax_conceal = 0
 
