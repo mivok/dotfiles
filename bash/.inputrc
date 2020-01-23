@@ -1,0 +1,24 @@
+# Show file stats (directory, executable) like in ls
+set visible-stats on
+set colored-stats on
+
+# Case insensitive auto complete
+set completion-ignore-case on
+# Also autocomplete mixed up - and _
+set completion-map-case on
+
+set show-all-if-ambiguous on
+set skip-completed-text on
+
+# Display the already typed part of the completion as ...
+#set completion-prefix-display-length 1
+# Display the already typed part of the completion in a different color
+set colored-completion-prefix on
+set menu-complete-display-prefix on
+
+# Keybindings for cycling through completions
+tab: menu-complete
+# Alt-tab
+"\e\t": menu-complete-backward
+# Shift-tab
+"\e[Z": menu-complete-backward
