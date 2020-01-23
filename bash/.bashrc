@@ -264,6 +264,14 @@ alias runningcontainers="docker ps --format '{{.Image}}\\t{{.Names}}'"
 # Make homebrew not use the full path (e.g. chefdk)
 alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" brew'
 
+# SSH to an aws instance by looking up its IP. Uses aws_instance_search.sh and
+# fzf
+aws-ssh() {
+    ssh "$(aws-vault exec "$1" -- \
+        aws_instance_search.sh -r "${3:-us-west-2}" "$2" | \
+        fzf -1 | tee /dev/stderr | awk '{ print $2 }')"
+}
+
 # Use nvim if available
 if command -v nvim > /dev/null; then
     alias vim=nvim
