@@ -65,6 +65,11 @@ Plug 'jeetsukumaran/vim-buffergator'
 " Personal wiki
 Plug '~/git/personal/vim-myzettel'
 
+" Notes list sidebar
+Plug '~/git/personal/vim-notesidebar'
+" vim-drafts
+Plug '~/git/personal/vim-drafts'
+
 " My Plugins
 Plug 'mivok/vimtodo'
 Plug 'mivok/vim-minotl'
