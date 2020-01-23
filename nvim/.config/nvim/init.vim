@@ -270,6 +270,15 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fzf settings/commands
+
+" Preview window for Ag
+" Original definition of commands:
+" https://github.com/junegunn/fzf.vim/blob/master/plugin/fzf.vim#L42
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, 
+    \ fzf#vim#with_preview(), <bang>0)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exceptions for Specific Filetypes
 au FileType make RealTab8
 au FileType yaml Tab2
