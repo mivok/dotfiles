@@ -290,7 +290,24 @@ fi
 
 # For when you recreate a machine and try to ssh to it
 # shellcheck disable=SC2142
-alias fussh='ssh-keygen -R $(ssh -G $(history -p '\''!!:$'\'' | sed "s/.*@//") | awk '\''$1 == "hostname" { print $2 }'\'')'
+function fussh() {
+    local SSH_ARG SSH_HOST SSH_IP PROXYJUMP
+    SSH_ARG="$1"
+    if [[ -z $SSH_ARG ]]; then
+        SSH_ARG="$(history -p '!!:$' | sed "s/.*@//")"
+    fi
+    SSH_HOST="$(ssh -G "$SSH_ARG" | awk '$1 == "hostname" { print $2 }')"
+    SSH_IP="$(dig +short "$SSH_HOST")"
+    ssh-keygen -R "$SSH_HOST"
+    if [[ -n "$SSH_IP" ]]; then
+        ssh-keygen -R "$SSH_IP"
+    fi
+    # Deal with bastions too
+    PROXYJUMP="$(ssh -G "$SSH_ARG" | awk '$1 == "proxyjump" { print $2 }')"
+    if [[ -n $PROXYJUMP ]]; then
+        fussh "$PROXYJUMP"
+    fi
+}
 
 function chefprofile() {
     # Usage: chefprofile PROFILENAME
