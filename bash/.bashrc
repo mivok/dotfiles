@@ -267,9 +267,15 @@ alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" 
 # SSH to an aws instance by looking up its IP. Uses aws_instance_search.sh and
 # fzf
 aws-ssh() {
-    ssh "$(aws-vault exec "$1" -- \
+    local HOSTNAME
+    HOSTNAME="$(saml2aws exec --exec-profile "$1" -- \
         aws_instance_search.sh -r "${3:-us-west-2}" "$2" | \
         fzf -1 | tee /dev/stderr | awk '{ print $2 }')"
+    if [[ -n "$HOSTNAME" ]]; then
+        ssh "$HOSTNAME"
+    else
+        echo "No host selected."
+    fi
 }
 
 # Use nvim if available
@@ -461,11 +467,6 @@ fi
 export HOMEBREW_AUTO_UPDATE_SECS=86400
 # HOMEBREW_NO_GITHUB_API=1
 # HOMEBREW_NO_AUTO_UPDATE=1
-# }}}
-# aws-vault {{{
-export AWS_ASSUME_ROLE_TTL="1h"
-# Use the login keychain for storage
-export AWS_VAULT_KEYCHAIN_NAME="login"
 # }}}
 # MPD server {{{
 export MPD_HOST=officenoise.local
