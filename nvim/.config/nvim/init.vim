@@ -62,6 +62,9 @@ Plug 'junegunn/fzf.vim'
 " Buffer list sidebar
 Plug 'jeetsukumaran/vim-buffergator'
 
+" Minimap
+Plug 'severin-lemaignan/vim-minimap'
+
 " Personal wiki
 Plug '~/git/personal/vim-myzettel'
 
