@@ -268,8 +268,7 @@ alias brew='PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/sbin:/usr/sbin" 
 # fzf
 aws-ssh() {
     local HOSTNAME
-    HOSTNAME="$(saml2aws exec --exec-profile "$1" -- \
-        aws_instance_search.sh -r "${3:-us-west-2}" "$2" | \
+    HOSTNAME="$(aws_instance_search.sh -p "$1" -r "${3:-us-west-2}" "$2" | \
         fzf -1 | tee /dev/stderr | awk '{ print $2 }')"
     if [[ -n "$HOSTNAME" ]]; then
         ssh "$HOSTNAME"
@@ -456,7 +455,6 @@ cdg() {
 }
 
 # }}}
-
 # Default editor {{{
 # Lower down in the list is preferred editor
 [[ -x "/usr/bin/vi" ]] && export EDITOR=/usr/bin/vi
@@ -487,4 +485,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=86400
 # }}}
 # MPD server {{{
 export MPD_HOST=officenoise.local
+# }}}
+# AWS settings {{{
+export AWS_SDK_LOAD_CONFIG=1
 # }}}
