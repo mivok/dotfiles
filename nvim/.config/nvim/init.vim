@@ -114,7 +114,7 @@ set formatoptions+=j               " Delete comment chars when joining lines
 " Wrapping options
 set wrap                           " Visually wrap long lines
 set linebreak                      " Visually wrap at word boundaries
-set showbreak=\                    " Mark manually wrapped lines with \
+set showbreak=\\                   " Mark manually wrapped lines with \
 set breakindent                    " Indent wrapped lines
 set breakindentopt=shift:2,sbr     " Additionally indent wrapped lined by 2
 
@@ -149,6 +149,8 @@ command! SoftWrap call s:softwrap()
 command! HardWrap call s:hardwrap()
 
 function! s:softwrap() abort
+    " Turn of hard wrapping
+    set textwidth=0
     " Mappings to make line movement commands move by screen lines instead of
     " file lines
     noremap  <buffer> <silent> <Up>   gk
@@ -168,6 +170,8 @@ function! s:softwrap() abort
 endfunction
 
 function! s:hardwrap() abort
+    " Set textwidth back to normal
+    set textwidth=78
     " Undo the softwrap mappings
     silent! nunmap  <Up>
     silent! nunmap  <Down>
@@ -261,7 +265,7 @@ let g:python3_host_prog = venv_path . '/python3/bin/python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markdown settings
-let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'sh=bash']
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'bash=sh']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shellcheck settings
@@ -346,6 +350,11 @@ au Filetype taskpaper au FocusGained,BufEnter <buffer> checktime
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set filetypes for specific extensions
 au BufEnter *.tfstate set ft=json
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Notes settings
+au BufEnter ~/notes/*.md SoftWrap
+au BufEnter ~/git/personal/notes/*.md SoftWrap
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Crontab -e fix
