@@ -21,7 +21,6 @@ Plug 'sirtaj/vim-openscad'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'ledger/vim-ledger'
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'vito-c/jq.vim'
 Plug 'elzr/vim-json'
 Plug 'LokiChaos/vim-tintin'
@@ -217,11 +216,7 @@ let g:python3_host_prog = venv_path . '/python3/bin/python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markdown settings
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toml_frontmatter = 1
-let g:vim_markdown_json_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'sh=bash']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shellcheck settings
@@ -287,9 +282,6 @@ au FileType make RealTab8
 au FileType yaml Tab2
 au FileType yaml setl indentkeys-=<:>
 au FileType markdown Tab2
-" Fix for gq on lists with plasticboy plugin - platicboy/vim-markdown#232
-au FileType markdown set fo-=q |
-    \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
 au FileType ruby Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
