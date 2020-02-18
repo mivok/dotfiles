@@ -102,9 +102,6 @@ set viminfo+=%                     " Save/restore buffer list
 set encoding=utf-8                 " Use utf-8 by default
 set modeline                       " Enable modelines
 set modelines=5                    " Look 5 lines into the file
-set wrap                           " Visually wrap long lines
-set linebreak                      " Visually wrap at word boundaries
-set showbreak=»                    " Mark manually wrapped lines with »
 set autoread                       " Reload changed file if unmodified in vim
 set ttimeout                       " Timeout on partial key sequences
 set timeoutlen=500                 " timeout value in ms
@@ -113,7 +110,13 @@ set conceallevel=2                 " Enable concealed text
 set concealcursor=cv               " Modes to conceal when cursor in on a line
 set mouse=a                        " Enable the mouse
 set formatoptions+=j               " Delete comment chars when joining lines
+
+" Wrapping options
+set wrap                           " Visually wrap long lines
+set linebreak                      " Visually wrap at word boundaries
+set showbreak=\                    " Mark manually wrapped lines with \
 set breakindent                    " Indent wrapped lines
+set breakindentopt=shift:2,sbr     " Additionally indent wrapped lined by 2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Multi buffer/window settings
@@ -139,6 +142,48 @@ command! Tab2 setlocal sw=2 sts=2 ts=8 et
 command! Tab4 setlocal sw=4 sts=4 ts=8 et
 command! RealTab4 setlocal sw=4 sts=4 ts=4 noet listchars=tab:\ \ ,trail:-
 command! RealTab8 setlocal sw=8 sts=8 ts=8 noet listchars=tab:\ \ ,trail:-
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Soft/Hard wrapping
+command! SoftWrap call s:softwrap()
+command! HardWrap call s:hardwrap()
+
+function! s:softwrap() abort
+    " Mappings to make line movement commands move by screen lines instead of
+    " file lines
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+    noremap <silent> k gk
+    noremap <silent> j gj
+    noremap <silent> 0 g0
+    noremap <silent> $ g$
+    onoremap <silent> k gk
+    onoremap <silent> j gj
+endfunction
+
+function! s:hardwrap() abort
+    " Undo the softwrap mappings
+    silent! nunmap  <Up>
+    silent! nunmap  <Down>
+    silent! nunmap  <Home>
+    silent! nunmap  <End>
+    silent! iunmap <Up>
+    silent! iunmap <Down>
+    silent! iunmap <Home>
+    silent! iunmap <End>
+    silent! nunmap k
+    silent! nunmap j
+    silent! nunmap 0
+    silent! nunmap $
+    silent! ounmap k
+    silent! ounmap j
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Look and feel options
