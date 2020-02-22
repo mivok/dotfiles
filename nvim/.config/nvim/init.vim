@@ -131,6 +131,13 @@ map <Leader>k <C-w>k<C-w>_
 cmap w!! %!sudo tee > /dev/null %
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fix common typos
+
+" I often hold down shift too long when saving files
+cabbrev W write
+cabbrev Q quit
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab width is 4 and tabs are inserted as spaces
 set tabstop=8                           " Hard tabs are 8 chars
 set softtabstop=4                       " Tab key indents by 4 chars
