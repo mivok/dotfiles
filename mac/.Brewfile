@@ -86,6 +86,9 @@ brew 'python2'
 brew 'python3'
 brew 'rust'
 
+# Application wrappers
+brew 'pipx'
+
 # jmespath.org - jq alternative
 tap 'jmespath/jmespath'
 brew 'jmespath/jmespath/jp'
