@@ -36,24 +36,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 " Snippets
 Plug 'SirVer/ultisnips'
-" Autocompletion
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-" Autocompletion sources: https://github.com/ncm2/ncm2/wiki
-Plug 'ncm2/ncm2-jedi'    " Python - pip3 install jedi (and pip2)
-Plug 'ncm2/ncm2-go'      " Golang - uses gocode (installed with vim-go)
-Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim' " Vim
-Plug 'ncm2/ncm2-tern',  {'do': 'npm install'} " Javascript
-Plug 'ncm2/ncm2-html-subscope' " HTML
-Plug 'ncm2/ncm2-markdown-subscope' " Markdown embedded languages
-Plug 'ncm2/ncm2-ultisnips' " Autocomplete ultisnips
-" Language server support in ncm2 (for e.g. ruby support)
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 " Easy alignment - gaip=
 Plug 'junegunn/vim-easy-align'
+
+" Autocompletion
+Plug 'natebosch/vim-lsc'
 
 " FZF (:Ag, :Files)
 Plug '/usr/local/opt/fzf'
@@ -295,39 +282,29 @@ let g:terraform_align = 0
 let g:terraform_fmt_on_save = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NCM2 autocompletion settings
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
+" Autocompletion settings
+let g:lsc_auto_map = v:true
 
-" Make the enter key work properly when the menu is open
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-" And allow Tab to select the items on the popup menu
+" Automatically close any pop up documentation preview window
+autocmd CompleteDone * silent! pclose
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
-" This makes ultisnips not conflict with ncm2 - you use Tab to autocomplete
-" the snippet trigger, then CR to expand it once it's selected in the menu
-let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-
-" CSS
-call ncm2#register_source({'name' : 'css',
-    \ 'priority': 9, 
-    \ 'subscope_enable': 1,
-    \ 'scope': ['css', 'scss', 'less'],
-    \ 'mark': 'css',
-    \ 'word_pattern': '[\w\-]+',
-    \ 'complete_pattern': ':\s*',
-    \ 'on_complete': ['ncm2#on_complete#omni',
-    \               'csscomplete#CompleteCSS'],
-    \ })
 " Language Servers - https://langserver.org
 " Installation instructions:
-"   solargraph - brew install solargraph
+"   ruby - gem install solargraph
 "   bash - npm install -g bash-language-server
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['solargraph', 'stdio'],
-    \ 'sh': ['bash-language-server', 'start']
+"   python - pip3 install python-language-server[all] (all installs all
+"        optional dependencies)
+"   javascript - npm install -g typescript-language-server
+"   go - gopls is installed with vim-go (:GoInstallBinaries)
+"   terraform - download binary and place in /usr/local/bin
+"       from https://github.com/juliosueiras/terraform-lsp/releases
+let g:lsc_server_commands = {
+    \ 'ruby': 'solargraph stdio',
+    \ 'sh': 'bash-language-server start',
+    \ 'python': 'pyls',
+    \ 'javascript': 'typescript-language-server --stdio',
+    \ 'go': 'gopls serve',
+    \ 'terraform': 'terraform-lsp',
     \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
