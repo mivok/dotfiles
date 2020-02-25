@@ -6,12 +6,9 @@
 
 # Non interactive entries
 # Path {{{
-CHEFDK_RUBY_BINS=$(printf "%s:" "$HOME"/.chefdk/gem/ruby/*/bin)
-
 export PATH="/usr/local/bin:/usr/local/sbin:\
-$CHEFDK_RUBY_BINS\
 /bin:/usr/bin:/sbin:/usr/sbin:\
-$HOME/go/bin"
+$HOME/go/bin:$HOME/.local/bin"
 
 # Do Manpath too, so path_helper will set manpath
 export MANPATH=
@@ -22,9 +19,7 @@ if [[ -x /usr/libexec/path_helper ]]; then
 fi
 
 # A few directories we want first in the path, add them here
-export PATH="$HOME/bin:\
-/opt/chef-workstation/bin:/opt/chef-workstation/embedded/bin:\
-$PATH"
+export PATH="$HOME/bin:$PATH"
 # }}}
 
 # If not running interactively, don't do anything
