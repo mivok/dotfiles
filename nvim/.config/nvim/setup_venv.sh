@@ -1,7 +1,7 @@
 #!/bin/bash
 VENV_PATH="$HOME/.local/share/nvim/virtualenvs"
 
-PACKAGES_BOTH=(pynvim jedi)
+PACKAGES_BOTH=(pynvim)
 PACKAGES_PYTHON3=()
 PACKAGES_PYTHON2=()
 
