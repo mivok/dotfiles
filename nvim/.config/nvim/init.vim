@@ -292,7 +292,7 @@ autocmd CompleteDone * silent! pclose
 " Installation instructions:
 "   ruby - gem install solargraph
 "   bash - npm install -g bash-language-server
-"   python - pip3 install python-language-server[all] (all installs all
+"   python - pipx install python-language-server[all] (all installs all
 "        optional dependencies)
 "   javascript - npm install -g typescript-language-server
 "   go - gopls is installed with vim-go (:GoInstallBinaries)
