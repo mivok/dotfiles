@@ -135,6 +135,7 @@ set expandtab                           " Use spaces instead of tabs
 " Quickly change tab settings
 command! Tab2 setlocal sw=2 sts=2 ts=8 et
 command! Tab4 setlocal sw=4 sts=4 ts=8 et
+command! RealTab2 setlocal sw=2 sts=2 ts=2 noet listchars=tab:\ \ ,trail:-
 command! RealTab4 setlocal sw=4 sts=4 ts=4 noet listchars=tab:\ \ ,trail:-
 command! RealTab8 setlocal sw=8 sts=8 ts=8 noet listchars=tab:\ \ ,trail:-
 
