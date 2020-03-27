@@ -23,7 +23,7 @@
 [includeIf "gitdir:~/git/work/"]
 	path = .gitconfig_work
 [commit]
-	template = /Users/mark.harrison/.gitmessage
+	template = ~/.gitmessage
 [diff]
 	wsErrorHighlight = all
 [url "git@github.com:"]
