@@ -9,9 +9,11 @@ source ~/.zsh/antigen.zsh
 antigen use oh-my-zsh
 
 # Load plugins
-antigen bundle git
-antigen bundle fzf
+antigen bundle autojump
+antigen bundle aws
 antigen bundle direnv
+antigen bundle docker
+antigen bundle fzf
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -23,6 +25,6 @@ antigen bundle ~/.zsh/local_plugins/aliases
 antigen bundle ~/.zsh/local_plugins/functions
 
 # Theme
-antigen theme denysdovhan/spaceship-prompt
+antigen theme ~/.zsh/themes/mh
 
 antigen apply

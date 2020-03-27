@@ -27,3 +27,11 @@ if [[ -f ~/.githubtoken ]]; then
     GITHUB_TOKEN=$(cat ~/.githubtoken)
     export GITHUB_TOKEN
 fi
+
+# ZSH autosuggestions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
+
