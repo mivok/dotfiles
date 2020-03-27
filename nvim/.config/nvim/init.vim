@@ -286,6 +286,9 @@ let g:terraform_fmt_on_save = 1
 " Autocompletion settings
 let g:lsc_auto_map = v:true
 
+" Make LSC less chatty
+let g:lsc_trace_level = 'off'
+
 " Automatically close any pop up documentation preview window
 autocmd CompleteDone * silent! pclose
 
@@ -305,8 +308,12 @@ let g:lsc_server_commands = {
     \ 'python': 'pyls',
     \ 'javascript': 'typescript-language-server --stdio',
     \ 'go': 'gopls serve',
-    \ 'terraform': 'terraform-lsp',
-    \ }
+    \ 'terraform': {
+    \   'command': 'terraform-lsp',
+    \   'log_level': -1,
+    \   'suppress_stderr': v:true,
+    \ },
+    \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf settings/commands
