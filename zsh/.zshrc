@@ -24,6 +24,7 @@ antigen bundle fzf
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
 
 # Local plugins/configuration
 antigen bundle ~/.zsh/local_plugins/colors
