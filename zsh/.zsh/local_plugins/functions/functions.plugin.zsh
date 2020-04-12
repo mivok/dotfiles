@@ -36,12 +36,11 @@ fussh() {
 
 # Alias to switch between stage/prod directories
 cde() {
+    emulate -L zsh -o GLOB_SUBST
     if [[ $PWD =~ /(stage|staging)/ ]]; then
-        # shellcheck disable=SC2086
         cd ${PWD/\/stag*\//\/prod*\/} || return
         pwd
     elif [[ $PWD =~ /(prod)/ ]]; then
-        # shellcheck disable=SC2086
         cd ${PWD/\/prod*\//\/stag*\/} || return
         pwd
     else
@@ -54,13 +53,19 @@ cdg() {
     local GIT_ROOT
     GIT_ROOT="$(git rev-parse --show-toplevel)"
     cd "$GIT_ROOT" || return
-    DIR="$(fd --type d --hidden --follow --exclude .git | fzf)"
+    DIR="$(fd --type d --hidden --follow --exclude .git | fzf -q "$*" -1)"
     if [[ -n "$DIR" ]]; then
         echo "$DIR"
         cd "$DIR" || cd "$OLDPWD" || return
     else
         cd "$OLDPWD" || return
     fi
+}
+
+# Switch branch in git using fzf
+gco() {
+    git switch $(git for-each-ref --format='%(refname:short)' refs/heads | \
+        fzf -q "$1" -1)
 }
 
 # Alternative to antigen selfupdate command
