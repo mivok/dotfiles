@@ -96,21 +96,25 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_{LEFT,RIGHT}_WHITESPACE=
 
   # dir
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_absolute_chars
-  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=103
-  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=20
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=103
+  typeset -g POWERLEVEL9K_DIR_PATH_SEPARATOR_FOREGROUND=31
+  typeset -g POWERLEVEL9K_DIR_PATH_HIGHLIGHT_FOREGROUND=39
+  typeset -g POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=true
   typeset -g POWERLEVEL9K_DIR_HYPERLINK=false
   typeset -g POWERLEVEL9K_DIR_SHOW_WRITABLE=true
 
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
+  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
+  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+
   # Directory classes
-  typeset -g POWERLEVEL9K_DIR_CLASSES=(
-    # TODO - set real icons here, and add stage/prod options too
-    '~/git/work(!/*)'     WORK      'W'
-    '~/git/personal(!/*)' PERSONAL  'P'
-    '*'                   DEFAULT   ''
-  )
+  # TODO - look up default values here with the house icon for home and so
+  # on
+  #typeset -g POWERLEVEL9K_DIR_CLASSES=(
+  #  # TODO - set real icons here, and add stage/prod options too
+  #  '~/git/work(!/*)'     WORK      'W'
+  #  '~/git/personal(!/*)' PERSONAL  'P'
+  #)
 
   # vcs
   typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
