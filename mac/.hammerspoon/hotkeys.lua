@@ -1,20 +1,11 @@
 ---- Hotkeys ----
 
--- Pause key for spotify/itunes
-last_paused = hs.spotify -- Default music player
+-- Pause key for music
 function hotkey_pause_music()
-    if hs.spotify.isPlaying() then
-        hs.alert.show("Pausing spotify")
-        hs.spotify.pause()
-        last_paused = hs.spotify
-    elseif hs.itunes.isPlaying() then
-        hs.alert.show("Pausing itunes")
-        hs.itunes.pause()
-        last_paused = hs.itunes
-    else
-        hs.alert.show("Playing music")
-        last_paused.play()
-    end
+    -- We can use media keys for spotify and chrome now, and it does the right
+    -- thing
+    hs.eventtap.event.newSystemKeyEvent("PLAY", true):post();
+    hs.eventtap.event.newSystemKeyEvent("PLAY", false):post();
 end
 
 -- Lock screen
