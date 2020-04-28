@@ -17,9 +17,10 @@ aws-ssh() {
 # For when you recreate a machine and try to ssh to it
 fussh() {
     local SSH_ARG SSH_HOST SSH_IP PROXYJUMP
+    # Allow specifying a host manually instead of getting it from the history
     SSH_ARG="$1"
     if [[ -z $SSH_ARG ]]; then
-        SSH_ARG="$(history -p '!!:$' | sed "s/.*@//")"
+        SSH_ARG="$(fc -ln -1 | awk '{print $NF}' | sed "s/.*@//")"
     fi
     SSH_HOST="$(ssh -G "$SSH_ARG" | awk '$1 == "hostname" { print $2 }')"
     SSH_IP="$(dig +short "$SSH_HOST")"
