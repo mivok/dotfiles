@@ -1,0 +1,18 @@
+#compdef kcfg
+# Completion for the kcfg function
+
+_kcfg() {
+    if (( CURRENT == 2 )); then
+        local -a configs
+        configs=()
+        local KUBEDIR="$HOME/.kube/"
+        for i in ${KUBEDIR}*.config; do
+            local CONFIGNAME="${i/$KUBEDIR/}"
+            CONFIGNAME="${CONFIGNAME/.config/}"
+            configs+=("$CONFIGNAME")
+        done
+        _describe 'configs' configs
+    fi
+}
+
+_kcfg

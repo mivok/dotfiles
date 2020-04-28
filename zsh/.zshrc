@@ -31,6 +31,7 @@ antigen bundle ~/.zsh/local_plugins/colors
 antigen bundle ~/.zsh/local_plugins/appsettings
 antigen bundle ~/.zsh/local_plugins/aliases
 antigen bundle ~/.zsh/local_plugins/functions
+antigen bundle ~/.zsh/local_plugins/kubectl
 
 # Theme
 # antigen theme ~/.zsh/themes/mh
