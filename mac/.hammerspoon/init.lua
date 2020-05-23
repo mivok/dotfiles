@@ -3,8 +3,8 @@
 ---- Load modules ----
 
 audio = require("audio")
-layouts = require("layouts")
 hotkeys = require("hotkeys")
+windowmanage = require("windowmanage")
 -- Disable zoom detection for now until slack gets its act together with
 -- others seeing status updates
 --zoom_detect = require("zoom_detect")
