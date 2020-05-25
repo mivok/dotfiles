@@ -315,6 +315,16 @@ let g:lsc_server_commands = {
     \ },
     \}
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ultisnips settings
+" Note: default keybindings are Tab to expand, and c-j, c-k to go back and
+" forward
+
+" Let alt/option-Tab show available snippets
+let g:UltiSnipsListSnippets="<m-tab>"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf settings/commands
 
