@@ -6,7 +6,6 @@
 	signingkey = mark@mivok.net
 [alias]
 	st = status
-	co = checkout
 	ci = commit
 	unstage = reset HEAD
 	me = log --author="mark" --after=yesterday --no-merges --format=%s --reverse
