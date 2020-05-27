@@ -5,9 +5,7 @@
 audio = require("audio")
 hotkeys = require("hotkeys")
 windowmanage = require("windowmanage")
--- Disable zoom detection for now until slack gets its act together with
--- others seeing status updates
---zoom_detect = require("zoom_detect")
+zoom_detect = require("zoom_detect")
 
 ---- Automatically reload the config ----
 pw1 = hs.pathwatcher.new(os.getenv("HOME") ..
