@@ -8,7 +8,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path
-path=("$HOME/bin" $path "$HOME/go/bin" "$HOME/.local/bin")
+path=(
+    "$HOME/bin"
+    $path
+    "/usr/local/bin"
+    "/usr/local/sbin"
+    "$HOME/go/bin"
+    "$HOME/.local/bin"
+)
 
 # Set up antigen
 source ~/.zsh/antigen.zsh
