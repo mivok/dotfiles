@@ -27,3 +27,7 @@
 	wsErrorHighlight = all
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
