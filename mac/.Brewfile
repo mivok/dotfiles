@@ -82,7 +82,6 @@ brew 'xz'
 brew 'go'
 brew 'go-bindata'
 brew 'node'
-brew 'python2'
 brew 'python3'
 brew 'rust'
 
@@ -106,8 +105,8 @@ brew 'tfenv'
 brew 'okta_aws'
 
 ## Mac apps (casks)
-cask '1password'
-cask '1password-cli'
+#cask '1password'
+#cask '1password-cli'
 cask 'alfred'
 cask 'arduino'
 cask 'audio-hijack'
@@ -122,13 +121,14 @@ cask 'fantastical'
 cask 'gas-mask'
 cask 'gimp'
 cask 'gmvault' # Gmail backup
-cask 'google-chrome'
+#cask 'google-chrome'
 cask 'hammerspoon'
 cask 'iterm2'
 cask 'linein'
 cask 'logitech-myharmony'
 cask 'minikube'
 cask 'openscad'
+cask 'slack'
 cask 'skype'
 cask 'spotify'
 cask 'sonic-pi'
@@ -150,7 +150,7 @@ mas 'iPhoto', id: 408981381
 mas 'Keynote', id: 409183694
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
-mas 'Xcode', id: 497799835
+#mas 'Xcode', id: 497799835
 
 # Paid stuff
 mas 'GIF Brewery 3', id: 1081413713
@@ -162,6 +162,5 @@ mas 'Bear', id: 1091189122
 
 # Other app store apps
 mas 'Microsoft Remote Desktop 10', id: 1295203466
-mas 'Slack', id: 803453959
 mas 'Monosnap', id: 540348655
 mas 'LastPass', id: 926036361
