@@ -15,6 +15,7 @@ path=(
     "/usr/local/sbin"
     "$HOME/go/bin"
     "$HOME/.local/bin"
+    "$HOME/.krew/bin"
 )
 
 # Set up antigen
@@ -34,10 +35,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
 # Local plugins/configuration
-antigen bundle ~/.zsh/local_plugins/colors
-antigen bundle ~/.zsh/local_plugins/appsettings
-antigen bundle ~/.zsh/local_plugins/aliases
-antigen bundle ~/.zsh/local_plugins/functions
 antigen bundle ~/.zsh/local_plugins/kubectl
 
 # Theme
@@ -45,6 +42,12 @@ antigen bundle ~/.zsh/local_plugins/kubectl
 antigen theme romkatv/powerlevel10k
 
 antigen apply
+
+# Additional config files
+. ~/.zsh/conf.d/aliases.zsh
+. ~/.zsh/conf.d/appsettings.zsh
+. ~/.zsh/conf.d/colors.zsh
+. ~/.zsh/conf.d/functions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
