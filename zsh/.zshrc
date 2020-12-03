@@ -34,20 +34,21 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
-# Local plugins/configuration
-antigen bundle ~/.zsh/local_plugins/kubectl
-
 # Theme
 # antigen theme ~/.zsh/themes/mh
 antigen theme romkatv/powerlevel10k
 
 antigen apply
 
+# Add local completions
+fpath=($fpath ~/.zsh/completions)
+
 # Additional config files
 . ~/.zsh/conf.d/aliases.zsh
 . ~/.zsh/conf.d/appsettings.zsh
 . ~/.zsh/conf.d/colors.zsh
 . ~/.zsh/conf.d/functions.zsh
+. ~/.zsh/conf.d/kubectl.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
