@@ -38,3 +38,9 @@ export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+# History behavior
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
+# This shouldn't be set if SHARE_HISTORY is set
+unsetopt INC_APPEND_HISTORY
