@@ -44,3 +44,8 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 # This shouldn't be set if SHARE_HISTORY is set
 unsetopt INC_APPEND_HISTORY
+
+# Use rbenv if it exists
+if command -v rbenv > /dev/null; then
+    eval "$(rbenv init -)"
+fi
