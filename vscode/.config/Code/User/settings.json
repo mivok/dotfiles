@@ -1,0 +1,15 @@
+{
+    // Turn off phone home
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    // Vim settings
+    "vim.easymotion": true,
+    // Appearance
+    "editor.fontFamily": "Hack Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+    "[terraform]": {
+        // Run terraform format on save
+        "editor.formatOnSave": true
+    },
+    // I'm using rbenv right now for ruby, so load solargraph from the shim
+    "solargraph.commandPath": "~/.rbenv/shims/solargraph"
+}
