@@ -4,6 +4,16 @@
     "telemetry.enableCrashReporter": false,
     // Vim settings
     "vim.easymotion": true,
+    "vim.sneak": true,
+    // Vim-like final newline behavior
+    "files.insertFinalNewline": true,
+    "editor.renderFinalNewline": false,
+    // Ignore the line currently being edited when highlighting trailing spaces
+    "trailing-spaces.highlightCurrentLine": false,
+    // Auto wrapping, like vim's textwidth
+    "rewrap.autoWrap.enabled": true,
+    "rewrap.wrappingColumn": 80,
+    "editor.rulers": [80, 120],
     // Appearance
     "editor.fontFamily": "Hack Nerd Font, Menlo, Monaco, 'Courier New', monospace",
     "[terraform]": {
@@ -11,5 +21,5 @@
         "editor.formatOnSave": true
     },
     // I'm using rbenv right now for ruby, so load solargraph from the shim
-    "solargraph.commandPath": "~/.rbenv/shims/solargraph"
+    "solargraph.commandPath": "~/.rbenv/shims/solargraph",
 }
