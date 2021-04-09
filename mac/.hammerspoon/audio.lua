@@ -40,12 +40,17 @@ function audio.updateMuteStatus(muted)
             audio.muteStatusCanvas = hs.canvas.new{x=5, y=25,
                 h=height, w=width}
             audio.muteStatusCanvas:appendElements({
-                action = "fill",
+                action = "strokeAndFill",
                 fillColor = { alpha = 0.8, red = 1 },
-                type = "rectangle",
-                frame = { x = "0%", y = "0%", h = "100%", w = "100%" },
-                roundedRectRadii = { xRadius = 5, yRadius = 5 }
+                type = "circle",
+                radius = "45%", -- <50% to allow room for the border/stroke
             })
+            -- Make the icon always on top
+            -- See https://www.hammerspoon.org/docs/hs.canvas.html#windowLevels
+            -- for a description of levels
+            audio.muteStatusCanvas:level(hs.canvas.windowLevels.overlay)
+            -- Make window still visible in full screen and on space change
+            audio.muteStatusCanvas:behavior("canJoinAllSpaces")
         end
         -- Note: for this to show up above full screen windows (e.g. zoom) we
         -- need to hide the hammerspoon dock icon in hammerspoon preferences.
