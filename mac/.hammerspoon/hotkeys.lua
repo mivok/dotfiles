@@ -56,18 +56,49 @@ function hotkey_noise_volup()
         {"-h", "officenoise.local", "volume", "+2"}):start()
 end
 
+function switch_default_audio_devices(output, input)
+    outdev = hs.audiodevice.findOutputByName(output)
+    indev = hs.audiodevice.findInputByName(input)
+    if outdev == nil then
+        hs.alert.show("Unable to find output device: " .. output)
+        return
+    end
+    if indev == nil then
+        hs.alert.show("Unable to find input device: " .. input)
+        return
+    end
+    outdev:setDefaultOutputDevice()
+    indev:setDefaultInputDevice()
+    hs.alert.show("Audio devices switched to " .. output .. ", ".. input)
+end
 
+function hotkey_audio_headset()
+    switch_default_audio_devices(
+        "CalDigit Thunderbolt 3 Audio",
+        "Antlion USB Microphone"
+    )
+end
+
+function hotkey_audio_speaker()
+    -- Switch audio to speakers
+    switch_default_audio_devices(
+        "CalDigit Thunderbolt 3 Audio",
+        "MacBook Pro Microphone"
+    )
+end
+
+-- Normal hotkeys
 hs.hotkey.bind({"cmd", "alt"}, "L", hotkey_sleep_screen)
 
 -- Launchpad hotkeys (Keys are mapped from F13-F20)
 -- hs.hotkey.bind({}, "F13", ...) -- F13 is used for shush
 hs.hotkey.bind({}, "F14", hotkey_reset_mic_volume)
 hs.hotkey.bind({}, "F15", hotkey_pause_music)
-hs.hotkey.bind({}, "F16", hotkey_noise_toggle)
+--hs.hotkey.bind({}, "F16", hotkey_noise_toggle)
 hs.hotkey.bind({}, "F17", hotkey_away)
 hs.hotkey.bind({}, "F18", hotkey_back)
-hs.hotkey.bind({}, "F19", hotkey_noise_voldown)
-hs.hotkey.bind({}, "F20", hotkey_noise_volup)
+hs.hotkey.bind({}, "F19", hotkey_audio_headset)
+hs.hotkey.bind({}, "F20", hotkey_audio_speaker)
 
 -- Hyper key (caps lock) bindings
 function hyper_bind(key, callback)
@@ -81,3 +112,5 @@ hyper_bind("N", hotkey_noise_toggle)
 hyper_bind("Up", hotkey_noise_volup)
 hyper_bind("Down", hotkey_noise_voldown)
 hyper_bind("P", hotkey_pause_music)
+hyper_bind("H", hotkey_audio_headset)
+hyper_bind("S", hotkey_audio_speaker)
