@@ -68,6 +68,7 @@ function switch_default_audio_devices(output, input)
         return
     end
     outdev:setDefaultOutputDevice()
+    outdev:setDefaultEffectDevice()
     indev:setDefaultInputDevice()
     hs.alert.show("Audio devices switched to " .. output .. ", ".. input)
 end
