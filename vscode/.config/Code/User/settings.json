@@ -20,6 +20,12 @@
         // Run terraform format on save
         "editor.formatOnSave": true
     },
-    // I'm using rbenv right now for ruby, so load solargraph from the shim
-    "solargraph.commandPath": "~/.rbenv/shims/solargraph",
+    "python.pythonPath": "/usr/local/bin/python3",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "vim.camelCaseMotion.enable": true,
 }

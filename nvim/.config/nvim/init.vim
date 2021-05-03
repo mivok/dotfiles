@@ -52,6 +52,9 @@ Plug 'jeetsukumaran/vim-buffergator'
 " Minimap
 Plug 'severin-lemaignan/vim-minimap'
 
+" Camelcase motion (\w, \b)
+Plug 'bkad/CamelCaseMotion'
+
 " Personal wiki
 Plug '~/git/personal/vim-myzettel'
 
@@ -333,6 +336,11 @@ let g:UltiSnipsListSnippets="<m-tab>"
 " https://github.com/junegunn/fzf.vim/blob/master/plugin/fzf.vim#L42
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, 
     \ fzf#vim#with_preview(), <bang>0)
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Camelcase motion
+let g:camelcasemotion_key = '<leader>'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exceptions for Specific Filetypes
