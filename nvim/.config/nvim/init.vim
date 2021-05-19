@@ -27,6 +27,7 @@ Plug 'elzr/vim-json'
 Plug 'LokiChaos/vim-tintin'
 Plug 'davidoc/taskpaper.vim'
 Plug 'pearofducks/ansible-vim'
+Plug 'bakpakin/fennel.vim'
 
 " GPG integration
 Plug 'jamessan/vim-gnupg'
@@ -352,6 +353,8 @@ au FileType markdown Tab2
 au FileType markdown set fo-=q |
     \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
 au FileType ruby Tab2
+au FileType javascript Tab2
+au FileType javascriptreact Tab2
 au FileType go RealTab4
 au FileType terraform Tab2
 au FileType taskpaper RealTab4
