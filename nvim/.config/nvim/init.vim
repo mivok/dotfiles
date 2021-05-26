@@ -47,25 +47,10 @@ Plug 'natebosch/vim-lsc'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Buffer list sidebar
-Plug 'jeetsukumaran/vim-buffergator'
-
-" Minimap
-Plug 'severin-lemaignan/vim-minimap'
-
 " Camelcase motion (\w, \b)
 Plug 'bkad/CamelCaseMotion'
 
-" Personal wiki
-Plug '~/git/personal/vim-myzettel'
-
-" Notes list sidebar
-Plug '~/git/personal/vim-notesidebar'
-" vim-drafts
-Plug '~/git/personal/vim-drafts'
-
 " My Plugins
-Plug 'mivok/vimtodo'
 Plug 'mivok/vim-minotl'
 Plug 'git@github.com:mivok/ultisnips-snippets.git'
 
