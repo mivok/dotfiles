@@ -8,40 +8,34 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Lucius color scheme
-Plug 'jonathanfilip/vim-lucius'
+" Color scheme
+Plug 'https://github.com/ChristianChiarulli/nvcode-color-schemes.vim'
 
 " Editorconfig support
 Plug 'editorconfig/editorconfig-vim'
 
 " Syntax/filetype specific
-Plug 'hynek/vim-python-pep8-indent'
+"Plug 'hynek/vim-python-pep8-indent'
 Plug 'hashivim/vim-terraform'
 Plug 'sirtaj/vim-openscad'
-Plug 'cespare/vim-toml'
-Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'ledger/vim-ledger'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'vito-c/jq.vim'
-Plug 'elzr/vim-json'
 Plug 'LokiChaos/vim-tintin'
 Plug 'davidoc/taskpaper.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'bakpakin/fennel.vim'
 
-" GPG integration
-Plug 'jamessan/vim-gnupg'
-" Fugitive
-Plug 'tpope/vim-fugitive'
-" Syntax checking
-Plug 'scrooloose/syntastic'
-" Snippets
-Plug 'SirVer/ultisnips'
-" Easy alignment - gaip=
-Plug 'junegunn/vim-easy-align'
+" LSP/Autocompletion
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
-" Autocompletion
-Plug 'natebosch/vim-lsc'
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Snippets
+Plug 'rafamadriz/friendly-snippets'
+Plug 'hrsh7th/vim-vsnip'
 
 " FZF (:Ag, :Files)
 Plug '/usr/local/opt/fzf'
@@ -52,7 +46,6 @@ Plug 'bkad/CamelCaseMotion'
 
 " My Plugins
 Plug 'mivok/vim-minotl'
-Plug 'git@github.com:mivok/ultisnips-snippets.git'
 
 call plug#end()
 
@@ -87,6 +80,7 @@ set conceallevel=2                 " Enable concealed text
 set concealcursor=cv               " Modes to conceal when cursor in on a line
 set mouse=a                        " Enable the mouse
 set formatoptions+=j               " Delete comment chars when joining lines
+set updatetime=500                 " Make CursorHold respond much quicker
 
 " Wrapping options
 set wrap                           " Visually wrap long lines
@@ -176,14 +170,9 @@ endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Look and feel options
-set t_Co=256                        " 256 color terminal if possible
-set background=dark
-colorscheme lucius                 " Color scheme
-LuciusBlack
-" Overide folding colors
-hi! link Folded Delimiter
-" Make matching brackets look like something other than the cursor
-hi MatchParen cterm=underline ctermbg=none ctermfg=white
+let g:nvcode_termcolors=256
+set termguicolors
+colorscheme lunar
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
@@ -205,9 +194,6 @@ inoremap <S-Tab> <C-d>
 " Quickly reload vimrc
 nmap <leader>ev :e $MYVIMRC<CR>
 nmap <leader>sv :so $MYVIMRC<CR>
-" Easyalign mappings
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LaTeX paragraph formatting
@@ -217,35 +203,8 @@ map \gq ?^$\\|^\s*\(\\begin\\|\\end\\|\\label\)?1<CR>gq//-1<CR>
 omap lp ?^$\\|^\s*\(\\begin\\|\\end\\|\\label\)?1<CR>//-1<CR>.<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Go settings
-
-" For vim-go and syntastic to play nice together
-let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
-let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-" Use goimports instead of gofmt on save
-let g:go_fmt_command = "goimports"
-" Use the same path for gotools regardless of GOPATH
-let g:go_bin_path = expand("~/go/bin")
-
-" Highlight all the things
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python settings
-" pylint is slow
-let g:syntastic_python_checkers = ['python', 'flake8']
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use specific virtualenvs for neovim python
 let venv_path = $HOME . '/.local/share/nvim/virtualenvs'
-let g:python_host_prog = venv_path . '/python2/bin/python2'
 let g:python3_host_prog = venv_path . '/python3/bin/python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -259,60 +218,8 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_conceal_code_blocks = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shellcheck settings
-let g:syntastic_sh_shellcheck_args="-x"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Json conceal settings
 let g:vim_json_syntax_conceal = 0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Terraform plugin settings
-let g:terraform_align = 0
-let g:terraform_fmt_on_save = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Autocompletion settings
-let g:lsc_auto_map = v:true
-
-" Make LSC less chatty
-let g:lsc_trace_level = 'off'
-
-" Automatically close any pop up documentation preview window
-autocmd CompleteDone * silent! pclose
-
-" Language Servers - https://langserver.org
-" Installation instructions:
-"   ruby - gem install solargraph
-"   bash - npm install -g bash-language-server
-"   python - pipx install python-language-server[all] (all installs all
-"        optional dependencies)
-"   javascript - npm install -g typescript-language-server
-"   go - gopls is installed with vim-go (:GoInstallBinaries)
-"   terraform - download binary and place in /usr/local/bin
-"       from https://github.com/juliosueiras/terraform-lsp/releases
-let g:lsc_server_commands = {
-    \ 'ruby': 'solargraph stdio',
-    \ 'sh': 'bash-language-server start',
-    \ 'python': 'pyls',
-    \ 'javascript': 'typescript-language-server --stdio',
-    \ 'go': 'gopls serve',
-    \ 'terraform': {
-    \   'command': 'terraform-lsp',
-    \   'log_level': -1,
-    \   'suppress_stderr': v:true,
-    \ },
-    \}
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ultisnips settings
-" Note: default keybindings are Tab to expand, and c-j, c-k to go back and
-" forward
-
-" Let alt/option-Tab show available snippets
-let g:UltiSnipsListSnippets="<m-tab>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf settings/commands
@@ -330,21 +237,22 @@ let g:camelcasemotion_key = '<leader>'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exceptions for Specific Filetypes
-au FileType make RealTab8
 au FileType yaml Tab2
 au FileType yaml setl indentkeys-=<:>
 au FileType markdown Tab2
 " Fix for gq on lists with plasticboy plugin - platicboy/vim-markdown#232
 au FileType markdown set fo-=q |
     \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
-au FileType ruby Tab2
 au FileType javascript Tab2
 au FileType javascriptreact Tab2
-au FileType go RealTab4
+au FileType lua Tab2
+au FileType ruby Tab2
 au FileType terraform Tab2
+au FileType go RealTab4
 au FileType taskpaper RealTab4
 au FileType taskpaper setl tw=0
 au FileType gitconfig RealTab4
+au FileType make RealTab8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autosave/reload taskpaper files
@@ -367,3 +275,11 @@ au BufEnter ~/git/personal/notes/*.md SoftWrap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Crontab -e fix
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load lua config files
+lua <<EOF
+require('compe-config')
+require('lsp')
+require('treesitter')
+EOF
