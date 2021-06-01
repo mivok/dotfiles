@@ -37,6 +37,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
 
+" Status line
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'kyazdani42/nvim-web-devicons'
+
 " FZF (:Ag, :Files)
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -175,15 +179,6 @@ set termguicolors
 colorscheme lunar
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Status line
-" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim for
-" cterm/gui mappings
-hi User1 ctermfg=252 ctermbg=239 guifg=#d0d0d0 guibg=#4e4e4e
-hi User2 ctermfg=254 ctermbg=65 guifg=#e4e4e4 guibg=#5f875f
-hi User3 ctermfg=117 ctermbg=236 guifg=#87d7ff guibg=#303030
-set statusline=%#User1#\ %t%m%r%h%w\ %#User2#\ %{&ff}\ %#User3#\ 0x\%02.2B%=\ %Y\ %#User2#\ \ %3p%%\ :%4l:%3v\ %#User1#\ L:%L\ B:%n\ 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Abbreviations/Command remapping
 iab xdate <c-r>=strftime("%Y-%m-%d")<cr>
 " Toggle paste on/off
@@ -282,4 +277,5 @@ lua <<EOF
 require('compe-config')
 require('lsp')
 require('treesitter')
+require('galaxyline-config')
 EOF
