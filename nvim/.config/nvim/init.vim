@@ -202,6 +202,19 @@ map \gq ?^$\\|^\s*\(\\begin\\|\\end\\|\\label\)?1<CR>gq//-1<CR>
 omap lp ?^$\\|^\s*\(\\begin\\|\\end\\|\\label\)?1<CR>//-1<CR>.<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapping - \x to execute the current line either in vim or lua
+" Taken from https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/plugin/keymaps.vim#L52-L60
+" TODO - move this to a separate file
+function! s:executor() abort
+    if &ft == 'lua'
+        call execute (printf(": lua %s", getline(".")))
+    elseif &ft == 'vim'
+        exe getline(">")
+    endif
+endfunction
+nnoremap <leader>x :call <SID executor()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use specific virtualenvs for neovim python
 let venv_path = $HOME . '/.local/share/nvim/virtualenvs'
 let g:python3_host_prog = venv_path . '/python3/bin/python3'
