@@ -207,12 +207,12 @@ omap lp ?^$\\|^\s*\(\\begin\\|\\end\\|\\label\)?1<CR>//-1<CR>.<CR>
 " TODO - move this to a separate file
 function! s:executor() abort
     if &ft == 'lua'
-        call execute (printf(": lua %s", getline(".")))
+        call execute(printf(":lua %s", getline(".")))
     elseif &ft == 'vim'
-        exe getline(">")
+        exe getline(".")
     endif
 endfunction
-nnoremap <leader>x :call <SID executor()<CR>
+nnoremap <leader>x :call <SID>executor()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use specific virtualenvs for neovim python
