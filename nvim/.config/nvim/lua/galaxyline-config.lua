@@ -11,8 +11,8 @@ table.insert(gls.left, {
     provider = function()
       -- auto change color according the vim mode
       local mode_color = {
-        n = colors.red,
-        i = colors.green,
+        n = colors.green,
+        i = colors.cyan,
         v = colors.blue,
         [''] = colors.blue,
         V = colors.blue,
@@ -41,9 +41,19 @@ table.insert(gls.left, {
 })
 
 table.insert(gls.left, {
-  FileIcon = {
+  FileType = {
     provider = 'FileTypeName',
     separator = ' ',
+    condition = condition.buffer_not_empty,
+    highlight = {
+      require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg
+    }
+  }
+})
+
+table.insert(gls.left, {
+  FileIcon = {
+    provider = 'FileIcon',
     condition = condition.buffer_not_empty,
     highlight = {
       require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg
@@ -137,6 +147,13 @@ table.insert(gls.right, {
 })
 
 table.insert(gls.right, {
+  GitBranchSpace = {
+    provider = function () return ' ' end,
+    condition = condition.check_git_workspace,
+  }
+})
+
+table.insert(gls.right, {
   DiffAdd = {
     provider = 'DiffAdd',
     condition = condition.hide_in_width,
@@ -150,7 +167,7 @@ table.insert(gls.right, {
     provider = 'DiffModified',
     condition = condition.hide_in_width,
     icon = ' 柳',
-    highlight = {colors.orange, colors.bg}
+    highlight = {colors.blue, colors.bg}
   }
 })
 
@@ -166,7 +183,6 @@ table.insert(gls.right, {
 table.insert(gls.right, {
   LineInfo = {
     provider = 'LineColumn',
-    separator = ' ',
     separator_highlight = {'NONE', colors.bg},
     highlight = {colors.fg, colors.bg}
   }
@@ -175,7 +191,6 @@ table.insert(gls.right, {
 table.insert(gls.right, {
   PerCent = {
     provider = 'LinePercent',
-    separator = ' ',
     separator_highlight = {'NONE', colors.bg},
     highlight = {colors.fg, colors.bg, 'bold'}
   }
