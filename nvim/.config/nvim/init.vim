@@ -37,6 +37,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
 
+" Inline git blame
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+
 " Status line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
@@ -278,4 +282,5 @@ require('compe-config')
 require('lsp')
 require('treesitter')
 require('galaxyline-config')
+require('gitsigns-config')
 EOF
