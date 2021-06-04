@@ -18,3 +18,4 @@ brew install efm-langserver
 
 # Linters/formatters for efm
 brew install shellcheck
+luarocks install --server=https://luarocks.org/dev luaformatter

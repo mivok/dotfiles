@@ -2,11 +2,7 @@
 -- or download binary from
 -- https://github.com/mattn/efm-langserver/releases/latest
 -- EFM is used for formatters/linters
-require"lspconfig".efm.setup {
-  init_options = {documentFormatting = true},
-  settings = {
-    rootMarkers = {".git/"},
-    languages = {
+local efm_languages = {
       lua = {{formatCommand = "lua-format -i", formatStdin = true}},
       sh = {
         {
@@ -20,5 +16,12 @@ require"lspconfig".efm.setup {
       },
       ['yaml.ansible'] = {{lintCommand = 'ansible-lint -p --nocolor'}}
     }
+
+require"lspconfig".efm.setup {
+  init_options = {documentFormatting = true},
+  filetypes = vim.tbl_keys(efm_languages),
+  settings = {
+    rootMarkers = {".git/"},
+    languages = efm_languages
   }
 }

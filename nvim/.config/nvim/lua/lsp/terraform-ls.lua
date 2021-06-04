@@ -4,4 +4,4 @@ require('lspconfig').terraformls.setup {}
 
 -- Autoformat on save
 vim.cmd(
-    [[au BufWritePre *.tf *.tfvars lua vim.lsp.buf.formatting_sync(nil, 100)]])
+    [[au BufWritePre *.tf,*.tfvars lua vim.lsp.buf.formatting_sync(nil, 100)]])
