@@ -3,7 +3,6 @@ VENV_PATH="$HOME/.local/share/nvim/virtualenvs"
 
 PACKAGES_BOTH=(pynvim)
 PACKAGES_PYTHON3=()
-PACKAGES_PYTHON2=()
 
 echo "=> Ensuring $VENV_PATH exists"
 mkdir -p "$VENV_PATH"
@@ -19,12 +18,5 @@ echo "=> Installing packages"
 pip3 install "${PACKAGES_BOTH[@]}" "${PACKAGES_PYTHON3[@]}"
 deactivate
 
-echo "=> Removing python2 directory"
+echo "=> Removing (old) python2 directory"
 rm -rf python2
-echo "=> Creating new venv"
-virtualenv python2
-# shellcheck disable=SC1091
-. python2/bin/activate
-echo "=> Installing packages"
-pip2 install "${PACKAGES_BOTH[@]}" "${PACKAGES_PYTHON2[@]}"
-deactivate
