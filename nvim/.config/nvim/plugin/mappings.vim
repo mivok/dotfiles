@@ -4,7 +4,6 @@
 cmap w!! %!sudo tee > /dev/null %
 
 " Fix common typos
-
 " I often hold down shift too long when saving files
 cabbrev W write
 cabbrev Q quit
@@ -28,7 +27,6 @@ omap lp ?^$\\|^\s*\(\\begin\\|\\end\\|\\label\)?1<CR>//-1<CR>.<CR>
 
 " Mapping - \x to execute the current line either in vim or lua
 " Taken from https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/plugin/keymaps.vim#L52-L60
-" TODO - move this to a separate file
 function! s:executor() abort
     if &ft == 'lua'
         call execute(printf(":lua %s", getline(".")))
@@ -37,3 +35,7 @@ function! s:executor() abort
     endif
 endfunction
 nnoremap <leader>x :call <SID>executor()<CR>
+
+" Use J and K in visual mode to move lines up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
