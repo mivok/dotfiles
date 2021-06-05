@@ -38,8 +38,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
 
-" Inline git blame
+" Needed by a bunch of things (gitsigns, telescope)
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+
+" Inline git blame
 Plug 'lewis6991/gitsigns.nvim'
 
 " Status line
@@ -48,6 +51,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 " Camelcase motion (\w, \b)
 Plug 'bkad/CamelCaseMotion'
+
+" Telescope
+Plug 'nvim-telescope/telescope.nvim'
 
 " My Plugins
 Plug 'mivok/vim-minotl'
