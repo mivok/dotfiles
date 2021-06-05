@@ -55,6 +55,9 @@ Plug 'bkad/CamelCaseMotion'
 " Telescope
 Plug 'nvim-telescope/telescope.nvim'
 
+" Undotree
+Plug 'mbbill/undotree'
+
 " My Plugins
 Plug 'mivok/vim-minotl'
 
