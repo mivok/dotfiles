@@ -10,14 +10,13 @@ cabbrev Q quit
 
 " Abbreviations/Command remapping
 iab xdate <c-r>=strftime("%Y-%m-%d")<cr>
+
 " Toggle paste on/off
 set pastetoggle=<F2>
+
 " Shift-Tab to unindent
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
-" Quickly reload vimrc
-nmap <leader>ev :e $MYVIMRC<CR>
-nmap <leader>sv :so $MYVIMRC<CR>
 
 " LaTeX paragraph formatting
 "   Lets you use \gq or gqlp to format a paragraph respecting LaTeX
