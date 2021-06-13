@@ -38,3 +38,11 @@ nnoremap <leader>x :call <SID>executor()<CR>
 " Use J and K in visual mode to move lines up and down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Quickfix mappings
+nnoremap <C-q> :copen<CR>
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprev<CR>
+nnoremap <leader>q :lopen<CR>
+nnoremap <leader>k :lprev<CR>
+nnoremap <leader>j :lnext<CR>
