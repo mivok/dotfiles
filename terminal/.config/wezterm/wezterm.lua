@@ -21,7 +21,7 @@ return {
   freetype_load_target = "HorizontalLcd",
   color_scheme = "Builtin Tango Dark",
   window_background_opacity = 0.8,
-  initial_cols = 161,
+  initial_cols = 201,
   initial_rows = 49,
   pane_focus_follows_mouse = true,
   -- Don't dim inactive panes

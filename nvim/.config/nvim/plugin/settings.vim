@@ -2,8 +2,6 @@
 " Custom settings
 
 set laststatus=2                   " Always show status bar
-set ruler                          " Show line/col
-set textwidth=78                   " Word wrapping
 set title                          " Xterm title bar
 set ai                             " Auto indent
 set bs=2                           " Make sure backspace works right
@@ -12,7 +10,7 @@ set matchtime=5                    " 5/10 seconds to show paren matches
 set list listchars=tab:>-,trail:-  " Show trailing spaces and hard tabs
 set incsearch                      " Incremental search
 set inccommand=nosplit             " Incremental replace (preview replacements)
-set so=2                           " Always show lines above/below cursor
+set scrolloff=2                    " Always show lines above/below cursor
 set wildmode=longest,list          " Tab expansion like bash
 set ignorecase                     " Ignore case in searches
 set smartcase                      " ... unless the search term has caps
@@ -32,6 +30,13 @@ set mouse=a                        " Enable the mouse
 set formatoptions+=j               " Delete comment chars when joining lines
 set updatetime=500                 " Make CursorHold respond much quicker
 set termguicolors                  " Enable truecolor terminal support
+
+" Line/column settings
+set number                         " Display line numbers
+set relativenumber                 " Display relative line numbers
+set signcolumn=yes                 " Always display the sign column
+set colorcolumn=80                 " Highlight column 80
+set textwidth=78                   " Word wrapping
 
 " Wrapping options
 set wrap                           " Visually wrap long lines
