@@ -65,5 +65,13 @@ return {
       mods = "LEADER",
       action = wezterm.action {EmitEvent="new-4up-tab"}
     }
+  },
+  mouse_bindings = {
+    -- Allow Cmd click to open links like in iterm2
+    {
+      event={Up={streak=1, button="Left"}},
+      mods="SUPER",
+      action="OpenLinkAtMouseCursor",
+    },
   }
 }
