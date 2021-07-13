@@ -36,3 +36,9 @@ augroup mh_filetypes
     " Crontab -e fix
     au BufEnter /private/tmp/crontab.* setl backupcopy=yes
 augroup END
+
+" Highlight text on yank
+augroup highlight
+    au!
+    au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=500, on_visual=true}
+augroup END
