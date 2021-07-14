@@ -33,7 +33,6 @@ set termguicolors                  " Enable truecolor terminal support
 
 " Line/column settings
 set number                         " Display line numbers
-set relativenumber                 " Display relative line numbers
 set signcolumn=yes                 " Always display the sign column
 set colorcolumn=80                 " Highlight column 80
 set textwidth=78                   " Word wrapping
