@@ -1,5 +1,23 @@
 local wezterm = require 'wezterm';
 
+-- Resize the window (called by event handlers)
+function resize_window(window, pane, cols, rows)
+  local overrides = window:get_config_overrides() or {}
+  overrides.initial_cols = cols
+  overrides.initial_rows = rows
+  window:set_config_overrides(overrides)
+  window:perform_action("ResetFontAndWindowSize", pane)
+end
+
+-- Resize window handlers
+wezterm.on("resize-small", function(window, pane)
+  resize_window(window, pane, 169, 49)
+end)
+
+wezterm.on("resize-large", function(window, pane)
+  resize_window(window, pane, 201, 49)
+end)
+
 -- Create a new tab, split into 4 equal sized panes, 2x2
 wezterm.on("new-4up-tab", function(window, pane)
   window:perform_action(wezterm.action{SpawnTab="CurrentPaneDomain"}, pane)
@@ -64,6 +82,18 @@ return {
       key = "t",
       mods = "LEADER",
       action = wezterm.action {EmitEvent="new-4up-tab"}
+    }, {
+      key = "0",
+      mods = "LEADER",
+      action = "ResetFontAndWindowSize"
+    }, {
+      key = "1",
+      mods = "LEADER",
+      action = wezterm.action {EmitEvent="resize-small"}
+    }, {
+      key = "2",
+      mods = "LEADER",
+      action = wezterm.action {EmitEvent="resize-large"}
     }
   },
   mouse_bindings = {
