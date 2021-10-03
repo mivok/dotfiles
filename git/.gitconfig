@@ -29,8 +29,8 @@
 	template = ~/.gitmessage
 [diff]
 	wsErrorHighlight = all
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+#[url "git@github.com:"]
+#	insteadOf = https://github.com/
 [pull]
 	rebase = true
 [rebase]
