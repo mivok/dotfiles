@@ -49,6 +49,7 @@ fpath=($fpath ~/.zsh/completions)
 . ~/.zsh/conf.d/colors.zsh
 . ~/.zsh/conf.d/functions.zsh
 . ~/.zsh/conf.d/kubectl.zsh
+. ~/.zsh/conf.d/ssh-agent.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
