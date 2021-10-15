@@ -34,7 +34,7 @@ return {
     "Menlo", -- This has the check mark and cross symbols
     "Apple Color Emoji" -- I prefer apple emoji to google emoji
   }, {weight="Medium"}),
-  font_size = 14,
+  font_size = 13,
   -- This looks a bit better to me than Normal
   freetype_load_target = "HorizontalLcd",
   color_scheme = "Builtin Tango Dark",
@@ -55,6 +55,10 @@ return {
   keys = {
     -- Pane splitting, like I had set up with tmux
     {
+      key = "|",
+      mods = "LEADER",
+      action = wezterm.action {SplitHorizontal = {domain = "CurrentPaneDomain"}}
+    }, {
       key = "|",
       mods = "LEADER|SHIFT",
       action = wezterm.action {SplitHorizontal = {domain = "CurrentPaneDomain"}}
