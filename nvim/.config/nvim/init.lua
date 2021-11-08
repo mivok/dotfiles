@@ -83,6 +83,12 @@ require('packer').startup(function(use)
   -- Undotree
   use 'mbbill/undotree'
 
+  -- Better gx
+  use {
+    'tyru/open-browser.vim',
+    config = function() require('openbrowser-config') end
+  }
+
   -- My Plugins
   use 'mivok/vim-minotl'
 end)
