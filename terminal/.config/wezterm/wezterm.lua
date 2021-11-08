@@ -101,11 +101,23 @@ return {
     }
   },
   mouse_bindings = {
-    -- Allow Cmd click to open links like in iterm2
+    -- Allow Cmd or CTRL click to open links like in iterm2
     {
       event={Up={streak=1, button="Left"}},
       mods="SUPER",
       action="OpenLinkAtMouseCursor",
+    },
+    {
+      event={Up={streak=1, button="Left"}},
+      mods="CTRL",
+      action="OpenLinkAtMouseCursor",
+    },
+    -- Change the default click behavior so that it only selects
+    -- text and doesn't open hyperlinks
+    {
+      event={Up={streak=1, button="Left"}},
+      mods="NONE",
+      action=wezterm.action{CompleteSelection="PrimarySelection"},
     },
   }
 }
