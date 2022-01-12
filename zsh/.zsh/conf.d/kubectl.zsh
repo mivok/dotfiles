@@ -14,10 +14,14 @@ fi
 # kcfg command - set the kubernetes config
 kcfg() {
     if [[ -z "$1" ]]; then
-        echo "Usage: kcfg CONFIG_FILE"
-        echo
-        echo "Sets the KUBECONFIG variable to the provided config file"
-        return 1
+        echo "KUBECONFIG=$KUBECONFIG"
+        return 0
+    fi
+
+    if [[ "$1" == "none" ]]; then
+        unset KUBECONFIG
+        echo "Unset KUBECONFIG"
+        return 0
     fi
 
     export KUBECONFIG="$HOME/.kube/${1/.config/}.config"
