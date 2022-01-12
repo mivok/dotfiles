@@ -30,3 +30,6 @@ fi
 if (($+commands[hub])); then
     alias git=hub
 fi
+
+# Ensure minikube uses its own config file
+alias minikube='KUBECONFIG=$HOME/.kube/minikube.config minikube'
