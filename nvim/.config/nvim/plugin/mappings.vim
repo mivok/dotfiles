@@ -46,3 +46,7 @@ nnoremap <C-k> :cprev<CR>
 nnoremap <leader>q :lopen<CR>
 nnoremap <leader>k :lprev<CR>
 nnoremap <leader>j :lnext<CR>
+
+" Make > and < keep the visual selection
+xnoremap <  <gv
+xnoremap >  >gv
