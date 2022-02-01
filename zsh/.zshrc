@@ -16,6 +16,7 @@ path=(
     "$HOME/go/bin"
     "$HOME/.local/bin"
     "$HOME/.krew/bin"
+    "/usr/local/opt/postgresql@13/bin"
 )
 
 # Set up antigen
