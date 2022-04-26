@@ -23,7 +23,10 @@ require('packer').startup(function(use)
   }
 
   use {
-    'glepnir/galaxyline.nvim', branch = 'main',
+    -- See https://github.com/glepnir/galaxyline.nvim/issues/223 for why I'm
+    -- using a fork here
+    --'glepnir/galaxyline.nvim', branch = 'main',
+    'Avimitin/galaxyline.nvim', branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons'},
     config = function()
       require('galaxyline-config')
@@ -92,3 +95,6 @@ require('packer').startup(function(use)
   -- My Plugins
   use 'mivok/vim-minotl'
 end)
+
+-- Load additional lua modules not loaded automatically through plugins
+require('lsp')
