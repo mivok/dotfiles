@@ -1,5 +1,22 @@
 require('nvim-treesitter.configs').setup {
-  -- This automatically installs most of the treesitter languages
-  ensure_installed = "maintained",
+  -- Enable treesitter for these languages
+  ensure_installed = {
+    "c",
+    "css",
+    "go",
+    "hcl",
+    "html",
+    "lua",
+    "javascript",
+    "json",
+    "jsonc",
+    "make",
+    "perl",
+    "python",
+    "ruby",
+    "toml",
+    "vim",
+    "yaml",
+  },
   highlight = {enable = true}
 }
