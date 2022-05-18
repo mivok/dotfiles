@@ -1,0 +1,22 @@
+# vim: ft=dosini
+# For a list of what the options do, see:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
+
+# Be a bit more cautious than normal with hp warnings
+autofight_stop = 70
+hp_color = 70:yellow, 50:red
+hp_warning = 25
+
+# Visual improvements
+tile_full_screen = true
+tile_show_threat_levels = tough,nasty
+show_more = false
+show_travel_trail = true
+
+## Auto-inscribe
+# @r1 means you can type 'r1' to recite it. Same for q1.
+autoinscribe += of identify:@r1
+autoinscribe += curing:@q1
+
+# Don't explore over deep water when flying
+travel_avoid_terrain = deep water
