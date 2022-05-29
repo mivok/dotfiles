@@ -14,8 +14,10 @@ categories = OrderedDict((
     ('Other Shortcuts', r'.'),
 ))
 
+
 def main(args):
     return ''
+
 
 def handle_result(args, answer, target_window_id, boss):
     opts = fast_data_types.get_options()
@@ -32,7 +34,7 @@ def handle_result(args, answer, target_window_id, boss):
         output_categorized.setdefault(category, []).append(
             f'{key.human_repr} → {action}')
 
-    output = []
+    output = header.copy()
     for category in categories:
         if category in output_categorized:
             output.extend([category, "=" * len(category), ""])
@@ -40,4 +42,5 @@ def handle_result(args, answer, target_window_id, boss):
             output.append("")
 
     boss.display_scrollback(boss.active_window, "\n".join(output[:-1]),
-            title="Kitty keyboard mappings", report_cursor=False)
+                            title="Kitty keyboard mappings",
+                            report_cursor=False)
