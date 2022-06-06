@@ -30,10 +30,8 @@ if [[ -f ~/.githubtoken ]]; then
 fi
 
 # ZSH autosuggestions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
 # Make pasting fast with ZSH autosuggestions
 autoload -Uz bracketed-paste-magic
