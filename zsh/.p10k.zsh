@@ -20,18 +20,6 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # Line 1
     status
-    dir
-    vcs
-    # Line 2
-    newline
-    prompt_char
-  )
-
-  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    # Line 1
-    time
-    # Line 2
-    newline
     direnv
     asdf
     virtualenv
@@ -41,6 +29,21 @@
     terraform
     aws
     azure
+    # Line 2
+    newline
+    dir
+    vcs
+    # Line 3
+    newline
+    prompt_char
+  )
+
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    # Line 1
+    # Line 2
+    newline
+    # Line 3
+    newline
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k
@@ -213,7 +216,7 @@
   typeset -g POWERLEVEL9K_TERRAFORM_DEFAULT_FOREGROUND=38
 
   # kubecontext
-  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|kcfg|kustomize'
 
   typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
     '*'       DEFAULT
