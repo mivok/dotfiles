@@ -121,7 +121,6 @@ cask 'arduino'
 cask 'audio-hijack'
 cask 'bartender'
 cask 'bibdesk'
-cask 'chicken' # VNC - needed for some vnc servers
 cask 'dash'
 cask 'docker'
 cask 'dropbox'
@@ -130,9 +129,7 @@ cask 'gas-mask'
 cask 'gimp'
 #cask 'google-chrome'
 cask 'hammerspoon'
-cask 'iterm2'
-cask 'linein'
-cask 'logitech-myharmony'
+cask 'kitty'
 cask 'openscad'
 #cask 'slack'
 cask 'skype'
@@ -144,27 +141,18 @@ cask 'virtualbox'
 cask 'viscosity'
 cask 'vlc'
 cask 'wireshark'
-cask 'zoomus'
+cask 'zoom'
 
 ## Mac app store apps
 brew 'mas' # The CLI to manage App Store things
 
-# Apple stuff
-mas 'GarageBand', id: 682658836
-mas 'iMovie', id: 408981434
-mas 'iPhoto', id: 408981381
-mas 'Keynote', id: 409183694
-mas 'Numbers', id: 409203825
-mas 'Pages', id: 409201541
-#mas 'Xcode', id: 497799835
-
 # Paid stuff
-mas 'GIF Brewery 3', id: 1081413713
-mas 'Marked', id: 448925439
+#mas 'GIF Brewery 3', id: 1081413713
+#mas 'Marked', id: 448925439
 mas 'Shush', id: 496437906
 mas 'MindNode', id: 1289197285
 
 # Other app store apps
-mas 'Microsoft Remote Desktop 10', id: 1295203466
-mas 'Monosnap', id: 540348655
+#mas 'Microsoft Remote Desktop 10', id: 1295203466
+#mas 'Monosnap', id: 540348655
 mas 'WireGuard', id: 1451685025
