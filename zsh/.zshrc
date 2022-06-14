@@ -19,6 +19,9 @@ path=(
     "/usr/local/opt/postgresql@13/bin"
 )
 
+# Early config settings
+source ~/.zsh/conf.d/pre.zsh
+
 # Set up antigen
 source ~/.zsh/antigen.zsh
 

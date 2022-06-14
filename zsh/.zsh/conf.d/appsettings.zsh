@@ -5,6 +5,9 @@
 export HOMEBREW_AUTO_UPDATE_SECS=86400
 # export HOMEBREW_NO_GITHUB_API=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # MPD server
 export MPD_HOST=officenoise.local
