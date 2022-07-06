@@ -12,10 +12,13 @@ end
 -- Split either horizontal or vertical as appropriate
 wezterm.on("split-auto", function(window, pane)
   local dimensions = pane:get_dimensions()
-  if dimensions.cols > dimensions.viewport_rows then
-    window:perform_action(wezterm.action.SplitVertical, pane)
-  else
+  -- Hack until I can get actual pixel dimensions of a pane
+  local char_width = 8
+  local char_height = 14
+  if dimensions.cols * char_width > dimensions.viewport_rows * char_height then
     window:perform_action(wezterm.action.SplitHorizontal, pane)
+  else
+    window:perform_action(wezterm.action.SplitVertical, pane)
   end
 end)
 
