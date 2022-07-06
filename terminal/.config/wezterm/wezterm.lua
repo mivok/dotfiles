@@ -6,26 +6,53 @@ function resize_window(window, pane, cols, rows)
   overrides.initial_cols = cols
   overrides.initial_rows = rows
   window:set_config_overrides(overrides)
-  window:perform_action("ResetFontAndWindowSize", pane)
+  window:perform_action(wezterm.action.ResetFontAndWindowSize, pane)
 end
 
--- Resize window handlers
-wezterm.on("resize-small", function(window, pane)
-  resize_window(window, pane, 169, 49)
+-- Split either horizontal or vertical as appropriate
+wezterm.on("split-auto", function(window, pane)
+  local dimensions = pane:get_dimensions()
+  if dimensions.cols > dimensions.viewport_rows then
+    window:perform_action(wezterm.action.SplitVertical, pane)
+  else
+    window:perform_action(wezterm.action.SplitHorizontal, pane)
+  end
 end)
 
-wezterm.on("resize-large", function(window, pane)
-  resize_window(window, pane, 201, 49)
-end)
+-- Search current window for biggest pane, then split it appropriately and
+-- activate it (i.e. give me a new pane in the best place)
+-- TODO - this needs features that are only in nightly - it needs testing
+-- and fixing once the features are in a released version.
+wezterm.on("new-pane-auto", function(window, pane)
+  -- Get the MuxTab object for the active tab, so we can go through the
+  -- panes one by one
+  local mux_window = window:mux_window()
+  local active_tab 
+  for i, t in pairs(mux_window:tables_with_info()) do
+    if t.is_active then
+      active_tab = t.tab
+    end
+  end
 
--- Create a new tab, split into 4 equal sized panes, 2x2
-wezterm.on("new-4up-tab", function(window, pane)
-  window:perform_action(wezterm.action{SpawnTab="CurrentPaneDomain"}, pane)
-  window:perform_action(wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}, pane)
-  window:perform_action(wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}, pane)
-  window:perform_action(wezterm.action {ActivatePaneDirection = "Left"}, pane)
-  window:perform_action(wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}, pane)
-  window:perform_action(wezterm.action {ActivatePaneDirection = "Up"}, pane)
+  -- Identify the largest pane (and also which direction to split it in)
+  local largest_pane
+  local largest_dimension = 0
+  local direction
+  for i, p in pairs(active_tab:panes()) do
+    if p.width > largest_dimension then
+      largest_dimension = p.width
+      largest_pane = p.pane
+      direction = "Right"
+    end
+    if p.height > largest_dimension then
+      largest_dimension = p.height
+      largest_pane = p.pane
+      direction = "Bottom"
+    end
+  end
+
+  -- Actually split the pane
+  pane:split{direction=direction}
 end)
 
 return {
@@ -58,42 +85,41 @@ return {
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
 
-  -- I like CTRL-A as a terminal prefix, like screen
+  -- Set CTRL-A as the LEADER modification
   leader = {key = "a", mods = "CTRL", timeout_milliseconds = 1000},
   keys = {
-    -- Pane splitting, like I had set up with tmux
     {
       key = "|",
-      mods = "LEADER",
-      action = wezterm.action {SplitHorizontal = {domain = "CurrentPaneDomain"}}
-    }, {
-      key = "|",
       mods = "LEADER|SHIFT",
-      action = wezterm.action {SplitHorizontal = {domain = "CurrentPaneDomain"}}
+      action = wezterm.action.SplitHorizontal
     }, {
       key = "-",
       mods = "LEADER",
-      action = wezterm.action {SplitVertical = {domain = "CurrentPaneDomain"}}
+      action = wezterm.action.SplitVertical
+    }, {
+      key = "Enter",
+      mods = "LEADER",
+      action = wezterm.action.EmitEvent("split-auto")
+    }, {
+      key = "=",
+      mods = "LEADER",
+      action = wezterm.action.EmitEvent("new-pane-auto")
     }, {
       key = "LeftArrow",
       mods = "LEADER",
-      action = wezterm.action {ActivatePaneDirection = "Left"}
+      action = wezterm.action.ActivatePaneDirection("Left")
     }, {
       key = "RightArrow",
       mods = "LEADER",
-      action = wezterm.action {ActivatePaneDirection = "Right"}
+      action = wezterm.action.ActivatePaneDirection("Right")
     }, {
       key = "UpArrow",
       mods = "LEADER",
-      action = wezterm.action {ActivatePaneDirection = "Up"}
+      action = wezterm.action.ActivatePaneDirection("Up")
     }, {
       key = "DownArrow",
       mods = "LEADER",
-      action = wezterm.action {ActivatePaneDirection = "Down"}
-    }, {
-      key = "t",
-      mods = "LEADER",
-      action = wezterm.action {EmitEvent="new-4up-tab"}
+      action = wezterm.action.ActivatePaneDirection("Down")
     }, {
       key = "0",
       mods = "LEADER",
@@ -101,11 +127,21 @@ return {
     }, {
       key = "1",
       mods = "LEADER",
-      action = wezterm.action {EmitEvent="resize-small"}
+      action = wezterm.action_callback(function(window, pane)
+        resize_window(window, pane, 169, 49)
+      end)
     }, {
       key = "2",
       mods = "LEADER",
-      action = wezterm.action {EmitEvent="resize-large"}
+      action = wezterm.action_callback(function(window, pane)
+        resize_window(window, pane, 201, 49)
+      end)
+    }, {
+      key = "?",
+      mods = "LEADER|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab {
+        args={"sh", "-c", "wezterm show-keys | less"}
+      }
     }
   },
   mouse_bindings = {
