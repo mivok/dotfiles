@@ -29,27 +29,35 @@ wezterm.on("new-4up-tab", function(window, pane)
 end)
 
 return {
+  -- I don't want the update pop ups
+  check_for_updates = false,
+
+  -- Font config
   font = wezterm.font_with_fallback({
-    "Hack Nerd Font", -- The main font I want to use
-    "Menlo", -- This has the check mark and cross symbols
-    "Apple Color Emoji" -- I prefer apple emoji to google emoji
+    "Hack", -- The main font I want to use
+    "Apple Color Emoji" -- I prefer apple emoji if they're present
   }, {weight="Medium"}),
-  font_size = 13,
+  font_size = 12,
+
   -- This looks a bit better to me than Normal
   freetype_load_target = "HorizontalLcd",
   color_scheme = "Builtin Tango Dark",
   window_background_opacity = 0.8,
   initial_cols = 169,
   initial_rows = 49,
-  --pane_focus_follows_mouse = true,
+
   -- Don't dim inactive panes
   inactive_pane_hsb = {
     saturation = 1.0,
     brightness = 1.0,
   },
   exit_behavior = "Close",
-  -- Enable once https://github.com/wez/wezterm/issues/797 is in a release
-  --tab_bar_at_bottom = true,
+
+  -- Tab bar behavior
+  tab_bar_at_bottom = true,
+  use_fancy_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = true,
+
   -- I like CTRL-A as a terminal prefix, like screen
   leader = {key = "a", mods = "CTRL", timeout_milliseconds = 1000},
   keys = {
