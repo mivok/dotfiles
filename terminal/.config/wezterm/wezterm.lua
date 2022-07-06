@@ -63,15 +63,21 @@ return {
   font = wezterm.font_with_fallback({
     "Hack", -- The main font I want to use
     "Apple Color Emoji" -- I prefer apple emoji if they're present
-  }, {weight="Medium"}),
+  }),
   font_size = 12,
+  cell_width = 1.1,
 
-  -- This looks a bit better to me than Normal
-  freetype_load_target = "HorizontalLcd",
   color_scheme = "Builtin Tango Dark",
   window_background_opacity = 0.8,
   initial_cols = 169,
   initial_rows = 49,
+
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0
+  },
 
   -- Don't dim inactive panes
   inactive_pane_hsb = {
