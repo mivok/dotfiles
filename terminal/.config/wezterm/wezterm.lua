@@ -97,7 +97,12 @@ return {
   -- Set CTRL-A as the LEADER modification
   leader = {key = "a", mods = "CTRL", timeout_milliseconds = 1000},
   keys = {
+    -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
     {
+      key="a",
+      mods="LEADER|CTRL",
+      action=wezterm.action.SendString("\x01")
+    }, {
       key = "|",
       mods = "LEADER|SHIFT",
       action = wezterm.action.SplitHorizontal
