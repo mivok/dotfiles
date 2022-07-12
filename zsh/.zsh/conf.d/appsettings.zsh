@@ -13,12 +13,7 @@ export MPD_HOST=officenoise.local
 export AWS_SDK_LOAD_CONFIG=1
 
 # Default editor
-# Lower down in the list is preferred editor
-[[ -x "/usr/bin/vi" ]] && export EDITOR=/usr/bin/vi
-[[ -x "/usr/bin/vim" ]] && export EDITOR=/usr/bin/vim
-[[ -x "/usr/local/bin/vim" ]] && export EDITOR=/usr/local/bin/vim
-[[ -x "/usr/local/bin/nvim" ]] && export EDITOR=/usr/local/bin/nvim
-[[ -x "/usr/bin/nvim" ]] && export EDITOR=/usr/bin/nvim
+EDITOR="$(whence -p nvim || whence -p vim || whence -p vi)"
 
 # Go
 export GOPATH=$HOME/go
