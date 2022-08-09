@@ -9,13 +9,21 @@ function resize_window(window, pane, cols, rows)
   window:perform_action(wezterm.action.ResetFontAndWindowSize, pane)
 end
 
+-- Get the pane_info as returned by tab:panes_with_info() from a Pane object
+-- This is mostly useful for getting the pixel_width and pixel_height for a
+-- pane.
+function pane_info(pane)
+  for i, p in pairs(pane:mux_pane():tab():panes_with_info()) do
+    if p.pane:pane_id() == pane:pane_id() then
+      return p
+    end
+  end
+end
+
 -- Split either horizontal or vertical as appropriate
 wezterm.on("split-auto", function(window, pane)
-  local dimensions = pane:get_dimensions()
-  -- Hack until I can get actual pixel dimensions of a pane
-  local char_width = 8
-  local char_height = 14
-  if dimensions.cols * char_width > dimensions.viewport_rows * char_height then
+  local pane_info = pane_info(pane)
+  if pane_info.pixel_width > pane_info.pixel_height then
     window:perform_action(wezterm.action.SplitHorizontal, pane)
   else
     window:perform_action(wezterm.action.SplitVertical, pane)
@@ -24,14 +32,13 @@ end)
 
 -- Search current window for biggest pane, then split it appropriately and
 -- activate it (i.e. give me a new pane in the best place)
--- TODO - this needs features that are only in nightly - it needs testing
--- and fixing once the features are in a released version.
+-- Requires wezterm 20220807-113146-c2fee766 or later
 wezterm.on("new-pane-auto", function(window, pane)
   -- Get the MuxTab object for the active tab, so we can go through the
   -- panes one by one
   local mux_window = window:mux_window()
   local active_tab 
-  for i, t in pairs(mux_window:tables_with_info()) do
+  for i, t in pairs(mux_window:tabs_with_info()) do
     if t.is_active then
       active_tab = t.tab
     end
@@ -41,21 +48,21 @@ wezterm.on("new-pane-auto", function(window, pane)
   local largest_pane
   local largest_dimension = 0
   local direction
-  for i, p in pairs(active_tab:panes()) do
-    if p.width > largest_dimension then
-      largest_dimension = p.width
+  for i, p in pairs(active_tab:panes_with_info()) do
+    if p.pixel_width > largest_dimension then
+      largest_dimension = p.pixel_width
       largest_pane = p.pane
       direction = "Right"
     end
-    if p.height > largest_dimension then
-      largest_dimension = p.height
+    if p.pixel_height > largest_dimension then
+      largest_dimension = p.pixel_height
       largest_pane = p.pane
       direction = "Bottom"
     end
   end
 
   -- Actually split the pane
-  pane:split{direction=direction}
+  largest_pane:split{direction=direction}
 end)
 
 return {
@@ -113,11 +120,11 @@ return {
     }, {
       key = "Enter",
       mods = "LEADER",
-      action = wezterm.action.EmitEvent("split-auto")
+      action = wezterm.action.EmitEvent("new-pane-auto")
     }, {
       key = "=",
       mods = "LEADER",
-      action = wezterm.action.EmitEvent("new-pane-auto")
+      action = wezterm.action.EmitEvent("split-auto")
     }, {
       key = "LeftArrow",
       mods = "LEADER",
