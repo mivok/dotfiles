@@ -79,7 +79,7 @@ return {
 
   color_scheme = "Builtin Tango Dark",
   window_background_opacity = 0.8,
-  initial_cols = 169,
+  initial_cols = 173,
   initial_rows = 49,
 
   window_padding = {
@@ -149,7 +149,7 @@ return {
       key = "1",
       mods = "LEADER",
       action = wezterm.action_callback(function(window, pane)
-        resize_window(window, pane, 169, 49)
+        resize_window(window, pane, 173, 49)
       end)
     }, {
       key = "2",
