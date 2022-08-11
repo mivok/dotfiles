@@ -34,7 +34,7 @@ endfunction
 
 function! s:hardwrap() abort
     " Set textwidth back to normal
-    set textwidth=78
+    set textwidth=89
     " Undo the softwrap mappings
     silent! nunmap  <Up>
     silent! nunmap  <Down>

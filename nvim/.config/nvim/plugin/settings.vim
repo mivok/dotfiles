@@ -35,7 +35,7 @@ set termguicolors                  " Enable truecolor terminal support
 set number                         " Display line numbers
 set signcolumn=yes                 " Always display the sign column
 set colorcolumn=80                 " Highlight column 80
-set textwidth=78                   " Word wrapping
+set textwidth=80                   " Word wrapping
 
 " Wrapping options
 set wrap                           " Visually wrap long lines
