@@ -11,7 +11,6 @@ set list listchars=tab:>-,trail:-  " Show trailing spaces and hard tabs
 set incsearch                      " Incremental search
 set inccommand=nosplit             " Incremental replace (preview replacements)
 set scrolloff=2                    " Always show lines above/below cursor
-set wildmode=longest,list          " Tab expansion like bash
 set ignorecase                     " Ignore case in searches
 set smartcase                      " ... unless the search term has caps
 set iskeyword+=_,$,@,%,#           " Chars not to be word separators

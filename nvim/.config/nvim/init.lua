@@ -49,6 +49,11 @@ require('packer').startup(function(use)
   use 'bakpakin/fennel.vim'
 
   -- LSP/Autocompletion
+  use {
+    'williamboman/mason.nvim',
+    requires = {'williamboman/mason-lspconfig.nvim'},
+    config = function() require('mason-config') end
+  }
   use 'neovim/nvim-lspconfig'
   use {
     'hrsh7th/nvim-compe',
@@ -81,7 +86,7 @@ require('packer').startup(function(use)
   use 'bkad/CamelCaseMotion'
 
   -- Telescope
-  use 'nvim-telescope/telescope.nvim'
+  use {'nvim-telescope/telescope.nvim', branch='0.1.x'}
 
   -- Undotree
   use 'mbbill/undotree'
@@ -90,6 +95,12 @@ require('packer').startup(function(use)
   use {
     'tyru/open-browser.vim',
     config = function() require('openbrowser-config') end
+  }
+
+  -- Better popup menu for commands
+  use {
+    'gelguy/wilder.nvim',
+    config = function() require('wilder-config') end
   }
 
   -- My Plugins
