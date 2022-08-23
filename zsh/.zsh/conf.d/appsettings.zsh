@@ -14,6 +14,7 @@ export AWS_SDK_LOAD_CONFIG=1
 
 # Default editor
 EDITOR="$(whence -p nvim || whence -p vim || whence -p vi)"
+export EDITOR
 
 # Go
 export GOPATH=$HOME/go
