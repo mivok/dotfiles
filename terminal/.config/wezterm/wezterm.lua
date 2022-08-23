@@ -48,14 +48,26 @@ wezterm.on("new-pane-auto", function(window, pane)
   local largest_pane
   local largest_dimension = 0
   local direction
+  local window_dimensions = window:get_dimensions()
   for i, p in pairs(active_tab:panes_with_info()) do
-    if p.pixel_width > largest_dimension then
-      largest_dimension = p.pixel_width
+    -- Use the percentage of the window height/width rather than raw pixel
+    -- height/width when calculating the largest pane to make the split in.
+    -- If we use the raw pixel with, we get the wrong type of split when using
+    -- very wide windows. What I'm trying to achieve is alternating
+    -- horizontal/vertical splits when splitting a pane up, or rather finding
+    -- the pane which has been split up the least and split that appropriately.
+    -- Using the percentage is an okish proxy for this.
+    -- Note: I'm not taking into account the tab bar height or any window
+    -- padding here, so there is still the potential for incorrect behavior.
+    width_fraction = p.pixel_width / window_dimensions.pixel_width
+    height_fraction = p.pixel_height / window_dimensions.pixel_height
+    if width_fraction > largest_dimension then
+      largest_dimension = width_fraction
       largest_pane = p.pane
       direction = "Right"
     end
-    if p.pixel_height > largest_dimension then
-      largest_dimension = p.pixel_height
+    if height_fraction > largest_dimension then
+      largest_dimension = height_fraction
       largest_pane = p.pane
       direction = "Bottom"
     end
