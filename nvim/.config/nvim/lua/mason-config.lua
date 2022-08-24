@@ -74,6 +74,13 @@ require("mason-lspconfig").setup_handlers {
         },
       }
     end,
+
+
+    ["terraformls"] = function()
+      require("lspconfig").terraformls.setup {
+        support_single_file = true,
+      }
+    end,
 }
 
 -- Auto install other tools, used by null-ls
