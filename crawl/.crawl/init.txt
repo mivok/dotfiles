@@ -20,3 +20,25 @@ autoinscribe += curing:@q1
 
 # Don't explore over deep water when flying
 travel_avoid_terrain = deep water
+
+# Skill training improvements
+default_manual_training = true
+skill_focus = false
+
+# Default skill training at start
+{
+  if you.turns() == 0 then
+   if you.race() == "Draconian" and you.class() == "Conjurer" then
+     you.set_training_target("spellcasting", 5)
+     you.set_training_target("conjurations", 9)
+     you.set_training_target("translocations", 9)
+     you.set_training_target("stealth", 5)
+
+
+     you.train_skill("spellcasting", 1)
+     you.train_skill("conjurations", 0)
+     you.train_skill("stealth", 0)
+     you.train_skill("dodging", 0)
+   end
+  end
+}
