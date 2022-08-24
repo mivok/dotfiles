@@ -78,7 +78,7 @@ require("mason-lspconfig").setup_handlers {
 
     ["terraformls"] = function()
       require("lspconfig").terraformls.setup {
-        support_single_file = true,
+        single_file_support = true,
       }
     end,
 }
