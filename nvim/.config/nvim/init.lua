@@ -51,7 +51,10 @@ require('packer').startup(function(use)
   -- LSP/Autocompletion
   use {
     'williamboman/mason.nvim',
-    requires = {'williamboman/mason-lspconfig.nvim'},
+    requires = {
+      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+    },
     config = function() require('mason-config') end
   }
   use 'neovim/nvim-lspconfig'
@@ -101,6 +104,12 @@ require('packer').startup(function(use)
   use {
     'gelguy/wilder.nvim',
     config = function() require('wilder-config') end
+  }
+
+  -- Null LS - formatters, linters, extra completions
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function() require('null-ls-config') end
   }
 
   -- My Plugins

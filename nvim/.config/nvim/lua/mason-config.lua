@@ -75,3 +75,14 @@ require("mason-lspconfig").setup_handlers {
       }
     end,
 }
+
+-- Auto install other tools, used by null-ls
+-- Eventually there may be a mason-null-ls package, but for now this uses
+-- mason-tool-installer.
+require('mason-tool-installer').setup {
+  ensure_installed = {
+    "goimports",
+    "shellcheck",
+    "yamllint",
+  }
+}
