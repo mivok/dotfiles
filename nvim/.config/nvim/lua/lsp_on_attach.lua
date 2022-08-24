@@ -1,12 +1,12 @@
 -- Defines the on_attach function which adds keybindings and other global
 -- functionality to all language servers, and then sets it as the default
 -- on_attach function.
-
 local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_keymap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
   -- Mappings.
   local opts = {noremap = true, silent = true}
@@ -56,6 +56,5 @@ local on_attach = function(client, bufnr)
   require('lsp_signature').on_attach()
 end
 
-lspconfig.util.default_config = vim.tbl_extend("force",
-                                               lspconfig.util.default_config,
-                                               {on_attach = on_attach})
+lspconfig.util.default_config = vim.tbl_extend(
+  "force", lspconfig.util.default_config, {on_attach = on_attach})

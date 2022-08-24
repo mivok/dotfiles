@@ -108,4 +108,5 @@ require('packer').startup(function(use)
 end)
 
 -- Load additional lua modules not loaded automatically through plugins
-require('lsp')
+require('lsp_on_attach')
+require('golang')
