@@ -115,7 +115,3 @@ require('packer').startup(function(use)
   -- My Plugins
   use 'mivok/vim-minotl'
 end)
-
--- Load additional lua modules not loaded automatically through plugins
-require('lsp_on_attach')
-require('golang')
