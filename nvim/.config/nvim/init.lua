@@ -29,7 +29,7 @@ require('packer').startup(function(use)
     'Avimitin/galaxyline.nvim', branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons'},
     config = function()
-      require('galaxyline-config')
+      require('plugin-galaxyline')
     end
   }
 
@@ -55,12 +55,12 @@ require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
-    config = function() require('mason-config') end
+    config = function() require('plugin-mason') end
   }
   use 'neovim/nvim-lspconfig'
   use {
     'hrsh7th/nvim-compe',
-    config = function() require('compe-config') end
+    config = function() require('plugin-compe') end
   }
   use 'ray-x/lsp_signature.nvim'
 
@@ -68,7 +68,7 @@ require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function() require('treesitter-config') end
+    config = function() require('plugin-treesitter') end
   }
 
   -- Snippets
@@ -82,7 +82,7 @@ require('packer').startup(function(use)
   -- Inline git blame
   use {
     'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns-config') end
+    config = function() require('plugin-gitsigns') end
   }
 
   -- Camelcase motion (\w, \b)
@@ -97,19 +97,19 @@ require('packer').startup(function(use)
   -- Better gx
   use {
     'tyru/open-browser.vim',
-    config = function() require('openbrowser-config') end
+    config = function() require('plugin-openbrowser') end
   }
 
   -- Better popup menu for commands
   use {
     'gelguy/wilder.nvim',
-    config = function() require('wilder-config') end
+    config = function() require('plugin-wilder') end
   }
 
   -- Null LS - formatters, linters, extra completions
   use {
     'jose-elias-alvarez/null-ls.nvim',
-    config = function() require('null-ls-config') end
+    config = function() require('plugin-null-ls') end
   }
 
   -- My Plugins
