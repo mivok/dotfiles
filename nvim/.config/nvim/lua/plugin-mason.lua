@@ -60,6 +60,8 @@ require("mason-lspconfig").setup_handlers {
             diagnostics = {
               -- Get the language server to recognize the `vim` global
               globals = {'vim'},
+              -- Disable some recommendations
+              disable = {'lowercase-global'}
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
