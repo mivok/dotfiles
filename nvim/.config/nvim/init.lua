@@ -85,9 +85,6 @@ require('packer').startup(function(use)
     config = function() require('plugin-gitsigns') end
   }
 
-  -- Camelcase motion (\w, \b)
-  use 'bkad/CamelCaseMotion'
-
   -- Telescope
   use {'nvim-telescope/telescope.nvim', branch='0.1.x'}
 
