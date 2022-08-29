@@ -12,50 +12,43 @@ local wilder = require('wilder')
 
 wilder.setup({modes = {':', '/', '?'}})
 
+-- Disable Python remote plugin - this way we don't _need_ a working python just
+-- for autocompletion.
+wilder.set_option('use_python_remote_plugin', 0)
+
 wilder.set_option('pipeline', {
   wilder.branch(
+    wilder.substitute_pipeline({
+      pipeline = wilder.vim_search_pipeline({skip_cmdtype_check = 1}),
+      hide_in_replace = 1,
+    }),
     wilder.cmdline_pipeline({
       fuzzy = 1,
-      set_pcre2_pattern = 1,
+      fuzzy_filter = wilder.lua_fzy_filter(),
     }),
-    wilder.python_search_pipeline({
-      pattern = 'fuzzy',
-    })
+    wilder.vim_search_pipeline()
   ),
 })
 
-local highlighters = {
-  wilder.pcre2_highlighter(),
-  wilder.basic_highlighter(),
-}
-
-local popupmenu_renderer = wilder.popupmenu_renderer(
-  wilder.popupmenu_border_theme({
-    border = 'rounded',
-    empty_message = wilder.popupmenu_empty_message(),
-    highlighter = highlighters,
-    left = {
-      ' ',
-      wilder.popupmenu_devicons(),
-      wilder.popupmenu_buffer_flags({
-        flags = ' a + ',
-        icons = {['+'] = '', a = '', h = ''},
-      }),
-    },
-    right = {
-      ' ',
-      wilder.popupmenu_scrollbar(),
-    },
-  })
-)
-
-local wildmenu_renderer = wilder.wildmenu_renderer({
-  highlighter = highlighters,
-  separator = ' · ',
-  right = {' ', wilder.wildmenu_index()},
-})
-
 wilder.set_option('renderer', wilder.renderer_mux({
-  [':'] = popupmenu_renderer,
-  ['/'] = wildmenu_renderer,
+  [':'] = wilder.popupmenu_renderer(
+    wilder.popupmenu_border_theme({
+      border = 'rounded',
+      highlighter = wilder.lua_fzy_highlighter(),
+      left = {
+        ' ',
+        wilder.popupmenu_devicons()
+      },
+      right = {
+        ' ',
+        wilder.popupmenu_scrollbar()
+      },
+    })
+  ),
+  ['/'] = wilder.wildmenu_renderer({
+    highlighter = wilder.lua_fzy_highlighter(),
+  }),
+  substitute = wilder.wildmenu_renderer({
+    highlighter = wilder.lua_fzy_highlighter(),
+  })
 }))

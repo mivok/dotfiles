@@ -100,6 +100,7 @@ require('packer').startup(function(use)
   -- Better popup menu for commands
   use {
     'gelguy/wilder.nvim',
+    requires = {'romgrk/fzy-lua-native'},
     config = function() require('plugin-wilder') end
   }
 
