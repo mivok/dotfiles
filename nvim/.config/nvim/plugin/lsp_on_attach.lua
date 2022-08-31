@@ -46,9 +46,6 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
-
-  -- Requires ray-x/lsp_signature.nvim
-  require('lsp_signature').on_attach()
 end
 
 lspconfig.util.default_config = vim.tbl_extend(

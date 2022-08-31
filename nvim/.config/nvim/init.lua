@@ -48,7 +48,7 @@ require('packer').startup(function(use)
   use 'pearofducks/ansible-vim'
   use 'bakpakin/fennel.vim'
 
-  -- LSP/Autocompletion
+  -- LSP
   use {
     'williamboman/mason.nvim',
     requires = {
@@ -58,11 +58,19 @@ require('packer').startup(function(use)
     config = function() require('plugin-mason') end
   }
   use 'neovim/nvim-lspconfig'
+
+  -- Autocompletion
   use {
-    'hrsh7th/nvim-compe',
-    config = function() require('plugin-compe') end
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-vsnip',
+    },
+    config = function() require('plugin-nvim-cmp') end
   }
-  use 'ray-x/lsp_signature.nvim'
 
   -- Treesitter
   use {
@@ -98,6 +106,7 @@ require('packer').startup(function(use)
   }
 
   -- Better popup menu for commands
+  -- Note: nvim-cmp can provide similar functionality, but I like this better
   use {
     'gelguy/wilder.nvim',
     requires = {'romgrk/fzy-lua-native'},
