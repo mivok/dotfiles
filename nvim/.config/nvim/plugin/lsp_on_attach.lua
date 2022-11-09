@@ -34,7 +34,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
 
   -- Automatically highlight references
-  if client.resolved_capabilities.documentHighlightProvider
+  if client.resolved_capabilities.documentHighlightProvider then
     vim.api.nvim_exec([[
       hi link LspReferenceRead Visual
       hi link LspReferenceText LspReferenceRead
