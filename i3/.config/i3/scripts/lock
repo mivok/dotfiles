@@ -1,5 +1,8 @@
 #!/bin/bash
+# Lock the screen, using the current wallpaper as the lock screen
 WALLPAPER="$(awk -F= \
     '$1 == "file" { print $2 }' \
     ~/.config/nitrogen/bg-saved.cfg)"
-i3lock -n -i "$WALLPAPER"
+SIZE="1920x1080"
+convert "$WALLPAPER" -resize "$SIZE" RGB:- |
+    i3lock -n --raw="$SIZE":rgb -i /dev/stdin
