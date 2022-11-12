@@ -1,0 +1,5 @@
+#!/bin/bash
+WALLPAPER="$(awk -F= \
+    '$1 == "file" { print $2 }' \
+    ~/.config/nitrogen/bg-saved.cfg)"
+i3lock -n -i "$WALLPAPER"

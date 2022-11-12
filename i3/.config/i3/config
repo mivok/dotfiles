@@ -19,11 +19,11 @@ new_window pixel 1
 # hide_edge_borders both
 
 # Set inner/outer gaps
-#gaps inner 6
-#gaps outer 3
+gaps inner 6
+gaps outer 3
 
 # show window title bars (not officially supported with i3gaps)
-default_border normal
+#default_border normal
 
 # window title alignment
 #title_align center
@@ -232,6 +232,9 @@ exec --no-startup-id sleep 2 && nitrogen --restore
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
+
+# auto lock
+exec --no-startup-id xss-lock -- ~/.config/i3/scripts/lock
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
