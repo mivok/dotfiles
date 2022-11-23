@@ -235,6 +235,9 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 # yay -S autotiling
 exec_always --no-startup-id autotiling
 
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 ##################
 # floating rules #
 ##################
@@ -267,39 +270,10 @@ set $yellowbrown        #e1b700
 
 # define colors for windows:
 # class border bground text indicator child_border
-client.focused          $lightblue $darkblue $white $mediumgrey $mediumgrey
+client.focused          $darkblue $darkblue $white $mediumgrey $mediumgrey
 client.unfocused        $darkblue $darkblue $grey $darkgrey $darkgrey
 client.focused_inactive $darkblue $darkblue $grey $black $black
 client.urgent           $urgentred $urgentred $white $yellowbrown $yellowbrown
-
-############################################
-# bar settings (input comes from i3blocks) #
-############################################
-bar {
-    font pango: Liberation Sans Regular 12
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    position bottom
-    tray_output primary
-    tray_padding 7
-    height 35
-
-    # When strip_workspace_numbers is set to yes,
-    # any workspace that has a name of the form
-    # “[n][:][NAME]” will display only the name.
-    strip_workspace_numbers yes
-    #strip_workspace_name no
-
-    colors {
-        separator          $purple
-        background         $darkgrey
-        statusline         $white
-        # name border bg txt indicator
-        focused_workspace  $mediumgrey $grey $darkgrey $purple
-        active_workspace   $lightblue $mediumgrey $darkgrey $purple
-        inactive_workspace $darkgrey $darkgrey $grey $purple
-        urgent_workspace   $urgentred $urgentred $white $purple
-    }
-}
 
 ######################################
 # Application menus handled by rofi: #
