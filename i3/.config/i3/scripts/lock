@@ -4,5 +4,5 @@ WALLPAPER="$(awk -F= \
     '$1 == "file" { print $2 }' \
     ~/.config/nitrogen/bg-saved.cfg)"
 SIZE="1920x1080"
-convert "$WALLPAPER" -resize "$SIZE" RGB:- |
+gm convert "$WALLPAPER" -resize "$SIZE" RGB:- |
     i3lock -n --raw="$SIZE":rgb -i /dev/stdin
