@@ -83,6 +83,38 @@ require("mason-lspconfig").setup_handlers {
         single_file_support = true,
       }
     end,
+
+    ["yamlls"] = function()
+      require("lspconfig").yamlls.setup {
+        settings = {
+          yaml = {
+            -- Custom yaml tags for cloudformation
+            -- See https://github.com/redhat-developer/vscode-yaml/issues/669
+            customTags = {
+              "!Base64 scalar",
+              "!Cidr scalar",
+              "!And sequence",
+              "!Equals sequence",
+              "!If sequence",
+              "!Not sequence",
+              "!Or sequence",
+              "!Condition scalar",
+              "!FindInMap sequence",
+              "!GetAtt scalar",
+              "!GetAtt sequence",
+              "!GetAZs scalar",
+              "!ImportValue scalar",
+              "!Join sequence",
+              "!Select sequence",
+              "!Split sequence",
+              "!Sub scalar",
+              "!Transform mapping",
+              "!Ref scalar",
+            }
+          }
+        }
+      }
+    end,
 }
 
 -- Auto install other tools, used by null-ls
