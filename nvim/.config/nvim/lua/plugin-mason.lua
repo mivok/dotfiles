@@ -13,9 +13,9 @@ require('mason-lspconfig').setup({
     "html",
     "tsserver",
     "jsonls",
+    "lua_ls",
     "pylsp",
     "solargraph",
-    "sumneko_lua",
     "terraformls",
     "vimls",
     "yamlls",
@@ -46,8 +46,8 @@ require("mason-lspconfig").setup_handlers {
       }
     end,
 
-    ["sumneko_lua"] = function()
-      require'lspconfig'.sumneko_lua.setup {
+    ["lua_ls"] = function()
+      require'lspconfig'.lua_ls.setup {
         -- This sets the lua LSP up to work well when editing neovim configs
         -- Note: this slows down the lua language server startup a bit
         settings = {
@@ -58,8 +58,9 @@ require("mason-lspconfig").setup_handlers {
               version = 'LuaJIT',
             },
             diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = {'vim'},
+              -- Get the language server to recognize additional globals
+              -- vim for neovim, hs for hammerspoon
+              globals = {'vim', 'hs'},
               -- Disable some recommendations
               disable = {'lowercase-global'}
             },
@@ -103,11 +104,13 @@ require("mason-lspconfig").setup_handlers {
               "!GetAtt scalar",
               "!GetAtt sequence",
               "!GetAZs scalar",
+              "!ImportValue mapping",
               "!ImportValue scalar",
               "!Join sequence",
               "!Select sequence",
               "!Split sequence",
               "!Sub scalar",
+              "!Sub sequence",
               "!Transform mapping",
               "!Ref scalar",
             }
