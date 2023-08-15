@@ -37,15 +37,18 @@ require('lazy').setup({
 
   -- Syntax/filetype specific
   --Plug 'hynek/vim-python-pep8-indent'
-  'hashivim/vim-terraform',
-  'sirtaj/vim-openscad',
-  'ledger/vim-ledger',
-  {'plasticboy/vim-markdown', dependencies = {'godlygeek/tabular'}},
-  'vito-c/jq.vim',
-  'LokiChaos/vim-tintin',
-  'davidoc/taskpaper.vim',
-  'pearofducks/ansible-vim',
-  'bakpakin/fennel.vim',
+  {'hashivim/vim-terraform', ft = 'terraform'},
+  {'sirtaj/vim-openscad', ft = 'openscad'},
+  {'ledger/vim-ledger', ft = 'ledger'},
+  {'plasticboy/vim-markdown',
+    dependencies = {'godlygeek/tabular'},
+    ft = 'markdown',
+  },
+  {'vito-c/jq.vim', ft = 'jq'},
+  {'LokiChaos/vim-tintin', ft = 'tintin'},
+  {'davidoc/taskpaper.vim', ft = 'taskpaper'},
+  {'pearofducks/ansible-vim', ft = 'ansible'},
+  {'bakpakin/fennel.vim', ft = 'fennel'},
 
   -- LSP
   {
@@ -117,6 +120,9 @@ require('lazy').setup({
     'jose-elias-alvarez/null-ls.nvim',
     config = function() require('plugin-null-ls') end
   },
+
+  -- Startup time viewer
+  {'dstein64/vim-startuptime', cmd = 'StartupTime'},
 
   -- My Plugins
   'mivok/vim-minotl',
