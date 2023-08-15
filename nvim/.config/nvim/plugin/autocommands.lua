@@ -43,3 +43,10 @@ au({'TextYankPost'}, {
     }) end,
   group = yank_highlight_group
 })
+
+au({'FileType'}, {
+  pattern = "json",
+  callback = function()
+    vim.opt.conceallevel = 0
+  end
+})
