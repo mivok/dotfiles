@@ -19,6 +19,9 @@ end
 
 -- Initial setup
 cmp.setup {
+  -- Disable automatically selecting autocomplete items
+  preselect = cmp.PreselectMode.None,
+
   -- Set up snippet engine (use vsnip)
   snippet = {
     expand = function(args)
