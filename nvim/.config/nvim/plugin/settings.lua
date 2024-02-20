@@ -16,10 +16,12 @@ vim.opt.updatetime = 500               -- Make CursorHold respond much quicker
 vim.opt.termguicolors = true           -- Enable truecolor terminal support
 
 -- Line/column settings
-vim.opt.number = true                  -- Display line numbers
 vim.opt.signcolumn = 'yes'             -- Always display the sign column
 vim.opt.colorcolumn = {'80'}           -- Highlight column 80
 vim.opt.textwidth = 80                 -- Word wrapping
+if vim.o.columns > (vim.o.textwidth + vim.o.numberwidth) then
+  vim.opt.number = true                  -- Display line numbers
+end
 
 -- Wrapping options
 vim.opt.linebreak = true               -- Visually wrap at word boundaries
