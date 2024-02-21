@@ -33,3 +33,6 @@ fi
 
 # Ensure minikube uses its own config file
 alias minikube='KUBECONFIG=$HOME/.kube/minikube.config minikube'
+
+# Quickly make a new python venv using direnv
+alias py3venv='echo layout python3 > .envrc; direnv allow'
