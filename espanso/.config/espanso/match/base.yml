@@ -1,0 +1,54 @@
+---
+matches:
+  # Default example
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # Dates
+  - trigger: ":usdate"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  - triggers:
+      - ":date"
+      - "xdate"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+  - trigger: ":dt"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d %H:%M:%S"
+
+  - trigger: ":isodate"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%dT%H:%M:%S%Z"
+
+  # Mac key symbols
+  - triggers:
+      - ":optkey"
+      - ":optionkey"
+    replace: "⌥"
+
+  - triggers:
+      - ":cmdkey"
+      - ":commandkey"
+    replace: "⌘"
+
+  - trigger: ":shiftkey"
+    replace: "⇧"

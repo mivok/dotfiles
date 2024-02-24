@@ -1,0 +1,5 @@
+---
+# Exclude emoji shortcuts from slack
+filter_exec: Slack
+extra_excludes:
+  - "../match/packages/actually-all-emojis/*"
