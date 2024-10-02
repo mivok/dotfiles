@@ -117,7 +117,7 @@ require('lazy').setup({
 
   -- Null LS - formatters, linters, extra completions
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     config = function() require('plugin-null-ls') end
   },
 
