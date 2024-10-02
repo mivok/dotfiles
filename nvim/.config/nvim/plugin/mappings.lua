@@ -3,9 +3,6 @@
 -- Sudo make me a sandwich
 vim.keymap.set('c', 'w!!', '%!sudo tee > /dev/null %')
 
--- Toggle paste on/off
-vim.opt.pastetoggle = '<F2>'
-
 -- Shift-Tab to unindent
 vim.keymap.set('n', '<S-Tab>', '<<')
 vim.keymap.set('i', '<S-Tab>', '<C-d>')
