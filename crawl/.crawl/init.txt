@@ -13,6 +13,9 @@ tile_show_threat_levels = tough,nasty
 show_more = false
 show_travel_trail = true
 
+# Make tiles bigger on retina
+game_scale = 2
+
 ## Auto-inscribe
 # @r1 means you can type 'r1' to recite it. Same for q1.
 autoinscribe += of identify:@r1
