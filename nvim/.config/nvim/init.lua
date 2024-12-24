@@ -124,6 +124,12 @@ require('lazy').setup({
   -- Startup time viewer
   {'dstein64/vim-startuptime', cmd = 'StartupTime'},
 
+  -- Github copilot
+  {
+    'github/copilot.vim',
+    config = function() require('plugin-copilot') end
+  },
+
   -- My Plugins
   'mivok/vim-minotl',
 })
