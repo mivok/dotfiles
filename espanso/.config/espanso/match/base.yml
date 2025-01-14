@@ -23,6 +23,16 @@ matches:
         params:
           format: "%Y-%m-%d"
 
+  - triggers:
+      - ":id"
+      - "xid"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y%m%d%H%M%S"
+
   - trigger: ":dt"
     replace: "{{mydate}}"
     vars:
@@ -52,3 +62,14 @@ matches:
 
   - trigger: ":shiftkey"
     replace: "⇧"
+
+  # Work
+  - triggers:
+      - xzoom
+      - :zoom
+    replace: https://barracuda.zoom.us/my/mharrison
+
+  - triggers:
+      - xkevzoom
+      - :kevzoom
+    replace: https://barracuda.zoom.us/my/kkhadka1
