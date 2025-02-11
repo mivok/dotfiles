@@ -11,7 +11,7 @@ require('mason-lspconfig').setup({
     "dockerls",
     "gopls",
     "html",
-    "tsserver",
+    "ts_ls",
     "jsonls",
     "lua_ls",
     "pylsp",

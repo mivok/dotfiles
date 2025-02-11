@@ -115,10 +115,13 @@ require('lazy').setup({
     config = function() require('plugin-wilder') end
   },
 
-  -- Null LS - formatters, linters, extra completions
+  -- None LS - formatters, linters, extra completions
   {
     'nvimtools/none-ls.nvim',
-    config = function() require('plugin-null-ls') end
+    dependencies = {
+      'gbprod/none-ls-shellcheck.nvim',
+    },
+    config = function() require('plugin-none-ls') end
   },
 
   -- Startup time viewer
