@@ -1,38 +1,22 @@
 #!/bin/bash
 # vim: ft=sh
 
-##############################################################################
-# Python venv snippet for python 3
-# use `layout python-venv` to make it work
-#
-# This is needed to make python autocompletion work (jedi) with python3 and
-# virtualenvs - the old virtualenv command doesn't work because it copies the
-# python binary in place.
-##############################################################################
-realpath() {
-    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-}
+# Python virtualenv layout using uv
+# From: https://github.com/direnv/direnv/wiki/Python#uv
+layout_uv() {
+    if [[ -d ".venv" ]]; then
+        VIRTUAL_ENV="$(pwd)/.venv"
+    fi
 
-# layout python-venv
-layout_python-venv() {
-    local python=${1:-python3}
-    [[ $# -gt 0 ]] && shift
-    unset PYTHONHOME
-    if [[ -n $VIRTUAL_ENV ]]; then
-        VIRTUAL_ENV=$(realpath "${VIRTUAL_ENV}")
-    else
-        local python_version
-        python_version=$("$python" -c "import platform; print(platform.python_version())")
-        if [[ -z $python_version ]]; then
-            log_error "Could not detect Python version"
-            return 1
-        fi
-        VIRTUAL_ENV=$PWD/.direnv/python-venv-$python_version
+    if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
+        log_status "No virtual environment exists. Executing \`uv venv\` to create one."
+        # This differs from the wiki version
+        # --quiet to be not noisy, and --seed to add pip and maybe others
+        uv venv --quiet --seed
+        VIRTUAL_ENV="$(pwd)/.venv"
     fi
-    export VIRTUAL_ENV
-    if [[ ! -d $VIRTUAL_ENV ]]; then
-        log_status "no venv found; creating $VIRTUAL_ENV"
-        "$python" -m venv "$VIRTUAL_ENV"
-    fi
+
     PATH_add "$VIRTUAL_ENV/bin"
+    export UV_ACTIVE=1  # or VENV_ACTIVE=1
+    export VIRTUAL_ENV
 }
