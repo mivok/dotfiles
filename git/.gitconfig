@@ -16,6 +16,7 @@
 	deploy-tag = "!git tag deploy/${1:-prod}/$(git rev-parse --short HEAD) && git --no-pager tag -l deploy/${1:-prod}/$(git rev-parse --short HEAD) #"
 	switch-to-main = !git branch -m master main && git fetch origin && git branch -u origin/main main && git branch -dr origin/master && git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
 	browse-pr = "!gh api \"repos/{owner}/{repo}/commits/$(git rev-parse HEAD)/pulls\" | jq -r '.[].number' | xargs gh browse"
+	switch-to-ssh = "!git remote set-url origin $(git remote get-url origin | sed 's+https://github.com/+git@github.com:+') && git remote -v"
 
 [color]
 	ui = auto
