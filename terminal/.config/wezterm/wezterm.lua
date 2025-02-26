@@ -170,6 +170,12 @@ return {
         resize_window(window, pane, 201, 49)
       end)
     }, {
+      key = "3",
+      mods = "LEADER",
+      action = wezterm.action_callback(function(window, pane)
+        resize_window(window, pane, 110, 35)
+      end)
+    }, {
       key = "?",
       mods = "LEADER|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab {
