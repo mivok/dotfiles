@@ -1,9 +1,7 @@
-[color]
-	ui = auto
 [user]
 	name = Mark Harrison
-	email = mark@mivok.net
-	signingkey = mark@mivok.net
+	email = mark@mharrison.org
+
 [alias]
 	st = status
 	ci = commit
@@ -19,26 +17,36 @@
 	switch-to-main = !git branch -m master main && git fetch origin && git branch -u origin/main main && git branch -dr origin/master && git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
 	browse-pr = "!gh api \"repos/{owner}/{repo}/commits/$(git rev-parse HEAD)/pulls\" | jq -r '.[].number' | xargs gh browse"
 
-[push]
-	default = current
+[color]
+	ui = auto
+
+[commit]
+	template = ~/.gitmessage
+
 [core]
 	excludesfile = ~/.gitignore_global
+
+[diff]
+	wsErrorHighlight = all
+
 [diff "gpg"]
 	binary = true
 	textconv = gpg2 -d --quiet --yes --compress-algo=none --batch --use-agent
+
 [includeIf "gitdir:~/git/work/"]
 	path = .gitconfig_work
-[commit]
-	template = ~/.gitmessage
-[diff]
-	wsErrorHighlight = all
-#[url "git@github.com:"]
-#	insteadOf = https://github.com/
-[url "git@github.com:"]
-	insteadOf = gh:
-[pull]
-	rebase = true
-[rebase]
-	autoStash = true
+
 [init]
 	defaultBranch = main
+
+[push]
+	default = current
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[url "git@github.com:"]
+	insteadOf = gh:
