@@ -50,3 +50,6 @@ unsetopt INC_APPEND_HISTORY
 if command -v rbenv > /dev/null; then
     eval "$(rbenv init -)"
 fi
+
+# Use ripgrep config file
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rc"
