@@ -13,7 +13,7 @@ end
 -- This is mostly useful for getting the pixel_width and pixel_height for a
 -- pane.
 function pane_info(pane)
-  for i, p in pairs(pane:mux_pane():tab():panes_with_info()) do
+  for _, p in pairs(pane:mux_pane():tab():panes_with_info()) do
     if p.pane:pane_id() == pane:pane_id() then
       return p
     end
@@ -33,12 +33,12 @@ end)
 -- Search current window for biggest pane, then split it appropriately and
 -- activate it (i.e. give me a new pane in the best place)
 -- Requires wezterm 20220807-113146-c2fee766 or later
-wezterm.on("new-pane-auto", function(window, pane)
+wezterm.on("new-pane-auto", function(window, _)
   -- Get the MuxTab object for the active tab, so we can go through the
   -- panes one by one
   local mux_window = window:mux_window()
-  local active_tab 
-  for i, t in pairs(mux_window:tabs_with_info()) do
+  local active_tab
+  for _, t in pairs(mux_window:tabs_with_info()) do
     if t.is_active then
       active_tab = t.tab
     end
@@ -49,7 +49,7 @@ wezterm.on("new-pane-auto", function(window, pane)
   local largest_dimension = 0
   local direction
   local window_dimensions = window:get_dimensions()
-  for i, p in pairs(active_tab:panes_with_info()) do
+  for _, p in pairs(active_tab:panes_with_info()) do
     -- Use the percentage of the window height/width rather than raw pixel
     -- height/width when calculating the largest pane to make the split in.
     -- If we use the raw pixel with, we get the wrong type of split when using
