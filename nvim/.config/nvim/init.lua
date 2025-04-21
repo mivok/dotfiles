@@ -133,6 +133,18 @@ require('lazy').setup({
     config = function() require('plugin-copilot') end
   },
 
+  -- Copilot Chat
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {},
+  },
+
+
   -- My Plugins
   'mivok/vim-minotl',
 })
