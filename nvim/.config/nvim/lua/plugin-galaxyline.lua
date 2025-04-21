@@ -100,6 +100,20 @@ table.insert(gls.left, {
   }
 })
 
+table.insert(gls.left, {
+  CopilotEnabled = {
+    provider = function() 
+      if vim.fn["copilot#Enabled"]() == 1 then
+        return "  Copilot"
+      else
+        return ""
+      end
+    end,
+    highlight = {colors.blue, colors.bg, 'bold'}
+  }
+})
+
+
 table.insert(gls.mid, {
   ShowLspClient = {
     provider = 'GetLspClient',
