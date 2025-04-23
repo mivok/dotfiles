@@ -7,8 +7,6 @@ local lspconfig = require('lspconfig')
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
@@ -20,31 +18,41 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
+  -- Additional default mappings in nvim 0.11+
+  -- grn - vim.lsp.buf.rename
+  -- grr - vim.lsp.buf.references
+  -- gri - vim.lsp.buf.implementation
+  -- gra - vim.lsp.buf.code_action
+  -- gO  - vim.lsp.buf.document_symbol
+  -- CTRL-S - vim.lsp.buf.signature_help
+  -- [d and ]d - vim.diagnostic.goto_prev and vim.diagnostic.goto_next
 
   -- Automatically highlight references
   if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_exec([[
-      hi link LspReferenceRead Visual
-      hi link LspReferenceText LspReferenceRead
-      hi link LspReferenceWrite LspReferenceRead
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { link = "LspReferenceRead" })
+    vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceRead" })
+
+    local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = group,
+      buffer = 0,
+      callback = vim.lsp.buf.document_highlight,
+      desc = "Highlight references on cursor hold",
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      group = group,
+      buffer = 0,
+      callback = vim.lsp.buf.clear_references,
+      desc = "Clear references on cursor move",
+    })
   end
 end
 

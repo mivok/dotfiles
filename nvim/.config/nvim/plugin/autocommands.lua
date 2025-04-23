@@ -36,7 +36,7 @@ filetype_tab_width('yaml', 2)
 au({'TextYankPost'}, {
   pattern = '*',
   callback = function()
-    require('vim.highlight').on_yank({
+    vim.hl.on_yank({
       higroup="IncSearch",
       timeout=500,
       on_visual=true

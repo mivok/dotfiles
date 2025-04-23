@@ -37,3 +37,9 @@ vim.opt.tabstop = 8                    -- Hard tabs are 8 chars
 vim.opt.softtabstop = 4                -- Tab key indents by 4 chars
 vim.opt.shiftwidth = 4                 -- Autoindent by 4 chars
 vim.opt.expandtab = true               -- Use spaces instead of tabs
+
+-- Diagnostics configuration
+vim.diagnostic.config({
+  virtual_text = true,
+  virtual_lines = { current_line = true },
+})
