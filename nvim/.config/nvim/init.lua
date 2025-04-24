@@ -21,15 +21,13 @@ require('lazy').setup({
     end
   },
 
+  -- Status line
   {
-    -- See https://github.com/glepnir/galaxyline.nvim/issues/223 for why I'm
-    -- using a fork here
-    --'glepnir/galaxyline.nvim', branch = 'main',
-    'Avimitin/galaxyline.nvim', branch = 'main',
-    dependencies = {'kyazdani42/nvim-web-devicons'},
-    config = function()
-      require('plugin-galaxyline')
-    end
+      'nvim-lualine/lualine.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        require('plugin-lualine')
+      end,
   },
 
   -- Editorconfig support
