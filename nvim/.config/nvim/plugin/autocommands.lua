@@ -7,6 +7,11 @@ local au = vim.api.nvim_create_autocmd
 -- Autocommand groups
 local tab_width_group = augroup("tab_width", {clear = true})
 local yank_highlight_group = augroup('yank_highlight', {clear = true})
+local filetype_group = augroup('mh_filetypes', {clear = true})
+
+-- Expand the home directory here because it's not automatically expanded in
+-- autocommand definitions in lua
+local homedir = vim.fn.expand("~")
 
 -- Helper function and for setting the tab size for a given filetype
 function filetype_tab_width(filetype, width, opts)
@@ -49,4 +54,65 @@ au({'FileType'}, {
   callback = function()
     vim.opt.conceallevel = 0
   end
+})
+
+
+-- Filetype autocommands
+-- Fix for gq on lists with plasticboy plugin - platicboy/vim-markdown#232
+au("FileType", {
+    group = filetype_group,
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.formatoptions:remove("q")
+        vim.opt_local.formatlistpat = [[^\s*\d\+\.\s\+\|^\s*[-*+]\s\+]]
+    end,
+})
+
+-- Taskpaper settings
+au("FileType", {
+    group = filetype_group,
+    pattern = "taskpaper",
+    callback = function()
+        vim.opt_local.textwidth = 0
+        vim.opt_local.autoread = true
+        au({ "CursorHold", "FocusLost", "WinLeave" }, {
+            buffer = 0,
+            callback = function()
+                vim.cmd("update")
+            end,
+        })
+        au({ "FocusGained", "BufEnter" }, {
+            buffer = 0,
+            callback = function()
+                vim.cmd("checktime")
+            end,
+        })
+    end,
+})
+
+-- Set filetypes for specific extensions
+au("BufEnter", {
+    group = filetype_group,
+    pattern = "*.tfstate",
+    callback = function()
+        vim.opt_local.filetype = "json"
+    end,
+})
+
+-- Notes settings
+au("BufEnter", {
+    group = filetype_group,
+    pattern = { homedir .. "/notes/*.md", homedir .. "/git/personal/notes/*.md" },
+    callback = function()
+        vim.cmd("SoftWrap")
+    end,
+})
+
+-- Crontab -e fix
+au("BufEnter", {
+    group = filetype_group,
+    pattern = "/private/tmp/crontab.*",
+    callback = function()
+        vim.opt_local.backupcopy = "yes"
+    end,
 })
