@@ -4,7 +4,6 @@ return {
   'editorconfig/editorconfig-vim',
 
   -- Syntax/filetype specific
-  --Plug 'hynek/vim-python-pep8-indent'
   {'sirtaj/vim-openscad', ft = 'openscad'},
   {'ledger/vim-ledger', ft = 'ledger'},
   {'vito-c/jq.vim', ft = 'jq'},
@@ -26,21 +25,6 @@ return {
     config = function() require('plugin-nvim-cmp') end
   },
 
-  -- Snippets
-  'rafamadriz/friendly-snippets',
-  'hrsh7th/vim-vsnip',
-
-  -- Better popup menu for commands
-  -- Note: nvim-cmp can provide similar functionality, but I like this better
-  {
-    'gelguy/wilder.nvim',
-    dependencies = {'romgrk/fzy-lua-native'},
-    config = function() require('plugin-wilder') end
-  },
-
-  -- Startup time viewer
-  {'dstein64/vim-startuptime', cmd = 'StartupTime'},
-
   -- My Plugins
-  'mivok/vim-minotl',
+  {'mivok/vim-minotl', ft='minotl'},
 }
