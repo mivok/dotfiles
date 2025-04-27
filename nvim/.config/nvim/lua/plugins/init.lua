@@ -13,17 +13,6 @@ return {
   {'pearofducks/ansible-vim', ft = 'ansible'},
   {'bakpakin/fennel.vim', ft = 'fennel'},
 
-  -- LSP
-  {
-    'williamboman/mason.nvim',
-    dependencies = {
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-    },
-    config = function() require('plugin-mason') end
-  },
-  'neovim/nvim-lspconfig',
-
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
@@ -51,23 +40,6 @@ return {
 
   -- Startup time viewer
   {'dstein64/vim-startuptime', cmd = 'StartupTime'},
-
-  -- Github copilot
-  {
-    'github/copilot.vim',
-    config = function() require('plugin-copilot') end
-  },
-
-  -- Copilot Chat
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "github/copilot.vim" },
-      { "nvim-lua/plenary.nvim" },
-    },
-    build = "make tiktoken", -- Only on MacOS or Linux
-    opts = {},
-  },
 
   -- My Plugins
   'mivok/vim-minotl',
