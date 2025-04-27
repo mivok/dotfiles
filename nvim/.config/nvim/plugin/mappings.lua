@@ -14,3 +14,11 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv')
 -- Make > and < keep the visual selection
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
+
+-- Fix common typos
+-- I often hold down shift too long when saving files
+vim.keymap.set('ca', 'W', 'write')
+vim.keymap.set('ca', 'Q', 'quit')
+
+-- Abbreviations/Command remapping
+vim.keymap.set('ia', 'xdate', '<C-R>=strftime("%Y-%m-%d")<CR>')
