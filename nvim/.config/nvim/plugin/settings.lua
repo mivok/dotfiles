@@ -43,3 +43,6 @@ vim.diagnostic.config({
   virtual_text = true,
   virtual_lines = { current_line = true },
 })
+
+-- Autocompletion options
+vim.opt.completeopt = {'menu','menuone','noselect','popup'}
