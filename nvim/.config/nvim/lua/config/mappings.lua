@@ -1,7 +1,8 @@
 -- Mappings config
 
 -- Sudo make me a sandwich
-vim.keymap.set('c', 'w!!', '%!sudo tee > /dev/null %')
+vim.keymap.set('c', 'w!!', '%!sudo tee > /dev/null %',
+  {desc="Write file with sudo"})
 
 -- Use J and K in visual mode to move lines up and down
 vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv')
@@ -20,18 +21,26 @@ vim.keymap.set('ca', 'Q', 'quit')
 vim.keymap.set('ia', 'xdate', '<C-R>=strftime("%Y-%m-%d")<CR>')
 
 -- LSP Mappings
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
+  {noremap=true, silent=true, desc="View diagnostic information"})
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
+  {noremap=true, silent=true, desc="View diagnostics in loclist"})
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,
+  {noremap=true, silent=true, desc="View symbol declaration"})
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition,
+  {noremap=true, silent=true, desc="View symbol definition"})
+vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder,
+  {noremap=true, silent=true, desc="Add LSP workspace folder"})
+vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder,
+  {noremap=true, silent=true, desc="Remove LSP workspace folder"})
 vim.keymap.set('n', '<leader>wl', function()
-  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, opts)
-vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
+  vim.primt(vim.lsp.buf.list_workspace_folders())
+end,
+  {noremap=true, silent=true, desc="List LSP workspace folders"})
+vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition,
+  {noremap=true, silent=true, desc="View symbol type definition"})
+vim.keymap.set('n', '<leader>f', vim.lsp.buf.format,
+  {noremap=true, silent=true, desc="Format buffer"})
 -- Additional default mappings in nvim 0.11+
 -- grn - vim.lsp.buf.rename
 -- grr - vim.lsp.buf.references
