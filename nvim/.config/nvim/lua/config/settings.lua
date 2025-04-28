@@ -41,7 +41,6 @@ vim.opt.expandtab = true               -- Use spaces instead of tabs
 -- Diagnostics configuration
 vim.diagnostic.config({
   virtual_text = true,
-  virtual_lines = { current_line = true },
 })
 
 -- Autocompletion options
