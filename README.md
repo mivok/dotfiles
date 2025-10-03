@@ -6,14 +6,15 @@ These dotfiles are intended to be used with GNU stow.
 
 ## Installation
 
-Clone the repo, then run `stow` for each package you want to install. To
-install all of them, run `stow */` (the slash stops stow from trying to
-install this README file).
+Clone the repo, install stow, then run `make_symlinks.sh`, which uses stow to
+install symlinks for each dotfile. Use the script rather than stow directly as
+the script will detect the OS and exclude mac/linux specific config files as
+needed.
 
 ```
 cd ~
 git clone git@github.com:mivok/dotfiles.git
 cd dotfiles
-brew install stow
-stow -v */
+brew install stow # or yay -S stow
+./make_symlinks.sh
 ```
