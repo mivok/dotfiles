@@ -22,10 +22,10 @@
 	ui = auto
 
 [commit]
-	template = ~/.gitmessage
+	template = ~/.config/git/gitmessage
 
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/gitignore_global
 
 [diff]
 	wsErrorHighlight = all
@@ -35,7 +35,7 @@
 	textconv = gpg2 -d --quiet --yes --compress-algo=none --batch --use-agent
 
 [includeIf "gitdir:~/git/work/"]
-	path = .gitconfig_work
+	path = gitconfig_work
 
 [init]
 	defaultBranch = main
