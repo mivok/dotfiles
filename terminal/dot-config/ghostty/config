@@ -1,0 +1,11 @@
+font-size = 12
+font-family = Hack
+background-opacity=0.9
+
+window-height = 49
+window-width = 173
+
+keybind = super+enter=new_split:auto
+keybind = ctrl+enter=new_split:auto
+
+window-theme = dark
