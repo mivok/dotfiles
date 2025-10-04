@@ -1,0 +1,7 @@
+# Prevent a white flash when making new splits on linux
+window-theme = dark
+
+# Ctrl-shift prefix for splits on linux
+keybind = ctrl+shift+enter=new_split:auto
+keybind = ctrl+shift+|=new_split:right
+keybind = ctrl+shift+-=new_split:down

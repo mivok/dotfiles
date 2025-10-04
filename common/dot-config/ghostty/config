@@ -5,7 +5,10 @@ background-opacity=0.9
 window-height = 49
 window-width = 173
 
-keybind = super+enter=new_split:auto
-keybind = ctrl+enter=new_split:auto
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+shift+v=paste_from_selection
 
-window-theme = dark
+# Linux/mac specific configs
+config-file = ?config-linux
+config-file = ?config-mac

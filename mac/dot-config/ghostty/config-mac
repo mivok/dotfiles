@@ -1,0 +1,4 @@
+# Super (cmd) for splits on mac
+keybind = cmd+enter=new_split:auto
+keybind = cmd+shift+|=new_split:right
+keybind = cmd+-=new_split:down
