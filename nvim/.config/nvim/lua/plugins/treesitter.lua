@@ -14,6 +14,8 @@ return {
       "json",
       "jsonc",
       "make",
+      "markdown",
+      "markdown_inline",
       "perl",
       "python",
       "ruby",
