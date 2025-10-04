@@ -18,3 +18,12 @@ cd dotfiles
 brew install stow # or yay -S stow
 ./make_symlinks.sh
 ```
+
+## Adding new files
+
+There is an `adopt.sh` script which can be used to move existing config files
+into the dotfiles repo and create the necessary symlinks. Use it as follows:
+
+```
+./adopt.sh ~/path/to/config/file stow_dir
+```

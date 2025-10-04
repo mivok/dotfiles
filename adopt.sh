@@ -17,12 +17,16 @@ if [[ -z "$FILE" || -z "$STOW_DIR" ]]; then
 fi
 
 REL_PATH="${FILE/#$HOME\//}"
-REL_DIR="${REL_PATH%/*}"
+
+# replace any occurrence of . with dot- for better hidden file handling
+REL_PATH="${REL_PATH//./dot-}"
 
 if [[ "$REL_PATH" == "$FILE" ]]; then
     echo "Error: FILE must be inside the home directory"
     exit 1
 fi
+
+REL_DIR="${REL_PATH%/*}"
 
 mkdir -p "$STOW_DIR/$REL_DIR"
 mv "$FILE" "$STOW_DIR/$REL_PATH"
