@@ -19,6 +19,9 @@ brew install stow # or yay -S stow
 ./make_symlinks.sh
 ```
 
+When running make_symlinks, any options passed to the script will be passed to
+stow. So you can use `-n` to do a dry run, or `-R` to restow.
+
 ## Adding new files
 
 There is an `adopt.sh` script which can be used to move existing config files
