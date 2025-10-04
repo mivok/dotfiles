@@ -1,10 +1,15 @@
 # ~/.zshrc
 
+# Explicitly set XDG variables
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Path
@@ -21,10 +26,11 @@ path=(
 )
 
 # Early config settings
-source ~/.zsh/conf.d/pre.zsh
+source $XDG_CONFIG_HOME/zsh/config/pre.zsh
 
 # Set up antigen
-source ~/.zsh/antigen.zsh
+export ADOTDIR="$XDG_DATA_HOME/antigen"
+source $XDG_CONFIG_HOME/zsh/antigen.zsh
 
 antigen use oh-my-zsh
 
@@ -46,15 +52,16 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 
 # Add local completions
-fpath=($fpath ~/.zsh/completions)
+fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
 
 # Additional config files
-. ~/.zsh/conf.d/aliases.zsh
-. ~/.zsh/conf.d/appsettings.zsh
-. ~/.zsh/conf.d/colors.zsh
-. ~/.zsh/conf.d/functions.zsh
-. ~/.zsh/conf.d/kubectl.zsh
-. ~/.zsh/conf.d/ssh-agent.zsh
+source $XDG_CONFIG_HOME/zsh/config/aliases.zsh
+source $XDG_CONFIG_HOME/zsh/config/appsettings.zsh
+source $XDG_CONFIG_HOME/zsh/config/colors.zsh
+source $XDG_CONFIG_HOME/zsh/config/functions.zsh
+source $XDG_CONFIG_HOME/zsh/config/kubectl.zsh
+source $XDG_CONFIG_HOME/zsh/config/ssh-agent.zsh
+source $XDG_CONFIG_HOME/zsh/config/xdg_base_dir.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Load p10k config
+source $XDG_CONFIG_HOME/zsh/config/p10k.zsh
