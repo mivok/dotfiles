@@ -34,6 +34,12 @@ source $XDG_CONFIG_HOME/zsh/antigen.zsh
 
 antigen use oh-my-zsh
 
+# Make sure the cache completions directory exists (fixes an issue with docker
+# completion)
+if [[ -d "$ZSH_CACHE_DIR" ]]; then
+    mkdir -p "$ZSH_CACHE_DIR/completions"
+fi
+
 # Load plugins
 antigen bundle autojump
 antigen bundle aws
