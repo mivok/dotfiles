@@ -2,3 +2,7 @@
 keybind = cmd+enter=new_split:auto
 keybind = cmd+shift+|=new_split:right
 keybind = cmd+-=new_split:down
+
+# Add shift-pgup and shift-pgdn for scrolling on mac (it's default on linux)
+keybind = shift+page_up=scroll_page_up
+keybind = shift+page_down=scroll_page_down
