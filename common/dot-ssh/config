@@ -19,10 +19,6 @@ Host github.com
     IdentitiesOnly yes
     IdentityFile ~/.ssh/id_ed25519_github
 
-Host stash.cuda*
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/id_ed25519_barracuda_stash
-
 Host *.local
     IdentitiesOnly yes
     IdentityFile ~/.ssh/id_ed25519_personal
