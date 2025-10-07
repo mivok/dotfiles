@@ -62,10 +62,10 @@ update-antigen() {
         if [[ ! -f antigen.zsh ]]; then
             echo "Antigen doesn't appear to be installed as a single script."
             echo "Skipping update."
-            return 1
+        else
+            curl -L -o antigen.zsh https://git.io/antigen
+            echo "Antigen updated. Commit/push dotfiles as needed."
         fi
 
-        curl -L -o antigen.zsh https://git.io/antigen
-        echo "Antigen updated. Commit/push dotfiles as needed."
     )
 }
