@@ -25,7 +25,6 @@ matches:
 
   - triggers:
       - ":id"
-      - "xid"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -53,14 +52,18 @@ matches:
   - triggers:
       - ":optkey"
       - ":optionkey"
+      - xoptkey
     replace: "⌥"
 
   - triggers:
       - ":cmdkey"
       - ":commandkey"
+      - xcmdkey
     replace: "⌘"
 
-  - trigger: ":shiftkey"
+  - triggers:
+      - ":shiftkey"
+      - xshiftkey
     replace: "⇧"
 
   # Work
