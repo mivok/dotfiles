@@ -6,10 +6,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=86400
 # export HOMEBREW_NO_GITHUB_API=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
 
-# MPD server
-export MPD_HOST=officenoise.local
-
-# AWS settings
+# AWS settings (fixes terraform and others)
 export AWS_SDK_LOAD_CONFIG=1
 
 # Default editor
@@ -18,12 +15,6 @@ export EDITOR
 
 # Go
 export GOPATH=$HOME/go
-
-# Autoload github token
-if [[ -f ~/.githubtoken ]]; then
-    GITHUB_TOKEN=$(cat ~/.githubtoken)
-    export GITHUB_TOKEN
-fi
 
 # ZSH autosuggestions
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -45,11 +36,6 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 # This shouldn't be set if SHARE_HISTORY is set
 unsetopt INC_APPEND_HISTORY
-
-# Use rbenv if it exists
-if command -v rbenv > /dev/null; then
-    eval "$(rbenv init -)"
-fi
 
 # Use ripgrep config file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rc"

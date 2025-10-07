@@ -1,19 +1,6 @@
 # functions.plugin.zsh
 # Miscellaneous helper functions
 
-# SSH to an aws instance by looking up its IP. Uses aws_instance_search.sh and
-# fzf
-aws-ssh() {
-    local HOSTNAME
-    HOSTNAME="$(aws_instance_search.sh -p "$1" -r "${3:-us-west-2}" "$2" | \
-        fzf -1 | tee /dev/stderr | awk '{ print $2 }')"
-    if [[ -n "$HOSTNAME" ]]; then
-        ssh "$HOSTNAME"
-    else
-        echo "No host selected."
-    fi
-}
-
 # For when you recreate a machine and try to ssh to it
 fussh() {
     local SSH_ARG SSH_HOST SSH_IP PROXYJUMP
@@ -71,7 +58,7 @@ gco() {
 
 # Alternative to antigen selfupdate command
 update-antigen() {
-    (cd -q ~/dotfiles/zsh/.zsh
+    (cd -q ~/dotfiles/common/dot-config/zsh
         if [[ ! -f antigen.zsh ]]; then
             echo "Antigen doesn't appear to be installed as a single script."
             echo "Skipping update."
