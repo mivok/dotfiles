@@ -18,8 +18,10 @@ fi
 
 REL_PATH="${FILE/#$HOME\//}"
 
-# replace any occurrence of . with dot- for better hidden file handling
-REL_PATH="${REL_PATH//./dot-}"
+# replace any occurrence of . at the beginning of a path component with dot- for
+# better hidden file handling
+REL_PATH="${REL_PATH/#./dot-}"     # Deal with leading dot
+REL_PATH="${REL_PATH//\/./\/dot-}" # Deal with other dots after slashes
 
 if [[ "$REL_PATH" == "$FILE" ]]; then
     echo "Error: FILE must be inside the home directory"
