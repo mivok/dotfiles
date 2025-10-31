@@ -1,2 +1,5 @@
 [user]
 	email = mharrison@barracuda.com
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
