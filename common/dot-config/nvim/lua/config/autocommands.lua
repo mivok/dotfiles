@@ -8,18 +8,28 @@ local au = vim.api.nvim_create_autocmd
 local tab_width_group = augroup("tab_width", {clear = true})
 local yank_highlight_group = augroup('yank_highlight', {clear = true})
 local filetype_group = augroup('mh_filetypes', {clear = true})
+local conceal_group = augroup('mh_conceal', {clear = true})
 
 -- Expand the home directory here because it's not automatically expanded in
 -- autocommand definitions in lua
 local homedir = vim.fn.expand("~")
 
--- Helper function and for setting the tab size for a given filetype
-function filetype_tab_width(filetype, width, opts)
+-- Helper function for setting the tab size for a given filetype
+local function filetype_tab_width(filetype, width, opts)
   opts = opts or {}
   vim.api.nvim_create_autocmd({'FileType'}, {
     pattern = filetype,
     callback = function() set_tab_width(width, opts) end,
     group = tab_width_group,
+  })
+end
+
+-- Helper function for disabling concealing for a given filetype
+local function filetype_no_conceal(filetype)
+  au({'FileType'}, {
+    pattern = filetype,
+    callback = function() vim.opt.conceallevel = 0 end,
+    group = conceal_group,
   })
 end
 
@@ -36,6 +46,9 @@ filetype_tab_width('taskpaper', 4, {hard_tab = true})
 filetype_tab_width('terraform', 2)
 filetype_tab_width('yaml', 2)
 
+-- Disable conceal for specific filetypes
+filetype_no_conceal('markdown')
+filetype_no_conceal('json')
 
 -- Highlight text on yank
 au({'TextYankPost'}, {
@@ -47,25 +60,6 @@ au({'TextYankPost'}, {
       on_visual=true
     }) end,
   group = yank_highlight_group
-})
-
-au({'FileType'}, {
-  pattern = "json",
-  callback = function()
-    vim.opt.conceallevel = 0
-  end
-})
-
-
--- Filetype autocommands
--- Fix for gq on lists with plasticboy plugin - platicboy/vim-markdown#232
-au("FileType", {
-    group = filetype_group,
-    pattern = "markdown",
-    callback = function()
-        vim.opt_local.formatoptions:remove("q")
-        vim.opt_local.formatlistpat = [[^\s*\d\+\.\s\+\|^\s*[-*+]\s\+]]
-    end,
 })
 
 -- Taskpaper settings
