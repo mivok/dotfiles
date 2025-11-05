@@ -9,6 +9,9 @@ keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 keybind = super+shift+v=paste_from_selection
 
+# Make ssh work automatically
+shell-integration-features = ssh-terminfo,ssh-env
+
 # Linux/mac specific configs
 config-file = ?config-linux
 config-file = ?config-mac
