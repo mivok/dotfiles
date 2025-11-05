@@ -7,6 +7,9 @@ return {
       -- Disable the default tab key mapping for copilot
       vim.g.copilot_no_tab_map = true
 
+      -- Disable copillot by default
+      vim.g.copilot_enabled = false
+
       -- Set the right arrow key as the accept trigger for copilot if a suggestion is
       -- visible
       vim.keymap.set('i', '<Right>', 'copilot#Accept("\\<Right>")', {
