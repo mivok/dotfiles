@@ -1,6 +1,6 @@
 -- Additional configuration for LSP
 -- Note: LSP mappings are set in the `mappings.lua` file, and there are
--- additional LSP settings from mason-lspconfig.
+-- additional LSP settings in lsp/*.lua
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
