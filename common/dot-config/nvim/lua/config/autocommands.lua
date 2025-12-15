@@ -132,3 +132,13 @@ au("BufWritePre", {
     pattern = "*.go",
     callback = go_org_imports,
 })
+
+-- Set textwidth to 79 for python files
+au("FileType", {
+    group = filetype_group,
+    pattern = "python",
+    callback = function()
+        vim.opt_local.textwidth = 79
+        vim.opt_local.colorcolumn = {"79"}
+    end,
+})
