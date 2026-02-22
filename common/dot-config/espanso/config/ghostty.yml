@@ -1,0 +1,4 @@
+---
+# Only use clipboard method for ghostty
+filter_exec: ghostty
+backend: clipboard
