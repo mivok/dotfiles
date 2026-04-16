@@ -7,7 +7,6 @@ vim.pack.add({
   'https://github.com/CopilotC-Nvim/CopilotChat.nvim',
   'https://github.com/nvim-lua/plenary.nvim',
 })
--- build: make tiktoken -- Only on MacOS or Linux
 
 -- Disable the default tab key mapping for copilot
 vim.g.copilot_no_tab_map = true

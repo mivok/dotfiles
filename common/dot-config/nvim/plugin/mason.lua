@@ -35,5 +35,6 @@ require('mason-tool-installer').setup {
     'goimports',
     'shellcheck',
     'yamllint',
+    'tree-sitter-cli',
   }
 }
