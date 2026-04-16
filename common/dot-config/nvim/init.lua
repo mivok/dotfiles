@@ -4,9 +4,6 @@ require('config.autocommands')
 require('config.mappings')
 require('config.python_venv')
 
--- Load lazy.nvim and plugins
-require('config.lazy')
-
 -- Additional config
 require('config.lsp')
 -- Custom commands
