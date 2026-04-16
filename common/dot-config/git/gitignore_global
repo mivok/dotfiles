@@ -3,3 +3,4 @@
 .direnv
 .delivery/cli.toml
 .DS_Store
+.codex
