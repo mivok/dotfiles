@@ -8,10 +8,6 @@
       "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
       "src": "https://github.com/github/copilot.vim"
     },
-    "editorconfig-vim": {
-      "rev": "c0227885a06b155d5aa5465e08b9800e8c939f70",
-      "src": "https://github.com/editorconfig/editorconfig-vim"
-    },
     "fennel.vim": {
       "rev": "30b9beabad2c4f09b9b284caf5cd5666b6b4dc89",
       "src": "https://github.com/bakpakin/fennel.vim"
@@ -63,6 +59,10 @@
     "nvim-lspconfig": {
       "rev": "b80f82f59544f0770981b5a6c7d129ca276dab36",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-surround": {
+      "rev": "9291040de8cd8a4439eb64c441e8d5d2bf884a5a",
+      "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
