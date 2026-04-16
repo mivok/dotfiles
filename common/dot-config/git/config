@@ -24,9 +24,6 @@
 [commit]
 	template = ~/.config/git/gitmessage
 
-[core]
-	excludesfile = ~/.config/git/gitignore_global
-
 [diff]
 	wsErrorHighlight = all
 
