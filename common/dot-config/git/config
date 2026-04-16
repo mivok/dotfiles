@@ -58,6 +58,6 @@
 	process = git-lfs filter-process
 	required = true
 
-[credential "https://dev.azure.com"]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-	useHttpPath = true
+[credential]
+	# Use git-credential-manager if present and needed
+	helper = manager
