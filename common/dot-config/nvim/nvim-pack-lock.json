@@ -1,9 +1,5 @@
 {
   "plugins": {
-    "CopilotChat.nvim": {
-      "rev": "d1d767c3a5b80ab8f581d567f9921fda061f6ce2",
-      "src": "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
-    },
     "ansible-vim": {
       "rev": "9e020fbb31b4959ea12d97afa78a90c7528ac109",
       "src": "https://github.com/pearofducks/ansible-vim"

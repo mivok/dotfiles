@@ -2,10 +2,6 @@
 vim.pack.add({
   -- Copilot itself
   'https://github.com/github/copilot.vim',
-
-  -- Copilot Chat
-  'https://github.com/CopilotC-Nvim/CopilotChat.nvim',
-  'https://github.com/nvim-lua/plenary.nvim',
 })
 
 -- Disable the default tab key mapping for copilot
@@ -26,5 +22,3 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false
 })
-
-require('CopilotChat').setup {}
