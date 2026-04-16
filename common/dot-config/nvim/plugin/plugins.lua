@@ -1,9 +1,6 @@
 -- Simple plugins that don't need their own file or special config
 
 vim.pack.add({
-  -- Editorconfig support
-  'https://github.com/editorconfig/editorconfig-vim',
-
   -- nvim-surround
   'https://github.com/kylechui/nvim-surround',
 
