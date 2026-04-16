@@ -69,3 +69,10 @@ update-antigen() {
 
     )
 }
+
+# Run a uv script under pydb
+function uvpdb() {
+  local SCRIPT="${1}"
+  shift
+  command uv run --with-requirements "${SCRIPT}" python -m pdb "${SCRIPT}" "$@"
+}
