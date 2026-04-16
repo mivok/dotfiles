@@ -4,6 +4,9 @@ vim.pack.add({
   -- Editorconfig support
   'https://github.com/editorconfig/editorconfig-vim',
 
+  -- nvim-surround
+  'https://github.com/kylechui/nvim-surround',
+
   -- Syntax/filetype specific
   'https://github.com/sirtaj/vim-openscad',
   'https://github.com/ledger/vim-ledger',
