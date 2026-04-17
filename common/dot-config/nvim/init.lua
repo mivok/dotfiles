@@ -1,14 +1,14 @@
 -- Basic vim settings
-require('config.settings')
-require('config.autocommands')
-require('config.mappings')
-require('config.python_venv')
+require('settings')
+require('autocommands')
+require('mappings')
+require('python_venv')
 
 -- Additional config
-require('config.lsp')
+require('lsp')
 -- Custom commands
-require('config.softwrap')
-require('config.tabs')
+require('softwrap')
+require('tabs')
 
 -- Plugin helper functions/commands
 require('plugin-helper')
