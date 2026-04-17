@@ -1,10 +1,10 @@
 -- Telescope
 vim.pack.add({
   {
-    src = 'https://github.com/nvim-telescope/telescope.nvim',
+    src = gh('nvim-telescope/telescope.nvim'),
     version = vim.version.range('*') -- any tagged version
   },
-  'https://github.com/nvim-lua/plenary.nvim',
+  gh('nvim-lua/plenary.nvim'),
 })
 
 -- Telescope mappings

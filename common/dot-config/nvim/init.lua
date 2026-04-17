@@ -9,3 +9,6 @@ require('config.lsp')
 -- Custom commands
 require('config.softwrap')
 require('config.tabs')
+
+-- Plugin helper functions/commands
+require('plugin-helper')

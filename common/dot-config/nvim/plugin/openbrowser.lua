@@ -1,5 +1,5 @@
 -- Better gx behavior
-vim.pack.add({'https://github.com/tyru/open-browser.vim'})
+vim.pack.add({gh('tyru/open-browser.vim')})
 
 -- Disable default netrw behavior
 vim.g.netrw_nogx = 1

@@ -1,5 +1,5 @@
 -- Undotree
-vim.pack.add({'https://github.com/mbbill/undotree'})
+vim.pack.add({gh('mbbill/undotree')})
 
 vim.g.undotree_SetFocusWhenToggle=1
 vim.g.undotree_ShortIndicators = 1

@@ -2,17 +2,17 @@
 
 vim.pack.add({
   -- nvim-surround
-  'https://github.com/kylechui/nvim-surround',
+  gh('kylechui/nvim-surround'),
 
   -- Syntax/filetype specific
-  'https://github.com/sirtaj/vim-openscad',
-  'https://github.com/ledger/vim-ledger',
-  'https://github.com/vito-c/jq.vim',
-  'https://github.com/LokiChaos/vim-tintin',
-  'https://github.com/davidoc/taskpaper.vim',
-  'https://github.com/pearofducks/ansible-vim',
-  'https://github.com/bakpakin/fennel.vim',
+  gh('sirtaj/vim-openscad'),
+  gh('ledger/vim-ledger'),
+  gh('vito-c/jq.vim'),
+  gh('LokiChaos/vim-tintin'),
+  gh('davidoc/taskpaper.vim'),
+  gh('pearofducks/ansible-vim'),
+  gh('bakpakin/fennel.vim'),
 
   -- My Plugins
-  'https://github.com/mivok/vim-minotl',
+  gh('mivok/vim-minotl'),
 })

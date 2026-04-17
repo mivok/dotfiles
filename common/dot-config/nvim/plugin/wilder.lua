@@ -4,9 +4,9 @@
 -- Note: python_search_pipeline and pcre2_highlighter need python3 to work.
 -- Make sure a python virtualenv is installed.
 vim.pack.add({
-  'https://github.com/gelguy/wilder.nvim',
-  'https://github.com/romgrk/fzy-lua-native',
-  'https://github.com/nvim-tree/nvim-web-devicons',
+  gh('gelguy/wilder.nvim'),
+  gh('romgrk/fzy-lua-native'),
+  gh('nvim-tree/nvim-web-devicons'),
 })
 
 local wilder = require('wilder')

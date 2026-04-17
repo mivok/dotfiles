@@ -1,7 +1,7 @@
 -- Github Copilot
 vim.pack.add({
   -- Copilot itself
-  'https://github.com/github/copilot.vim',
+  gh('github/copilot.vim'),
 })
 
 -- Disable the default tab key mapping for copilot

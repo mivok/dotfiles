@@ -1,9 +1,9 @@
 -- Mason and related tools
 vim.pack.add({
-  'https://github.com/williamboman/mason.nvim',
-  'https://github.com/williamboman/mason-lspconfig.nvim',
-  'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim',
+  gh('williamboman/mason.nvim'),
+  gh('williamboman/mason-lspconfig.nvim'),
+  gh('neovim/nvim-lspconfig'),
+  gh('WhoIsSethDaniel/mason-tool-installer.nvim'),
 })
 
 require('mason').setup {}
