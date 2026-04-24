@@ -39,3 +39,7 @@ unsetopt INC_APPEND_HISTORY
 
 # Use ripgrep config file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rc"
+
+# Disable telemetry
+export DO_NOT_TRACK=true # Generic
+export GH_TELEMETRY=false # GH CLI
