@@ -67,6 +67,7 @@ source $XDG_CONFIG_HOME/zsh/config/colors.zsh
 source $XDG_CONFIG_HOME/zsh/config/functions.zsh
 source $XDG_CONFIG_HOME/zsh/config/jira.zsh
 source $XDG_CONFIG_HOME/zsh/config/kubectl.zsh
+source $XDG_CONFIG_HOME/zsh/config/subcmd.zsh
 source $XDG_CONFIG_HOME/zsh/config/ssh-agent.zsh
 source $XDG_CONFIG_HOME/zsh/config/xdg_base_dir.zsh
 
