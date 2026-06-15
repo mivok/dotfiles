@@ -5,3 +5,9 @@ window-theme = dark
 keybind = ctrl+shift+enter=new_split:auto
 keybind = ctrl+shift+|=new_split:right
 keybind = ctrl+shift+-=new_split:down
+
+# Rename tab
+keybind = ctrl+shift+r=prompt_tab_title
+
+# Tab overview (expose)
+keybind = ctrl+shift+arrow_up=toggle_tab_overview

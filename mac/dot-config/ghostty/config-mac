@@ -6,3 +6,13 @@ keybind = cmd+-=new_split:down
 # Add shift-pgup and shift-pgdn for scrolling on mac (it's default on linux)
 keybind = shift+page_up=scroll_page_up
 keybind = shift+page_down=scroll_page_down
+
+# Rename tab
+keybind = super+r=prompt_tab_title
+
+# Command palette without shift
+keybind = super+p=toggle_command_palette
+
+# Tab overview (expose) - ctrl+shift still on the mac, same as linux
+# I have ctrl-up for normal expose, add shift for terminal
+keybind = ctrl+shift+arrow_up=toggle_tab_overview
