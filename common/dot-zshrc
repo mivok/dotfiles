@@ -41,10 +41,10 @@ if [[ -d "$ZSH_CACHE_DIR" ]]; then
 fi
 
 # Load plugins
-antigen bundle autojump
 antigen bundle direnv
 antigen bundle docker
 antigen bundle fzf
+antigen bundle zoxide
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
