@@ -17,7 +17,7 @@ require("conform").setup({
     end
 
     return {
-      lsp_format = "fallback",
+      lsp_format = "never",
       timeout_ms = 500,
     }
   end
@@ -31,5 +31,3 @@ end, { desc = "Disable format-on-save for the current buffer" })
 vim.api.nvim_create_user_command("FormatEnable", function()
   vim.b.disable_autoformat = false
 end, { desc = "Enable format-on-save for the current buffer" })
-
-
