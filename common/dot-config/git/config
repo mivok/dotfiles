@@ -32,7 +32,7 @@
 	textconv = gpg2 -d --quiet --yes --compress-algo=none --batch --use-agent
 
 [includeIf "gitdir:~/git/work/"]
-	path = gitconfig_work
+	path = conf.d/work
 
 [init]
 	defaultBranch = main
@@ -55,6 +55,5 @@
 	process = git-lfs filter-process
 	required = true
 
-[credential]
-	# Use git-credential-manager if present and needed
-	helper = manager
+[include]
+	path = conf.d/credential_manager
