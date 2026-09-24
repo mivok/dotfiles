@@ -60,6 +60,7 @@ antigen apply
 fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
 
 # Additional config files
+source $XDG_CONFIG_HOME/zsh/config/abbreviations.zsh
 source $XDG_CONFIG_HOME/zsh/config/aliases.zsh
 source $XDG_CONFIG_HOME/zsh/config/aws_profile.zsh
 source $XDG_CONFIG_HOME/zsh/config/appsettings.zsh
